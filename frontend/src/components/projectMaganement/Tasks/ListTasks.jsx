@@ -21,4 +21,4 @@ const ListTasks=()=>
     </div>)
 }
 
-export default UpdateTask
+export default ListTasks
