@@ -1,12 +1,11 @@
 import React from 'react'
 
-const ListProject=(task)=>{
+const ListProject = (task) => {
+
     return(
-<div>
-    Single Task here
-</div>
-
-
+        <div>
+            Single Task here
+        </div>
     )
 }
 
