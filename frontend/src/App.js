@@ -1,6 +1,7 @@
 import './App.css';
 import Navbar from './Components/landing-page/Navbar'
 import Header from './Components/landing-page/Header'
+import LadingPage from './Components/landing-page/LandingPage';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
         <Navbar />
         <Header />
       </header>
+      <LadingPage />
     </div>
   );
 }
