@@ -23,11 +23,10 @@ li {
     background-color: #103654;
     color: #fff;
     gap: 30px;
-    font-size: 16px;
     font-family: 'Proxima Nova';
-    font-size: 18px;
-	font-size: 1.8rem;
-	font-weight: 300;
+    line-height: 1.25;
+	font-weight: 200;
+    height: 55px;
 }
 
 .nav-links a {
@@ -35,8 +34,8 @@ li {
 }
 
 .nav-links a:hover {
-    transition: 1s ease;
-    color: #fcb900;
+    transition: 0.5s ease;
+    color: #ff9c00;
 }
 
 .logo {
@@ -54,7 +53,7 @@ li {
     border-radius: 5px; */
     transition: 1s ease;
     text-decoration: underline;
-    text-decoration-color: #fcb900;
+    text-decoration-color: #ff9c00;
     text-underline-offset: 10px;
     text-decoration-thickness: 2px;    
     /* transition: color .12s linear,background-color .12s linear,border-color .12s linear; */
@@ -148,6 +147,13 @@ display: none;
     }
 }
 
+.navbar-button-container{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 50px;
+}
+
 .sign-in-btn {
     padding: 10px 20px;
     background-color: #fff;
@@ -158,7 +164,6 @@ display: none;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-left: 60%;
 }
 
 .sign-in-btn:hover {

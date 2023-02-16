@@ -26,7 +26,9 @@ const Navbar = () => {
                         <li><a href="/">Contact</a></li>
                     </div>
                 </ul>
-                <button class="sign-in-btn">Sign In</button>
+                <div className='navbar-button-container'>
+                    <button class="sign-in-btn">Sign In</button>
+                </div>
             </nav>
         </div>
     )
