@@ -156,10 +156,10 @@ display: none;
 
 .sign-in-btn {
     padding: 10px 20px;
-    background-color: #fff;
+    /* background-color:rgb(33 116 234); */
     color: #222;
     border: none;
-    border-radius: 4px;
+    border-radius: 3px;
     font-size: 1rem;
     font-weight: bold;
     text-transform: uppercase;
@@ -167,6 +167,7 @@ display: none;
 }
 
 .sign-in-btn:hover {
-    background-color: #51A9E1;
+    background-color:rgb(29 78 216);
+    background-color:rgb(33 116 234);
     color: #fff;
 }

@@ -77,7 +77,7 @@ p {
   padding: 0;
   margin: 0;
   color: #fff;
-  list-style: none
+  list-style: none;
 }
 
 .front-page-header-list-container {
@@ -85,10 +85,11 @@ p {
   flex: 1 1 25%;
   flex-direction: column;
   color: #fff;
+  border-right: 1px solid hsla(0,0%,100%,.15);
+  margin-right: -1px;
 }
 
 .front-page-header-list-text {
-  display: -ms-flexbox;
   display: flex;
   align-items: flex-start;
   padding: 20px 22px;
@@ -102,12 +103,11 @@ p {
   display: block;
   flex-grow: 1;
   padding: 22px;
-  color: #ebe1e1;
   transition: border .3s
 }
 
 .front-page-header-descr1 {
-  background: linear-gradient(90deg,#103654,#205377 53%,#31709b 98%)
+  background: linear-gradient(90deg,#103654,#205377 53%,#31709b 98%);
 }
 
 .front-page-header-descr2 {

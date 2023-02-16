@@ -5,7 +5,7 @@ const LadingPage = () => {
     return(
         <section className="services-section">
             <div className='section-inner'>
-                <h3 className="services-title">How Remotivate Can Help You</h3>
+                <h3 className="services-title">How Remotivate Can Boost Your Performance</h3>
                 <div className='service-slogen'>Streamline your remote work with Remotivate</div>
                 <ul className='services-list'>
                     <li className='services-list-item'>
