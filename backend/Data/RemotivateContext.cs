@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace backend.Models;
+namespace backend.Data;
 
 public class RemotivateContext : DbContext
 {

@@ -1,4 +1,4 @@
-﻿using backend.Models;
+﻿using backend.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers;
