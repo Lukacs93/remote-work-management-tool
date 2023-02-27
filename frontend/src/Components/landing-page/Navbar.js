@@ -8,7 +8,7 @@ const Navbar = () => {
                 <div className="logo">LOGO</div>
                 <ul className="nav-links">
                     <input type="checkbox" id="checkbox_toggle" />
-                    <label for="checkbox_toggle" className="hamburger">&#9776;</label>
+                    <label htmlFor="checkbox_toggle" className="hamburger">&#9776;</label>
                     <div className="menu">
                         <li><a href="/">Home</a></li>
                         <li><a href="/">About</a></li>
@@ -27,7 +27,7 @@ const Navbar = () => {
                     </div>
                 </ul>
                 <div className='navbar-button-container'>
-                    <button class="sign-in-btn">Sign In</button>
+                    <button className="sign-in-btn">Sign In</button>
                 </div>
             </nav>
         </div>

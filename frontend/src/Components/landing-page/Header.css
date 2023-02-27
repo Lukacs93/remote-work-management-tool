@@ -21,11 +21,11 @@ p {
     font-family: 'Proxima Nova';
  }
  .text-on-image {
-   position: absolute;
-   left: 30%;
-   bottom: 60%;
-   color: white;
-   font-size: 300%;
+  position: absolute;
+  left: 30%;
+  bottom: 60%;
+  color: white;
+  font-size: 300%;
  }
 
  /* @media (max-width: 1023px) {
@@ -58,7 +58,7 @@ p {
 } */
 
 .header-container{
-    position: relative;
+  position: relative;
 }
 
 .front-page-header-bottom {
@@ -86,7 +86,7 @@ p {
   flex-direction: column;
   color: #fff;
   border-right: 1px solid hsla(0,0%,100%,.15);
-  margin-right: -1px;
+  /* margin-right: -1px; */
 }
 
 .front-page-header-list-text {

@@ -51,7 +51,7 @@ const LadingPage = () => {
             </div>
             <p>We welcome opportunities to work alongside different teams on projects of any complexity. Working together, we will help you to put yourself ahead of your competition.</p>
             <div className='service-button-container'>
-                <button class="services-button">I Am Interested In</button>
+                <button className="services-button">I Am Interested In</button>
             </div>
         </section>
     )
