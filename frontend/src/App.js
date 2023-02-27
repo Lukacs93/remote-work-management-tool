@@ -1,13 +1,16 @@
 import './App.css';
-import CreateProject from './components/projectMaganement/Projects/CreateProject'
+import Navbar from './Components/landing-page/Navbar'
+import Header from './Components/landing-page/Header'
+import LadingPage from './Components/landing-page/LandingPage';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
- 
+        <Navbar />
+        <Header />
       </header>
-      <CreateProject />
+      <LadingPage />
     </div>
   );
 }
