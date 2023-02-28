@@ -10,7 +10,7 @@
 
         public List<Project> CurrentProjects { get; set; }// Those projects that the use is in as a manager or just a user
 
-
+        public List<Task> Tasks { get; set; }
 
 
     }
