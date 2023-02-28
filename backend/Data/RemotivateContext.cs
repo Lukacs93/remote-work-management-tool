@@ -9,6 +9,10 @@ public class RemotivateContext : DbContext
     
     public DbSet<TaskItem> Tasks { get; set; }
     
+    public DbSet<Date> Dates { get; set; }
+    
+    public DbSet<User> Users { get; set; }
+    
     public RemotivateContext(DbContextOptions<RemotivateContext> options) : base(options)
     {
     }

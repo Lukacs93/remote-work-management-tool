@@ -9,10 +9,10 @@ public class TaskItem
 
     public List<User> UsersOnTask { get; set; }
 
-    public Project Project { get; set; } // The Project its part of
+    public long ProjectId { get; set; } // The Project its part of
 
     public string Description { get; set; }
 
-    public Date Date { get; set; }
+    public long DateId { get; set; }
 
 }
