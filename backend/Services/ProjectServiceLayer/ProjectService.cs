@@ -1,7 +1,7 @@
 ﻿using backend.Data;
 using backend.Models.Entities;
 
-namespace backend.Services;
+namespace backend.Services.ProjectServiceLayer;
 
 public class ProjectService : IProjectService
 {
