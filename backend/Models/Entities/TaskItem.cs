@@ -12,7 +12,7 @@ public class TaskItem
 
     public long ProjectId { get; set; } // The Project its part of
     
-    public List<User> UsersOnTask { get; set; }
+    public List<User>? UsersOnTask { get; set; }
     
     public string Description { get; set; }
 

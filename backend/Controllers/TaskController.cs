@@ -29,7 +29,7 @@ public class TaskController : ControllerBase
         return await _taskService.GetTaskById(id);
     }
 
-    [HttpPost("{projectId:long}")]
+    [HttpPost("/projects/{projectId:long}/add-task")]
     public async Task<TaskItem> CreateTask(long projectId, [FromBody] TaskItem task)
     {
         return await _taskService.CreateTask(projectId, task);
