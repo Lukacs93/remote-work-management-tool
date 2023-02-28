@@ -4,9 +4,9 @@ namespace backend.Services.ProjectServiceLayer;
 
 public interface IProjectService
 {
-    Task<IEnumerable<Project>> GetAllProjects();
+    Task<List<Project>> GetAllProjects();
     Task<Project> GetProjectById(long id);
     Task CreateProject(Project project);
     Task UpdateProject(Project project);
-    Task DeleteProject(Project project);
+    Task DeleteProject(long id);
 }

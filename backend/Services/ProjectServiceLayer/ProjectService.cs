@@ -1,5 +1,6 @@
 ﻿using backend.Data;
 using backend.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Services.ProjectServiceLayer;
 
@@ -12,7 +13,7 @@ public class ProjectService : IProjectService
         _context = context;
     }
 
-    public Task<IEnumerable<Project>> GetAllProjects()
+    public Task<List<Project>> GetAllProjects()
     {
         throw new NotImplementedException();
     }
@@ -32,7 +33,7 @@ public class ProjectService : IProjectService
         throw new NotImplementedException();
     }
 
-    public Task DeleteProject(Project project)
+    public Task DeleteProject(long Id)
     {
         throw new NotImplementedException();
     }

@@ -1,10 +1,12 @@
-﻿namespace backend.Services.TaskServiceLayer;
+﻿using backend.Models.Entities;
+
+namespace backend.Services.TaskServiceLayer;
 
 public interface ITaskService
 {
-    Task<IEnumerable<Task>> GetAllTasks();
-    Task<Task> GetTaskById(int id);
-    Task CreateTask(Task task);
-    Task UpdateTask(Task task);
-    Task DeleteTask(Task task);
+    Task<List<TaskItem>> GetAllTasks();
+    Task<TaskItem?> GetTaskById(int id);
+    Task<TaskItem> CreateTask(long projectId, TaskItem task);
+    Task UpdateTask(TaskItem task);
+    Task DeleteTask(long id);
 }
