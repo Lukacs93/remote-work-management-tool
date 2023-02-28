@@ -2,7 +2,7 @@
 
 namespace backend.Models.Entities;
 
-public class Task
+public class TaskItem
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public long Id { get; set; }

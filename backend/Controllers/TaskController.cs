@@ -1,4 +1,5 @@
 ﻿using backend.Data;
+using backend.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers;
@@ -6,10 +7,10 @@ namespace backend.Controllers;
 [ApiController, Route("/tasks")]
 public class TaskController : ControllerBase
 {
-    private readonly RemotivateContext _context;
+    private readonly IProjectService _projectService;
 
-    public TaskController(RemotivateContext context)
+    public TaskController(IProjectService projectService)
     {
-        _context = context;
+        _projectService = projectService;
     }
 }
