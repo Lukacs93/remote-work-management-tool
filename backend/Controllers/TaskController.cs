@@ -1,6 +1,8 @@
 ﻿using backend.Data;
+using backend.Models.Entities;
 using backend.Services;
 using backend.Services.ProjectServiceLayer;
+using backend.Services.TaskServiceLayer;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers;
@@ -8,10 +10,10 @@ namespace backend.Controllers;
 [ApiController, Route("/tasks")]
 public class TaskController : ControllerBase
 {
-    private readonly IProjectService _projectService;
+    private readonly ITaskService _taskService;
 
-    public TaskController(IProjectService projectService)
+    public TaskController(ITaskService taskService)
     {
-        _projectService = projectService;
+        _taskService = taskService;
     }
 }
