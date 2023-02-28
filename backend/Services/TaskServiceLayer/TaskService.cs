@@ -18,7 +18,7 @@ public class TaskService : ITaskService
         return await _context.Tasks.ToListAsync();
     }
 
-    public async Task<TaskItem?> GetTaskById(int id)
+    public async Task<TaskItem?> GetTaskById(long id)
     {
         return await _context.Tasks.FirstOrDefaultAsync(t => t.Id == id);
     }
@@ -64,7 +64,7 @@ public class TaskService : ITaskService
         return taskToUpdate;
     }
 
-    public async Task DeleteTask(long id)
+    public async Task<TaskItem> DeleteTask(long id)
     {
         var taskToRemove = await _context.Tasks.FirstOrDefaultAsync(t => t.Id == id);
 
@@ -74,5 +74,7 @@ public class TaskService : ITaskService
         }
 
         await _context.SaveChangesAsync();
+
+        return taskToRemove;
     }
 }
