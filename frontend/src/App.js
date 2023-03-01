@@ -1,8 +1,8 @@
 import './App.css';
 import { Route, Routes } from "react-router-dom";
-import Navbar from './Components/landing-page/Navbar'
-import Header from './Components/landing-page/Header'
-import LadingPage from './Components/landing-page/LandingPage';
+import Navbar from './components/landing-page/Navbar'
+import Header from './components/landing-page/Header'
+import LadingPage from './components/landing-page/LandingPage';
 
 function App() {
   return (
