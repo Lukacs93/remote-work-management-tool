@@ -25,6 +25,16 @@ const ListTasks = () =>
         getTaskItems();
         
     }, []);
+
+    const deleteTaskItem = async (id) => {
+
+        await fetch(`https://localhost:7029/tasks/${id}`, {
+            method: "DELETE"
+        });
+
+        const remainingItems = taskItems.filter((taskItem) => taskItem.id !== id);
+        setTaskItems(remainingItems);
+    }
     
     return (
         <div>
@@ -35,7 +45,7 @@ const ListTasks = () =>
             <div className="task-container">
                 {taskItems && 
                     taskItems.map(taskItem => {
-                        return(<Task key={taskItem.$id}/>)
+                        return(<Task taskItem={taskItem} deleteTaskItem={deleteTaskItem} key={taskItem.$id}/>)
                     })
                 }
             </div>
