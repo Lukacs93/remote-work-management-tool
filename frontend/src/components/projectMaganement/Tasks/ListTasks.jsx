@@ -1,6 +1,6 @@
 import React from 'react'
-import { useState } from 'react'
-import {ListTask} from 'ListTask.jsx'
+import { useState , useEffect } from 'react'
+import  ListTask  from './ListTask'
 
 
 const ListTasks = () =>
@@ -8,11 +8,13 @@ const ListTasks = () =>
     const[loading,IsLoading] = useState(true)
     const[tasks,setTasks] = useState({},{},{})
 
+
+    
     return (
         <div>
-            {loading &&(<div> Loading...</div> )}
-            {!loading &&(<div>
-                {tasks.map(task=>(<ListTask task={task}/>))}
+            {loading &&(<div> Loading...2</div> )}
+            {!loading &&(<div>LOADOLT
+               {/* {tasks.map(task=>(<ListTask task={task}/>))}*/ }
                 </div>)}
         </div>
     )
