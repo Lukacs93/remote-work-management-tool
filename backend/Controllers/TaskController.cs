@@ -23,7 +23,7 @@ public class TaskController : ControllerBase
         return await _taskService.GetAllTasks();
     }
 
-    [HttpGet]
+    [HttpGet("{id:long}")]
     public async Task<TaskItem?> GetTaskById(long id)
     {
         return await _taskService.GetTaskById(id);

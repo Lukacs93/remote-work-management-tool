@@ -13,9 +13,11 @@ public class ProjectService : IProjectService
         _context = context;
     }
 
-    public Task<List<Project>> GetAllProjects()
+    public async Task<List<Project>> GetAllProjects()
     {
-        throw new NotImplementedException();
+        return await _context.Projects
+            .Include(p => p.Tasks)
+            .ToListAsync();
     }
 
     public Task<Project> GetProjectById(long id)
@@ -23,17 +25,24 @@ public class ProjectService : IProjectService
         throw new NotImplementedException();
     }
 
-    public Task CreateProject(Project project)
+    public async Task<Project> CreateProject(Project project)
+    {
+        _context.Projects.Add(project);
+        
+        await _context.SaveChangesAsync();
+
+        return await _context.Projects
+            .Where(p => p.Id == project.Id)
+            .Include(p => p.Tasks)
+            .FirstOrDefaultAsync() ?? throw new InvalidOperationException();
+    }
+
+    public Task<Project> UpdateProject(Project project)
     {
         throw new NotImplementedException();
     }
 
-    public Task UpdateProject(Project project)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task DeleteProject(long Id)
+    public Task<Project> DeleteProject(long id)
     {
         throw new NotImplementedException();
     }
