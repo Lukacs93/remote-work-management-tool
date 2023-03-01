@@ -1,13 +1,14 @@
 import React from 'react'
+import './Task.css'
 
 const Task = () => {
     return (
-        <div className="task-container">
+        <div className="task-content">
             <div>
-                <div>
-                    <h4>name</h4>
-                    <p>desc</p>
-                </div>
+                <h4>name</h4>
+                <p>desc</p>
+            </div>
+            <div className="task-button-container">
                 <button>
                     Edit
                 </button>
