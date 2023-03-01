@@ -33,4 +33,10 @@ public class ProjectController : ControllerBase
     {
         await _projectService.CreateProject(project);
     }
+
+    [HttpDelete("{id}")]
+    public async Task DeleteProject(long id)
+    {
+        await _projectService.DeleteProject(id);
+    }
 }

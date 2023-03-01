@@ -8,5 +8,5 @@ public interface IProjectService
     Task<Project> GetProjectById(long id);
     Task<Project> CreateProject(Project project);
     Task<Project> UpdateProject(Project project);
-    Task<Project> DeleteProject(long id);
+    Task DeleteProject(long id);
 }

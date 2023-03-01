@@ -46,8 +46,10 @@ public class ProjectService : IProjectService
         throw new NotImplementedException();
     }
 
-    public Task<Project> DeleteProject(long id)
+    public async Task DeleteProject(long id)
     {
-        throw new NotImplementedException();
+        Project removedProject = await GetProjectById(id);
+        _context.Projects.Remove(removedProject);
+        await _context.SaveChangesAsync();
     }
 }
