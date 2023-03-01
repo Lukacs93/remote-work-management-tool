@@ -5,7 +5,7 @@ import Task from "./Task";
 
 const ListTasks = () =>
 {
-    const [taskItems, setTaskItems] = useState()
+    const [taskItems, setTaskItems] = useState([])
 
     useEffect(() => {
         const getTaskItems = async () => {
@@ -18,8 +18,8 @@ const ListTasks = () =>
             }
 
             const items = await response.json();
-            setTaskItems(items);
-            console.log(response)
+            setTaskItems(items.$values);
+            console.log(items)
         }
 
         getTaskItems();
@@ -33,8 +33,11 @@ const ListTasks = () =>
                 <button className="new-btn">New</button>
             </header>
             <div className="task-container">
-                {taskItems && taskItems.map(taskItem => <Task />)}
-                
+                {taskItems && 
+                    taskItems.map(taskItem => {
+                        return(<Task key={taskItem.$id}/>)
+                    })
+                }
             </div>
         </div>
     )
