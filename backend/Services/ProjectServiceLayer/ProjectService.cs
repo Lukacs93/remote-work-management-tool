@@ -20,10 +20,14 @@ public class ProjectService : IProjectService
             .ToListAsync();
     }
 
-    public Task<Project> GetProjectById(long id)
+    public async Task<Project> GetProjectById(long id)
     {
-        throw new NotImplementedException();
+        return await _context.Projects
+            .Where(p => p.Id == id)
+            .Include(p => p.Tasks)
+            .FirstAsync();
     }
+
 
     public async Task<Project> CreateProject(Project project)
     {
@@ -37,13 +41,26 @@ public class ProjectService : IProjectService
             .FirstOrDefaultAsync() ?? throw new InvalidOperationException();
     }
 
-    public Task<Project> UpdateProject(Project project)
+    public async Task UpdateProject(Project project)
     {
-        throw new NotImplementedException();
+        var updatedProject = await GetProjectById(project.Id);
+
+        if (updatedProject != null)
+        {
+            updatedProject.UsersInTheProject = project.UsersInTheProject;
+            updatedProject.ProjectStatus = project.ProjectStatus;
+            updatedProject.Tasks = project.Tasks;
+            updatedProject.DateId = project.DateId;
+            updatedProject.ManagerId = project.ManagerId;
+
+        }
+         await _context.SaveChangesAsync();
     }
 
-    public Task<Project> DeleteProject(long id)
+    public async Task DeleteProject(long id)
     {
-        throw new NotImplementedException();
+        Project removedProject = await GetProjectById(id);
+        _context.Projects.Remove(removedProject);
+        await _context.SaveChangesAsync();
     }
 }
