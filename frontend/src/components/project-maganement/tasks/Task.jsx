@@ -1,7 +1,7 @@
 import React from 'react'
 import './Task.css'
 
-const Task = ({taskItem, deleteTaskItem}) => {
+const Task = ({deleteMessage, taskItem, deleteTaskItem}) => {
     
     return (
         <div className="task-content">

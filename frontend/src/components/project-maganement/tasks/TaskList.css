@@ -32,3 +32,9 @@
     row-gap: 30px;
     cursor: pointer;
 }
+
+.delete-message{
+    font-family: 'Proxima Nova';
+    font-weight: 400;
+    color: #dc3545
+}

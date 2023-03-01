@@ -6,6 +6,7 @@ import Task from "./Task";
 const ListTasks = () =>
 {
     const [taskItems, setTaskItems] = useState([])
+    const [deletedItemId, setDeletedItemId] = useState(null);
 
     useEffect(() => {
         const getTaskItems = async () => {
@@ -27,13 +28,16 @@ const ListTasks = () =>
     }, []);
 
     const deleteTaskItem = async (id) => {
+            setDeletedItemId(id);
+        setTimeout(() => {
+            const remainingItems = taskItems.filter((taskItem) => taskItem.id !== id);
+            setTaskItems(remainingItems);
+            
+        }, 2000);
 
         await fetch(`https://localhost:7029/tasks/${id}`, {
             method: "DELETE"
-        });
-
-        const remainingItems = taskItems.filter((taskItem) => taskItem.id !== id);
-        setTaskItems(remainingItems);
+        });        
     }
     
     return (
@@ -43,9 +47,18 @@ const ListTasks = () =>
                 <button className="new-btn">New</button>
             </header>
             <div className="task-container">
+
                 {taskItems && 
                     taskItems.map(taskItem => {
-                        return(<Task taskItem={taskItem} deleteTaskItem={deleteTaskItem} key={taskItem.$id}/>)
+                        return(
+                            <>
+                            {deletedItemId === taskItem.id  ? 
+                                <p className="delete-message">Task Successfully Deleted</p>
+                                 :
+                                <Task taskItem={taskItem} deleteTaskItem={deleteTaskItem} key={taskItem.$id}/>
+                            }
+                            </>
+                        )
                     })
                 }
             </div>
