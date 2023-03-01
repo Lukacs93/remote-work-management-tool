@@ -22,17 +22,19 @@ public class ProjectController : ControllerBase
         return await _projectService.GetAllProjects();
     }
 
+    [HttpPost]
+    public async Task CreateProject([FromBody] Project project)
+    {
+        await _projectService.CreateProject(project);
+    }
+
     [HttpGet("{id}")]
     public async Task<Project> GetProjectByID(long id)
     {
         return await _projectService.GetProjectById(id);
     }
 
-    [HttpPost]
-    public async Task CreateProject([FromBody] Project project)
-    {
-        await _projectService.CreateProject(project);
-    }
+
 
     [HttpPatch("{id}")]
     public async Task UpdateProject([FromBody] Project project)
