@@ -26,14 +26,11 @@ public class TaskService : ITaskService
     public async Task<TaskItem> CreateTask(long projectId, TaskItem task)
     {
        var projectToAddTask = await _context.Projects.FirstOrDefaultAsync(p => p.Id == projectId);
-
-       _context.Tasks.Add(task);
-      // projectToAddTask?.Tasks?.Add(task);
-      
-      //correct to always add task to project
+       
        if (projectToAddTask != null)
        {
-           projectToAddTask.Tasks.Add(task);
+           _context.Tasks.Add(task);
+           projectToAddTask.Tasks?.Add(task);
        }
        
        await _context.SaveChangesAsync();
