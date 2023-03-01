@@ -20,10 +20,14 @@ public class ProjectService : IProjectService
             .ToListAsync();
     }
 
-    public Task<Project> GetProjectById(long id)
+    public async Task<Project> GetProjectById(long id)
     {
-        throw new NotImplementedException();
+        return await _context.Projects
+            .Where(p => p.Id == id)
+            .Include(p => p.Tasks)
+            .FirstAsync();
     }
+
 
     public async Task<Project> CreateProject(Project project)
     {
