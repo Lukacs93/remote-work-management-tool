@@ -1,6 +1,4 @@
-﻿using backend.Data;
-using backend.Models.Entities;
-using backend.Services;
+﻿using backend.Models.Entities;
 using backend.Services.ProjectServiceLayer;
 using Microsoft.AspNetCore.Mvc;
 
