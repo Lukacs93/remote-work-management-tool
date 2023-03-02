@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import './CreateProject.css'
 
 const CreateProject = (prop) =>
 {
@@ -23,7 +23,7 @@ const handleSubmit = async (e) => {
 
     setTimeout(() => {
     }, 2000);
-    
+
     prop.setIsSubmit(!prop.isSubmit)
     prop.changeOption("none")
 }

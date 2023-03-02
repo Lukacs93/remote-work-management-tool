@@ -23,7 +23,7 @@ const [isSubmit, setIsSubmit] = useState(false)
                 <button onClick={()=>{changeDashboard("Tasks")}} className = "basic-button" >My Tasks</button>
                 
                 {Dashboard==="Projects" && (<div>
-                    <button onClick={()=>{changeOption("Create")}} className = "basic-button-option" >Create Project</button>
+                    <button onClick={()=>{changeOption("Create")}} className = "basic-button-create" >Create Project</button>
                     
                     {Option==="Create"&&(<CreateProject setIsSubmit={setIsSubmit} changeOption={changeOption} isSubmit={isSubmit} className='create-project'/>)}
                                                         <div  className='fbox'>

@@ -10,15 +10,31 @@
     border-style: solid;
     background-color: #51A9E1;
 }
-.single-project-button{
+#single-project-button{
     background-color: #103654;
     color: #ffffff;
+    border-radius: 8px;
+    margin-left: 5px;
     width: 30%;
     height: 40px;
+}
+
+.single-project-delete-button{
+    margin-left:30px;
 }
 .single-project-task-button{
     background-color: #103654;
     color: #ffffff;
-    width: 70%;
+    width: 200%;
     height: 40px;
+}
+.single-project-task-button:hover{
+    cursor:pointer;
+    background-color: #4c6b82;
+    transition: 150ms;
+}
+#single-project-button:hover{
+    cursor:pointer;
+    background-color: #4c6b82;
+    transition: 150ms;
 }

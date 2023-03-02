@@ -6,7 +6,8 @@ font-size: 150%;
 background-color: #51A9E1;
 color: #103654;
 }
-.basic-button-option{
+
+.basic-button-create{
     margin-top:5px ;
     width: 8%;
     height: 50px;
@@ -15,11 +16,12 @@ color: #103654;
     background-color: #51A9E1;
     color: #103654;
     }
-.basic-button:hover{
-background-color: #99cded;
-transition-duration: 100ms;
-
+.basic-button:hover{background-color: #99cded;
+    transition-duration: 100ms;
+cursor:pointer;
 }
+
+
 
 .fbox {
     display: flex;
@@ -29,5 +31,10 @@ transition-duration: 100ms;
 }
 .dashboard{
     color: #103654;
-    
+}
+
+.basic-button-create:hover{
+    background-color: #99cded;
+    transition-duration: 100ms;
+    cursor:pointer;
 }

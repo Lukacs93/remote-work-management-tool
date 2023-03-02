@@ -50,8 +50,8 @@ props.setIsSubmit(!props.IsSubmit)
 </tfoot>
 </table>
 
-<button className='single-project-button' onClick={handleClick}>Delete</button>
-<button className='single-project-button' onClick={()=>{setModal(!modal)}}>Modify</button>
+<button id='single-project-button' className='single-project-delete-button' onClick={handleClick}>Delete</button>
+<button id='single-project-button' onClick={()=>{setModal(!modal)}}>Modify</button>
             </div>
         </div>
         {modal && (<div>
