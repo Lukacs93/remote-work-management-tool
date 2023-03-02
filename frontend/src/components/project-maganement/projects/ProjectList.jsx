@@ -25,8 +25,6 @@ useEffect(()=>
         
 },[])
 
-
-
     return (
         <div>
             {isLoading &&(<div>Loading</div> )}
