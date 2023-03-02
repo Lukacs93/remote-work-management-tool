@@ -1,0 +1,43 @@
+﻿.task-content{
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 5px rgba(81,169,225,.2),0 3px 14px rgba(81,169,225,.12),0 8px 10px rgba(81,169,225,.14);
+    color: #141414;
+    transition: box-shadow .2s;
+    background-color: white;
+    width: 80%;
+}
+
+.task-content p {
+    font-family: 'Proxima Nova';
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.task-content h2 {
+    font-family: 'Proxima Nova';
+    font-size: 25px;
+}
+
+.task-content:active,.task-content:hover {
+    box-shadow: 0 11px 15px rgba(81,169,225,.2),0 9px 46px rgba(81,169,225,.12),0 24px 40px rgba(81,169,225,.14);
+    color: #141414
+}
+
+.task-button-container{
+    display: flex;
+    gap: 10px;
+}
+.task-button-container button{
+    height: 80%;
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
