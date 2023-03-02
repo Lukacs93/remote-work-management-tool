@@ -1,8 +1,17 @@
-import React from 'react'
+import React,{ useState } from 'react'
 import './Task.css'
+import PopUpAssign from "./PopUpAssign";
+import PopUpList from "./PopUpList";
 
-const Task = ({taskItem, deleteTaskItem}) => {
-    
+
+const Task = ({taskItem, deleteTaskItem}) => { 
+  const [showAssign, setShowAssign] = useState(false);
+  const [showList, setShowList] = useState(false);
+
+  const handleClose=()=>{
+    setShowAssign(false);
+    setShowList(false);
+  }
     return (
         <div className="task-content">
             <div>
@@ -15,6 +24,19 @@ const Task = ({taskItem, deleteTaskItem}) => {
                 <option value='review'>Review</option>
                 <option value='done'>Done</option>
             </select>
+            <div>
+      <button onClick={() => setShowAssign(true)}>Assign Users</button>
+      <button onClick={() => setShowList(true)}>Assigned Users</button>
+      {showAssign && (
+        <div className="PopUpAssign-parent">
+          <PopUpAssign onClose={handleClose} taskItem={taskItem}/>
+        </div>
+      )}
+      {showList && (
+        <div className="PopUpList-parent">
+          <PopUpList onClose={handleClose} taskItem={taskItem} />
+        </div>)}
+    </div>
             <div className="task-button-container">
                 <button>
                     Edit
