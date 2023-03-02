@@ -17,6 +17,7 @@ public class ProjectService : IProjectService
     {
         return await _context.Projects
             .Include(p => p.Tasks)
+            .Include(p => p.UsersInTheProject)
             .ToListAsync();
     }
 
