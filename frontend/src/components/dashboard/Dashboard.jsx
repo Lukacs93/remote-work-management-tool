@@ -1,10 +1,11 @@
 ﻿import React from 'react';
 import './Dashboard.css'
 import Header from './DashboardHeader'
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 const Dashboard = () => {
-    
+    const params = useParams();
+    console.log(params)
     return (
         <>
             <Header />
@@ -22,7 +23,7 @@ const Dashboard = () => {
                 </div>
                 <div className="dashboard-menu-container">
                     <nav>
-                        <Link to="/dashboard" className="dashboard-button-container" role="button">
+                        <Link to="/dashboard" className="dashboard-button-container active" role="button">
                             <div className="dashboard-icon-container">
                                 <div className="dashboard-menu-icon">
                                     <img src={require('../../assets/dashboard.png')} className="dashboard-icon" alt="dashboard" />

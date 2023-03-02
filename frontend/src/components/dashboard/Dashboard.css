@@ -191,7 +191,7 @@ body{
     background-color: rgba(0, 0, 0, 0.04);
 }
 
-.dashboard-button-container:active {
+.active {
     background-color: rgba(25, 118, 210, 0.2);
 }
 
