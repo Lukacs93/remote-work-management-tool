@@ -13,7 +13,6 @@ setTimeout(() => {}, 2000);
 
 props.setIsSubmit(!props.IsSubmit)
 }
-
     
     return(
         <div className='single-project' >

@@ -7,7 +7,7 @@ import './ProjectDashboard.css'
 const ProjectDashboard = () =>
 {
 
-const [Dashboard, changeDashboard] = useState(true)
+const [Dashboard, changeDashboard] = useState("none")
 const [isSubmit, setIsSubmit] = useState(false)
 
 
@@ -17,11 +17,12 @@ const [isSubmit, setIsSubmit] = useState(false)
     return (
         <div>
             
-                <button onClick={()=>{changeDashboard(true)}} className = "basic-button" >My Projects</button>
-                <button onClick={()=>{changeDashboard(false)}} className = "basic-button" >My Tasks</button>
-                <CreateProject setIsSubmit={setIsSubmit} isSubmit={isSubmit}/>
-                {Dashboard && (<div  className='fbox'> <ProjectList isSubmit={isSubmit} setIsSubmit={setIsSubmit} /></div>)}
-                {!Dashboard && (<div><TaskList /></div>)}
+                <button onClick={()=>{changeDashboard("Projects")}} className = "basic-button" >My Projects</button>
+                <button onClick={()=>{changeDashboard("Tasks")}} className = "basic-button" >My Tasks</button>
+                
+                {Dashboard==="Projects" && (<div><CreateProject setIsSubmit={setIsSubmit} isSubmit={isSubmit}/><div  className='fbox'>
+                     <ProjectList isSubmit={isSubmit} setIsSubmit={setIsSubmit} /></div></div>)}
+                {Dashboard==="Tasks" && (<div><TaskList /></div>)}
         </div>
     )
 }
