@@ -8,6 +8,26 @@ const ListTasks = () =>
     const [taskItems, setTaskItems] = useState([])
     const [deletedItemId, setDeletedItemId] = useState(null);
     const [showForm, setShowForm] = useState(false);
+    const [form, setForm] = useState({
+        dateId: 1,
+        projectId: 5,
+        description: "",
+        note: "Empty note",
+        taskStatus: 1
+    })
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+
+        await fetch('https://localhost:7029/projects/4/add-task', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(form)
+        })
+        setShowForm(false)
+    }
 
     useEffect(() => {
         const getTaskItems = async () => {
@@ -46,7 +66,10 @@ const ListTasks = () =>
         <div>
             <header>
                 <div className="title">Tasks</div>
-                <button onClick={() => setShowForm(!showForm)} className="new-btn">New</button>
+                <div className="task-header-button-container">
+                    <button className="search-btn"><i className="fa fa-search"></i></button>
+                    <button onClick={() => setShowForm(!showForm)} className="new-btn">New</button>
+                </div>
             </header>
             {showForm ?
                 <div className="add-task-form-container">
@@ -54,7 +77,7 @@ const ListTasks = () =>
                         <div>
                             {/*<h2>{toggleSubmit ? "Add Task" : " Edit Task"}</h2>*/}
                         </div>
-                        <form className="add-task-form">
+                        <form onSubmit={onSubmit} className="add-task-form">
                             <label htmlFor="title" className="description-label">
                                 Task Name:
                             </label>
@@ -64,7 +87,6 @@ const ListTasks = () =>
                                 id="title"
                                 placeholder="title"
                                 className="add-task-input"
-                                // onChange={handleInput}
                                 // value={inputTitle}
                             />
                             <label className="description-label" htmlFor="description">
@@ -76,7 +98,7 @@ const ListTasks = () =>
                                 id="description"
                                 placeholder="Description"
                                 className="add-task-input"
-                                // onChange={handleInputdesc}
+                                onChange={(e) => setForm({...form, description: e.target.value })}
                                 // value={inputDesc}
                             />
                             <button className="task-submit-button">Add New Task</button>

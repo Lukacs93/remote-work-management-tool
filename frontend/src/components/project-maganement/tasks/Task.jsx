@@ -1,12 +1,12 @@
 import React from 'react'
 import './Task.css'
 
-const Task = ({deleteMessage, taskItem, deleteTaskItem}) => {
+const Task = ({taskItem, deleteTaskItem}) => {
     
     return (
         <div className="task-content">
             <div>
-                <h4>name</h4>
+                <h2>name</h2>
                 <p>{taskItem.description}</p>
             </div>
             <select>
