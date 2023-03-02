@@ -24,7 +24,7 @@ const Dashboard = () => {
                         <div className="dashboard-button-container" role="button">
                             <div className="dashboard-icon-container">
                                 <div className="dashboard-menu-icon">
-                                    <img src={require('../assets/dashboard.png')} className="dashboard-icon" alt="dashboard" />
+                                    <img src={require('../../assets/dashboard.png')} className="dashboard-icon" alt="dashboard" />
                                 </div>
                                 {/*<svg className="css-dashboard-menu-icon" focusable="false"*/}
                                 {/*     aria-hidden="true" viewBox="0 0 24 24" data-testid="DashboardIcon">*/}
