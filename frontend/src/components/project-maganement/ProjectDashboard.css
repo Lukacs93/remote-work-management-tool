@@ -16,17 +16,5 @@ transition-duration: 100ms;
 .fbox {
     display: flex;
     align-items: center;
-    justify-content: left;
-    flex-direction: row;
-}
-
-
-.divcontainer div{
-    display:flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    position:relative;
     justify-content: center;
-    align-items: center;
-    
 }

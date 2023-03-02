@@ -20,7 +20,7 @@ const [isSubmit, setIsSubmit] = useState(false)
                 <button onClick={()=>{changeDashboard(true)}} className = "basic-button" >My Projects</button>
                 <button onClick={()=>{changeDashboard(false)}} className = "basic-button" >My Tasks</button>
                 <CreateProject setIsSubmit={setIsSubmit} isSubmit={isSubmit}/>
-                {Dashboard && (<div  className='fbox'><ProjectList isSubmit={isSubmit} setIsSubmit={setIsSubmit}/></div>)}
+                {Dashboard && (<div  className='fbox'> <ProjectList isSubmit={isSubmit} setIsSubmit={setIsSubmit} /></div>)}
                 {!Dashboard && (<div><TaskList /></div>)}
         </div>
     )
