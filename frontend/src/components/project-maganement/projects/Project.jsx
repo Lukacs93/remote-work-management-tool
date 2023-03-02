@@ -5,12 +5,20 @@ import './Project.css'
 
 const Project = (props) => {
     const [modal,setModal]=useState(false);
+const handleClick=async ()=>{
+await fetch(await fetch(`https://localhost:7029/projects/${props.id}`,{
+  method: 'DELETE'
+}))
+setTimeout(() => {}, 2000);
 
+props.setIsSubmit(!props.IsSubmit)
+}
 
     
     return(
         <div className='single-project' >
             <div className='projects-div'>
+             
             <table className="tg">
 <thead>
   <tr>
@@ -37,9 +45,10 @@ const Project = (props) => {
   </tr>
 </tbody>
 <tfoot>
-    <button >Tasks for the Project</button>
+    <button>Tasks for the Project</button>
 </tfoot>
 </table>
+<button className='delete-button' onClick={handleClick}>Delete</button>
             </div>
         </div>
     )

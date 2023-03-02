@@ -26,7 +26,7 @@ useEffect(()=>
         <div>
             {isLoading==="loading" &&( <div className="loader"></div>  )}
             {isLoading==="done" &&(<div>
-               {projects.map(project=>(<Project id={project.id} project={project} />))}
+               {projects.map(project=>(<Project id={project.id} project={project} setIsSubmit={prop.setIsSubmit} IsSubmit={prop.isSubmit}/>))}
             </div>)}
         </div>
     )
