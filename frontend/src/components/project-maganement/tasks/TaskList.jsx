@@ -8,6 +8,7 @@ const ListTasks = () =>
     const [taskItems, setTaskItems] = useState([])
     const [deletedItemId, setDeletedItemId] = useState(null);
     const [showForm, setShowForm] = useState(false);
+    const [isSubmit, setIsSubmit] = useState(false)
     const [form, setForm] = useState({
         dateId: 1,
         projectId: 5,
@@ -26,7 +27,12 @@ const ListTasks = () =>
             },
             body: JSON.stringify(form)
         })
-        setShowForm(false)
+
+        setTimeout(() => {
+            setShowForm(false)
+        }, 2000);
+        
+        setIsSubmit(true)
     }
 
     useEffect(() => {
@@ -46,7 +52,7 @@ const ListTasks = () =>
 
         getTaskItems();
         
-    }, []);
+    }, [isSubmit]);
 
     const deleteTaskItem = async (id) => {
         setDeletedItemId(id);
@@ -62,13 +68,18 @@ const ListTasks = () =>
         });        
     }
 
+    const handleCreateNewTask = () => {
+        setShowForm(!showForm)
+        setIsSubmit(false)
+    }
+    
     return (
         <div>
             <header>
                 <div className="title">Tasks</div>
                 <div className="task-header-button-container">
                     <button className="search-btn"><i className="fa fa-search"></i></button>
-                    <button onClick={() => setShowForm(!showForm)} className="new-btn">New</button>
+                    <button onClick={handleCreateNewTask} className="new-btn">New</button>
                 </div>
             </header>
             {showForm ?
@@ -77,32 +88,36 @@ const ListTasks = () =>
                         <div>
                             {/*<h2>{toggleSubmit ? "Add Task" : " Edit Task"}</h2>*/}
                         </div>
-                        <form onSubmit={onSubmit} className="add-task-form">
-                            <label htmlFor="title" className="description-label">
-                                Task Name:
-                            </label>
-                            <input
-                                type="text"
-                                name="title"
-                                id="title"
-                                placeholder="title"
-                                className="add-task-input"
-                                // value={inputTitle}
-                            />
-                            <label className="description-label" htmlFor="description">
-                                Add Description:
-                            </label>
-                            <input
-                                type="text"
-                                name="description"
-                                id="description"
-                                placeholder="Description"
-                                className="add-task-input"
-                                onChange={(e) => setForm({...form, description: e.target.value })}
-                                // value={inputDesc}
-                            />
-                            <button className="task-submit-button">Add New Task</button>
-                        </form>
+                        {!isSubmit ?
+                            <form onSubmit={onSubmit} className="add-task-form">
+                                <label htmlFor="title" className="description-label">
+                                    Task Name:
+                                </label>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    id="title"
+                                    placeholder="title"
+                                    className="add-task-input"
+                                    // value={inputTitle}
+                                />
+                                <label className="description-label" htmlFor="description">
+                                    Add Description:
+                                </label>
+                                <input
+                                    type="text"
+                                    name="description"
+                                    id="description"
+                                    placeholder="Description"
+                                    className="add-task-input"
+                                    onChange={(e) => setForm({...form, description: e.target.value})}
+                                    // value={inputDesc}
+                                />
+                                <button className="task-submit-button">Add New Task</button>
+                            </form>
+                            :
+                            <p className="success-message">Task Successfully Created</p>
+                        }
                     </div>
                     <div className="close-button-container">
                         <button onClick={() => setShowForm(!showForm)} className="close-button">

@@ -62,6 +62,14 @@
     color: #dc3545
 }
 
+.success-message{
+    font-family: 'Proxima Nova';
+    font-weight: 400;
+    color: green;
+    padding-right: 30px;
+    margin-top: 20px;
+}
+
 .close-button-container{
     display: flex;
     justify-content: space-between;
