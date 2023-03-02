@@ -6,8 +6,8 @@ const ProjectList = (prop) =>
 {
     const[isLoading, setIsLoading] = useState("loading")
     const[projects, setProjects] = useState([])
-
-    const[userID, setUserID]=useState(0)
+    const[isModified, setisModified] = useState(false)
+    
 
 useEffect(()=>
 {
@@ -15,18 +15,17 @@ useEffect(()=>
                                                 .then((resp)=>resp.json())
                                                 .then((resp)=>{setProjects(resp.$values)
                                                     setIsLoading("done")
-                                                            console.log(projects)
                                                         })
                                                             }
         getProjects()
 
-},[prop.isSubmit])
+},[prop.isSubmit,isModified])
 
     return (
         <div>
             {isLoading==="loading" &&( <div className="loader"></div>  )}
             {isLoading==="done" &&(<div  className='fbox'> 
-               {projects.map(project=>(<div><Project id={project.id} project={project} setIsSubmit={prop.setIsSubmit} IsSubmit={prop.isSubmit} /></div>))}
+               {projects.map(project=>(<div><Project id={project.id} isModified={isModified} setisModified={setisModified} setIsLoading={setIsLoading} project={project} setIsSubmit={prop.setIsSubmit} IsSubmit={prop.isSubmit} /></div>))}
             </div>)}
         </div>
     )

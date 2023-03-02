@@ -34,10 +34,10 @@ public class ProjectController : ControllerBase
 
 
 
-    [HttpPatch("{id}")]
-    public async Task UpdateProject([FromBody] Project project)
+    [HttpPut("{id}")]
+    public async Task UpdateProject([FromBody] Project project, long id)
     {
-        await _projectService.UpdateProject(project);
+       await _projectService.UpdateProject(project, id);
     }
 
 

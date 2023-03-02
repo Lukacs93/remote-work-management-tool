@@ -6,7 +6,15 @@ font-size: 150%;
 background-color: #51A9E1;
 color: #103654;
 }
-
+.basic-button-option{
+    margin-top:5px ;
+    width: 8%;
+    height: 50px;
+    
+    font-size: 100%;
+    background-color: #51A9E1;
+    color: #103654;
+    }
 .basic-button:hover{
 background-color: #99cded;
 transition-duration: 100ms;

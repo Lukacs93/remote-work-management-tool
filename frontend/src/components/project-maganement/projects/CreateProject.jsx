@@ -23,7 +23,9 @@ const handleSubmit = async (e) => {
 
     setTimeout(() => {
     }, 2000);
+    
     prop.setIsSubmit(!prop.isSubmit)
+    prop.changeOption("none")
 }
 
 
