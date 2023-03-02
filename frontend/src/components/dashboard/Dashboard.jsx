@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import './Dashboard.css'
 import Header from './DashboardHeader'
+import {Link} from "react-router-dom";
 
 const Dashboard = () => {
     
@@ -21,7 +22,7 @@ const Dashboard = () => {
                 </div>
                 <div className="dashboard-menu-container">
                     <nav>
-                        <div className="dashboard-button-container" role="button">
+                        <Link to="/dashboard" className="dashboard-button-container" role="button">
                             <div className="dashboard-icon-container">
                                 <div className="dashboard-menu-icon">
                                     <img src={require('../../assets/dashboard.png')} className="dashboard-icon" alt="dashboard" />
@@ -35,8 +36,8 @@ const Dashboard = () => {
                             <div className="dashboard-menu-text">
                                 <span>Dashboard</span>
                             </div>
-                        </div>
-                        <div className="dashboard-button-container" role="button">
+                        </Link>
+                        <Link to="/projects"  className="dashboard-button-container" role="button">
                             <div className="dashboard-icon-container">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6e6e6e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path><polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon></svg>
                                 {/*className="dashboard-menu-icon"*/}
@@ -44,8 +45,8 @@ const Dashboard = () => {
                             <div className="dashboard-menu-text">
                                 <span>Projects</span>
                             </div>
-                        </div>
-                        <div className="dashboard-button-container" role="button">
+                        </Link>
+                        <Link to="/tasks"  className="dashboard-button-container" role="button">
                             <div className="dashboard-icon-container">
                                 <svg className="dashboard-menu-icon">
                                     <path
@@ -56,7 +57,7 @@ const Dashboard = () => {
                             <div className="dashboard-menu-text">
                                 <span>Tasks</span>
                             </div>
-                        </div>
+                        </Link>
                         <div className="dashboard-button-container" role="button">
                             <div className="dashboard-icon-container">
                                 <svg className="dashboard-menu-icon">
