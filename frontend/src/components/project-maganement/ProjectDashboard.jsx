@@ -8,7 +8,7 @@ const ProjectDashboard = () =>
 {
 
 const [Dashboard, changeDashboard] = useState(true)
-
+const [isSubmit, setIsSubmit] = useState(false)
 
 
 
@@ -19,8 +19,8 @@ const [Dashboard, changeDashboard] = useState(true)
             
                 <button onClick={()=>{changeDashboard(true)}} className = "basic-button" >My Projects</button>
                 <button onClick={()=>{changeDashboard(false)}} className = "basic-button" >My Tasks</button>
-                <CreateProject/>
-                {Dashboard && (<div  className='fbox'><ProjectList /></div>)}
+                <CreateProject setIsSubmit={setIsSubmit} isSubmit={isSubmit}/>
+                {Dashboard && (<div  className='fbox'><ProjectList isSubmit={isSubmit}/></div>)}
                 {!Dashboard && (<div><TaskList /></div>)}
         </div>
     )

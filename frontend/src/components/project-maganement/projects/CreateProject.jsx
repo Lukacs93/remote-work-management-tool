@@ -1,30 +1,50 @@
 import React, { useState } from 'react'
 
 
-const handleSubmit = (e) => {
-
-
-}
-
-const CreateProject = () =>
+const CreateProject = (prop) =>
 {
 const [Form,setForm]=useState({
-ManagerId:1, //the users id that creates the project
-ProjectStatus:0, // the project status
-DateId:0 // The dates id(not)
-
+    "DateId": 712,
+    "ManagerId": 742,
+    "ProjectStatus": 720
 })
+
+const handleSubmit = async (e) => {
+    e.preventDefault()
+    console.log(Form)
+
+    await fetch('https://localhost:7029/projects',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(Form)
+    })
+
+    setTimeout(() => {
+    }, 2000);
+    prop.setIsSubmit(!prop.isSubmit)
+}
 
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input id="projectName" placeholder='ProjectName'></input>
-                <input id="assignedGroup" placeholder='ProjectName'></input>
-                <input id="deadLine"  placeholder='deadLine(YYYY-MM-DD)'></input>
-                <input id="" placeholder='Users'></input>
-                <input id="" placeholder='projectName'></input>
-                <input id="" placeholder='projectName'></input>
+                <input id="ManagerId" 
+                placeholder='ManagerId'
+                type="number"
+                onChange={(e) => setForm({...Form, ManagerId: parseInt(e.target.value)})}
+                ></input>
+                <input id="ProjectStatus" 
+                type="number"
+                placeholder='ProjectStatus'
+                onChange={(e) => setForm({...Form, ProjectStatus: parseInt(e.target.value)})}
+                ></input>
+                <input id="DateId"
+                type="number"
+                 placeholder='DateId'
+                 onChange={(e) => setForm({...Form, DateId: parseInt(e.target.value)})}
+                 ></input>
                 <button type="submit">Create</button>
             </form>
         </div>

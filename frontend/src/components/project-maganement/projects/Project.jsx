@@ -9,8 +9,8 @@ const Project = (props) => {
 
     
     return(
-        <div classNameName='single-project' >
-            <div classNameName='projects-div'>
+        <div className='single-project' >
+            <div className='projects-div'>
             <table className="tg">
 <thead>
   <tr>

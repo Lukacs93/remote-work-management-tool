@@ -1,32 +1,32 @@
 import {React,  useEffect, useState } from 'react'
-import { useFetcher } from 'react-router-dom'
 import Project  from './Project.jsx'
 import './ProjectList.css'
 
-const ProjectList = () =>
+const ProjectList = (prop) =>
 {
-    const[isLoading, setIsLoading] = useState(true)
+    const[isLoading, setIsLoading] = useState("loading")
     const[projects, setProjects] = useState([])
-    const[userID, setUserID]=useState(0)
 
+    const[userID, setUserID]=useState(0)
 
 useEffect(()=>
 {
         const getProjects = async() =>{ await fetch(`https://localhost:7029/projects`)
                                                 .then((resp)=>resp.json())
                                                 .then((resp)=>{setProjects(resp.$values)
-                                                            setIsLoading(!isLoading)
+                                                    setIsLoading("done")
                                                             console.log(projects)
                                                         })
                                                             }
         getProjects()
-},[])
+
+},[prop.isSubmit])
 
     return (
         <div>
-            {isLoading &&( <div class="loader"></div>  )}
-            {!isLoading &&(<div>
-               {projects.map(project=>(<Project id={project.id} project={project}/>))}
+            {isLoading==="loading" &&( <div className="loader"></div>  )}
+            {isLoading==="done" &&(<div>
+               {projects.map(project=>(<Project id={project.id} project={project} />))}
             </div>)}
         </div>
     )
