@@ -44,10 +44,10 @@ props.setIsSubmit(!props.IsSubmit)
   </tr>
 </tbody>
 <tfoot>
-    <button>Tasks for the Project</button>
+    <button className='single-project-task-button'>Tasks for the Project</button>
 </tfoot>
 </table>
-<button className='delete-button' onClick={handleClick}>Delete</button>
+<button className='single-project-button' onClick={handleClick}>Delete</button>
             </div>
         </div>
     )

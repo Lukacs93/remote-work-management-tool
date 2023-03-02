@@ -1,6 +1,6 @@
 .projects-div {
     display: flex;
-    align-items: center;
+    align-items: left;
     justify-content: center;
 }
 
@@ -8,5 +8,17 @@
     margin:5px;
     border-color:black;
     border-style: solid;
+    background-color: #51A9E1;
 }
-
+.single-project-button{
+    background-color: #103654;
+    color: #ffffff;
+    width: 30%;
+    height: 40px;
+}
+.single-project-task-button{
+    background-color: #103654;
+    color: #ffffff;
+    width: 70%;
+    height: 40px;
+}

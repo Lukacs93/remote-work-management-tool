@@ -17,4 +17,9 @@ transition-duration: 100ms;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+}
+.dashboard{
+    color: #103654;
+    
 }
