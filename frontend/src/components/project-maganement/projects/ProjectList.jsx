@@ -1,7 +1,7 @@
 import {React,  useEffect, useState } from 'react'
 import { useFetcher } from 'react-router-dom'
 import Project  from './Project.jsx'
-
+import './ProjectList.css'
 
 const ProjectList = () =>
 {
@@ -18,16 +18,13 @@ useEffect(()=>
                                                             setIsLoading(!isLoading)
                                                             console.log(projects)
                                                         })
-
-
                                                             }
         getProjects()
-        
 },[])
 
     return (
         <div>
-            {isLoading &&(<div>Loading</div> )}
+            {isLoading &&( <div class="loader"></div>  )}
             {!isLoading &&(<div>
                {projects.map(project=>(<Project id={project.id} project={project}/>))}
             </div>)}
