@@ -1,0 +1,12 @@
+.projects-div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.single-project{
+    margin:5px;
+    border-color:black;
+    border-style: solid;
+}

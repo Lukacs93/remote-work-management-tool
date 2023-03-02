@@ -1,8 +1,7 @@
 .basic-button{
 width: 10%;
 height: 50px;
-display:flex;
-flex-wrap: wrap;
+
 font-size: 150%;
 background-color: #51A9E1;
 color: #103654;
@@ -12,4 +11,22 @@ color: #103654;
 background-color: #99cded;
 transition-duration: 100ms;
 
+}
+
+.fbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.divcontainer div{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    position:relative;
+    justify-content: center;
+    align-items: center;
+    
 }
