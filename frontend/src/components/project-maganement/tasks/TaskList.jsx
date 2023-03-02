@@ -7,6 +7,7 @@ const ListTasks = () =>
 {
     const [taskItems, setTaskItems] = useState([])
     const [deletedItemId, setDeletedItemId] = useState(null);
+    const [showSearch, setShowSearch] = useState(false);
     const [showForm, setShowForm] = useState(false);
     const [isSubmit, setIsSubmit] = useState(false)
     const [form, setForm] = useState({
@@ -78,7 +79,12 @@ const ListTasks = () =>
             <header>
                 <div className="title">Tasks</div>
                 <div className="task-header-button-container">
-                    <button className="search-btn"><i className="fa fa-search"></i></button>
+                    {showSearch &&
+                        <div className={`search-container ${showSearch ? "show" : ""}`}>
+                            <input type="text" placeholder="Search" />
+                        </div>
+                    }
+                    <button className="search-btn" onClick={() => setShowSearch(!showSearch)}><i className="fa fa-search"></i></button>
                     <button onClick={handleCreateNewTask} className="new-btn">New</button>
                 </div>
             </header>
@@ -89,6 +95,7 @@ const ListTasks = () =>
                             {/*<h2>{toggleSubmit ? "Add Task" : " Edit Task"}</h2>*/}
                         </div>
                         {!isSubmit ?
+                            //form can be replaced to another component
                             <form onSubmit={onSubmit} className="add-task-form">
                                 <label htmlFor="title" className="description-label">
                                     Task Name:

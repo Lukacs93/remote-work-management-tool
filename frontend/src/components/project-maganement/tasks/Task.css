@@ -17,10 +17,10 @@
     font-weight: 300;
 }
 
-.task-content h2 {
-    font-family: 'Proxima Nova';
-    font-size: 25px;
-}
+/*.task-content h2 {*/
+/*    font-family: 'Proxima Nova';*/
+/*    font-size: 25px;*/
+/*}*/
 
 .task-content:active,.task-content:hover {
     box-shadow: 0 11px 15px rgba(81,169,225,.2),0 9px 46px rgba(81,169,225,.12),0 24px 40px rgba(81,169,225,.14);
