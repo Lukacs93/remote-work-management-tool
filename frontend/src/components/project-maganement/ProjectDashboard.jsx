@@ -21,7 +21,10 @@ const handleCreateNewTask = () => {
 
     return (
         <div >
-             <div className="task-header-button-container">
+             <div className="project-header-container">
+                 <div>
+                    <p className="project-header-text">Projects</p>
+                 </div>
         { showSearch &&
             <div className={`search-container ${showSearch ? "show" : ""}`}></div>
         }
