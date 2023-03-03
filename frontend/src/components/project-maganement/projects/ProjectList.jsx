@@ -19,8 +19,7 @@ useEffect(()=>
                                                             }
         getProjects()
 
-},[prop.isSubmit,isModified])
-console.log("Helloke")
+},[prop.isSubmit, isModified])
     return (
         <div>
             {isLoading==="loading" &&( <div className="loader"></div>  )}
