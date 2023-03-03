@@ -7,6 +7,6 @@ public interface IProjectService
     Task<List<Project>> GetAllProjects();
     Task<Project> GetProjectById(long id);
     Task<Project> CreateProject(Project project);
-    Task UpdateProject(Project project);
+    Task UpdateProject(Project project, long id);
     Task DeleteProject(long id);
 }

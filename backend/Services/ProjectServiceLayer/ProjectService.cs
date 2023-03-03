@@ -17,15 +17,18 @@ public class ProjectService : IProjectService
     {
         return await _context.Projects
             .Include(p => p.Tasks)
+            .Include(p => p.UsersInTheProject)
             .ToListAsync();
     }
 
     public async Task<Project> GetProjectById(long id)
     {
-        return await _context.Projects
+        Project hali = await _context.Projects
             .Where(p => p.Id == id)
             .Include(p => p.Tasks)
             .FirstAsync();
+
+        return hali;
     }
 
 
@@ -41,9 +44,9 @@ public class ProjectService : IProjectService
             .FirstOrDefaultAsync() ?? throw new InvalidOperationException();
     }
 
-    public async Task UpdateProject(Project project)
+    public async Task UpdateProject(Project project, long id)
     {
-        var updatedProject = await GetProjectById(project.Id);
+        var updatedProject = await GetProjectById(id);
 
         if (updatedProject != null)
         {

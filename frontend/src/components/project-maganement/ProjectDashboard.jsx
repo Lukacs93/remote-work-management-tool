@@ -1,26 +1,36 @@
-import React, { useCallback, useState } from 'react'
+import React, {  useState } from 'react'
+import CreateProject from './projects/CreateProject.jsx'
+import TaskList from './tasks/TaskList.jsx'
+import ProjectList from './projects/ProjectList.jsx'
 
-import ListTasks from './Tasks/ListTasks.jsx'
-import ListProjects from './Projects/ListProjects.jsx'
+import './ProjectDashboard.css'
 
 const ProjectDashboard = () =>
 {
 
-const [Dashboard, changeDashboard] = useState(true)
-
+const [Dashboard, changeDashboard] = useState("none")
+const [Option, changeOption]=useState("none")
+const [isSubmit, setIsSubmit] = useState(false)
 
 
 
 
 
     return (
-        <div>
-                <button onClick={()=>{changeDashboard(true)}}>My Projects</button>
-                <button onClick={()=>{changeDashboard(false)}}>My Tasks</button>
-                {Dashboard && (<div><ListProjects /></div>)}
-                {!Dashboard && (<div><ListTasks /></div>)}
-
+        <div className='dashboard'>
+            
+                <button onClick={()=>{changeDashboard("Projects")}} className = "basic-button" >My Projects</button>
+                <button onClick={()=>{changeDashboard("Tasks")}} className = "basic-button" >My Tasks</button>
                 
+                {Dashboard==="Projects" && (<div>
+                    <button onClick={()=>{changeOption("Create")}} className = "basic-button-create" >Create Project</button>
+                    
+                    {Option==="Create"&&(<CreateProject setIsSubmit={setIsSubmit} changeOption={changeOption} isSubmit={isSubmit} className='create-project'/>)}
+                                                        <div  className='fbox'>
+                                                            <ProjectList isSubmit={isSubmit} setIsSubmit={setIsSubmit} />
+                                                        </div>
+                                                 </div>)}
+                {Dashboard==="Tasks" && (<div>   <TaskList /></div>)}
         </div>
     )
 }
