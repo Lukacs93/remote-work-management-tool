@@ -14,7 +14,7 @@ const [showForm, setShowForm] = useState(false)
 
 const handleCreateNewTask = () => {
     setShowForm(!showForm)
-    setIsSubmit(false)
+    setIsSubmit(!isSubmit)
 }
 
 
@@ -25,7 +25,7 @@ const handleCreateNewTask = () => {
             <div className={`search-container ${showSearch ? "show" : ""}`}></div>
         }
 
-        { showForm && (<div><CreateProject setIsSubmit={setIsSubmit} changeOption={changeOption} isSubmit={isSubmit} setShowForm={setShowForm} showForm={showForm} className='add-task-form-container'/></div> )}
+        { isSubmit && (<div><CreateProject setIsSubmit={setIsSubmit} changeOption={changeOption} isSubmit={isSubmit} setShowForm={setShowForm} showForm={showForm} className='add-task-form-container'/></div> )}
        
         <button className="search-btn-project" onClick={() => setShowSearch(!showSearch)}>
             <i className="fa fa-search"></i>
