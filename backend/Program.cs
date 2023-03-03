@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using backend.Data;
 using backend.Services.ProjectServiceLayer;
 using backend.Services.TaskServiceLayer;
+using backend.Services.UserServiceLayer;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -28,6 +29,7 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
