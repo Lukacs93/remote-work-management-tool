@@ -1,4 +1,5 @@
 import './Navbar.css'
+import {Link, useParams} from "react-router-dom";
 
 const Navbar = () => {
 
@@ -27,7 +28,7 @@ const Navbar = () => {
                     </div>
                 </ul>
                 <div className='navbar-button-container'>
-                    <button className="sign-in-btn">Sign In</button>
+                    <Link to={"/dashboard"}><button className="sign-in-btn">Sign In</button></Link>
                 </div>
             </nav>
         </div>

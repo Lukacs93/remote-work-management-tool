@@ -1,14 +1,26 @@
 ﻿import React from 'react';
 import './Dashboard.css'
 import Header from './DashboardHeader'
-import {Link, useParams} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 
 const Dashboard = () => {
-    const params = useParams();
-    console.log(params)
+    //assigning location variable
+    const location = useLocation();
+
+    //destructuring pathname from location
+    const { pathname } = location;
+
+    //Javascript split method to get the name of the path in array
+    const splitLocation = pathname.split("/");
+    console.log(splitLocation[1])
+    
     return (
         <>
+            {splitLocation[1] === "dashboard" ? 
             <Header />
+                :
+                ""
+            }
             <div className="dashboard-container">
                 <div className="minimize-menu">
                     <button className="minimize-menu-button" type="button">
