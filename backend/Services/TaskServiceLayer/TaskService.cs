@@ -49,7 +49,7 @@ public class TaskService : ITaskService
 
     public async Task<User> RemoveUserFromTask(long id, User user)
     {
-        var taskToAddUser = await _context.Tasks.FirstOrDefaultAsync(p=> p.Id == id);
+        var taskToAddUser = await _context.Tasks.Include(t=>t.UsersOnTask).FirstOrDefaultAsync(p=> p.Id == id);
         var userToRemove =  await _context.Users.FirstOrDefaultAsync(p=> p.Id == user.Id);
         
         // if(_context.Users.Any(i=>i.Id == user.Id))

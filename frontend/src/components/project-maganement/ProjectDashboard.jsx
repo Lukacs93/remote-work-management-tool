@@ -1,37 +1,43 @@
 import React, {  useState } from 'react'
 import CreateProject from './projects/CreateProject.jsx'
-import TaskList from './tasks/TaskList.jsx'
 import ProjectList from './projects/ProjectList.jsx'
-
 import './ProjectDashboard.css'
 
 const ProjectDashboard = () =>
 {
 
-const [Dashboard, changeDashboard] = useState("none")
 const [Option, changeOption]=useState("none")
+const [showSearch, setShowSearch] = useState(false)
 const [isSubmit, setIsSubmit] = useState(false)
 
+const [showForm, setShowForm] = useState(false)
 
-
+const handleCreateNewTask = () => {
+    setShowForm(!showForm)
+    setIsSubmit(false)
+}
 
 
     return (
-        <div className='dashboard'>
-            
-                <button onClick={()=>{changeDashboard("Projects")}} className = "basic-button" >My Projects</button>
-                <button onClick={()=>{changeDashboard("Tasks")}} className = "basic-button" >My Tasks</button>
-                
-                {Dashboard==="Projects" && (<div>
-                    <button onClick={()=>{changeOption("Create")}} className = "basic-button-create" >Create Project</button>
-                    
-                    {Option==="Create"&&(<CreateProject setIsSubmit={setIsSubmit} changeOption={changeOption} isSubmit={isSubmit} className='create-project'/>)}
-                                                        <div  className='fbox'>
-                                                            <ProjectList isSubmit={isSubmit} setIsSubmit={setIsSubmit} />
-                                                        </div>
-                                                 </div>)}
-                {Dashboard==="Tasks" && (<div>   <TaskList /></div>)}
-        </div>
+        <div >
+             <div className="task-header-button-container">
+        { showSearch &&
+            <div className={`search-container ${showSearch ? "show" : ""}`}></div>
+        }
+
+        { showForm && (<div><CreateProject setIsSubmit={setIsSubmit} changeOption={changeOption} isSubmit={isSubmit} setShowForm={setShowForm} showForm={showForm} className='add-task-form-container'/></div> )}
+       
+        <button className="search-btn-project" onClick={() => setShowSearch(!showSearch)}>
+            <i className="fa fa-search"></i>
+            </button>
+
+        <button onClick={handleCreateNewTask} className="new-btn">New</button>
+    </div>
+
+    <div className='fbox'>
+        <ProjectList isSubmit={isSubmit} setIsSubmit={setIsSubmit} />
+         </div>
+    </div>
     )
 }
 

@@ -30,25 +30,36 @@ const handleSubmit = async (e) => {
 
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className="add-task-form-container">
+            <div>
+            <form onSubmit={handleSubmit} className="add-task-form">
                 <input id="ManagerId" 
                 placeholder='ManagerId'
                 type="number"
                 onChange={(e) => setForm({...Form, ManagerId: parseInt(e.target.value)})}
+                className="add-task-input"
                 ></input>
                 <input id="ProjectStatus" 
                 type="number"
                 placeholder='ProjectStatus'
+                className="add-task-input"
                 onChange={(e) => setForm({...Form, ProjectStatus: parseInt(e.target.value)})}
                 ></input>
                 <input id="DateId"
                 type="number"
                  placeholder='DateId'
+                 className="add-task-input"
                  onChange={(e) => setForm({...Form, DateId: parseInt(e.target.value)})}
                  ></input>
-                <button type="submit">Create</button>
+                <button className="task-submit-button">Create Project</button>
+
             </form>
+            </div>
+            <div className="close-button-container">
+                        <button onClick={() => prop.setShowForm(!prop.showForm)} className="close-button">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
         </div>
     )
 }

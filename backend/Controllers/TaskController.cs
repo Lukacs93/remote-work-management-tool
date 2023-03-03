@@ -58,6 +58,7 @@ public class TaskController : ControllerBase
     [HttpDelete("/tasks/user/{id:long}")]
     public async Task<User> RemoveUserFromTask(long id, [FromBody] User user)
     {
+        Console.WriteLine(user.Id);
         return await _taskService.RemoveUserFromTask(id, user);
     }
 }

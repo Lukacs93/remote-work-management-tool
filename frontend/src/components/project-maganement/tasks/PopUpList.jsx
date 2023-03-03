@@ -4,7 +4,8 @@ import './PopUpList.css';
 function PopUpList({ onClose, taskItem }) {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  
+  const [deleted,isDeleted]=useState(false)
+
     useEffect(() => {
         const getTaskItems = async () => {
             const response = await fetch(`https://localhost:7029/tasks/${taskItem.id}/users`);
@@ -17,18 +18,34 @@ function PopUpList({ onClose, taskItem }) {
 
             const items = await response.json();
             setUsers(items.$values);
-            console.log(taskItem.id)
         }
 
         getTaskItems();
 
-    }, []);
+    }, [deleted]);
     
   const handleSearchTermChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
   const deleteUser = async (e) =>{
+const usertodelete={
+  "Id": parseInt(e.id),
+    "FirstName": e.firstName,
+    "LastName": e.lastName
+}
+e.id = parseInt(e.id)
+
+    await fetch(`https://localhost:7029/tasks/user/${taskItem.id}`,{
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(usertodelete)
+  })
+
+  setTimeout(() => {}, 2000);
+  isDeleted(!deleted)
     //DELETE request
   }
 
