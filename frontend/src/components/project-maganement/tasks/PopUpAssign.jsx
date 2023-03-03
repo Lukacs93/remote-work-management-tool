@@ -28,7 +28,17 @@ function PopUpAssign({ onClose, taskItem }) {
   };
 
   const addUsers = async (e) =>{
-    //POST request
+    for (let user of selectedUsers){
+        console.log(taskItem.id)
+      await fetch(`https://localhost:7029/tasks/${taskItem.id}`, {
+          method: 'PUT',
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user)
+      })
+    }
+          
     onClose();
   }
 

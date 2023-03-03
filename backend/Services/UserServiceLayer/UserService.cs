@@ -23,7 +23,6 @@ namespace backend.Services.UserServiceLayer
                 .Include(p => p.CurrentProjects)
                 .Include(p => p.Tasks)
                 .FirstOrDefaultAsync() ?? throw new InvalidOperationException();
-            
         }
 
         public async Task<User> DeleteUser(long id)
@@ -33,6 +32,9 @@ namespace backend.Services.UserServiceLayer
 
         public async Task<List<User>> GetAllUsers()
         {
+            // return await _context.Users.Include(u => u.CurrentProjects)
+            //     .Include(u => u.Tasks)
+            //     .ToListAsync();
             return await _context.Users.ToListAsync();
         }
 

@@ -16,7 +16,7 @@ public class TaskService : ITaskService
 
     public async Task<List<TaskItem>> GetAllTasks()
     {
-        return await _context.Tasks.ToListAsync();
+        return await _context.Tasks.Include(t => t.UsersOnTask).ToListAsync();
     }
 
     public async Task<TaskItem?> GetTaskById(long id)
@@ -25,28 +25,47 @@ public class TaskService : ITaskService
     }
     public async Task<List<User>> GetUsersByTaskId(long id)
     {
-        var task = await _context.Tasks.FirstOrDefaultAsync(t => t.Id == id);
-        Console.WriteLine(task.UsersOnTask);
+        var task = await _context.Tasks.Include(t => t.UsersOnTask).FirstOrDefaultAsync(t => t.Id == id);
+
         return task.UsersOnTask;
     }
-    public async Task<User> AddUserToTask(long id, User user)
+    public async Task<List<User>> AddUserToTask(long id, User user)
     {
         var taskToAddUser=await _context.Tasks.FirstOrDefaultAsync(p=> p.Id == id);
+        
         if(_context.Users.Any(i=>i.Id == user.Id))
         {
             user =  _context.Users.First(i=>i.Id==user.Id);
-        }
-        if(taskToAddUser!=null)
-        {
-            if (taskToAddUser.UsersOnTask == null)
+            
+            if(taskToAddUser!=null)
             {
-                taskToAddUser.UsersOnTask= new List<User>();
+                taskToAddUser.UsersOnTask?.Add(user);
+                await _context.SaveChangesAsync();
             }
-            taskToAddUser.UsersOnTask.Add(user);
+
+        }
+        return await _context.Users.Where(u => u.Id == user.Id).Include(u => u.Tasks).ToListAsync();
+    }
+
+    public async Task<User> RemoveUserFromTask(long id, User user)
+    {
+        var taskToAddUser = await _context.Tasks.FirstOrDefaultAsync(p=> p.Id == id);
+        var userToRemove =  await _context.Users.FirstOrDefaultAsync(p=> p.Id == user.Id);
+        
+        // if(_context.Users.Any(i=>i.Id == user.Id))
+        // {
+        //     user =  _context.Users.First(i=>i.Id==user.Id);
+        // }
+        
+        if(taskToAddUser != null && userToRemove != null)
+        {
+            taskToAddUser.UsersOnTask?.Remove(userToRemove);
             await _context.SaveChangesAsync();
-        }     
+        }
+
         return user;
     }
+
     public async Task<TaskItem> CreateTask(long projectId, TaskItem task)
     {
        var projectToAddTask = await _context.Projects.FirstOrDefaultAsync(p => p.Id == projectId);

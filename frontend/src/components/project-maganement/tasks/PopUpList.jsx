@@ -4,18 +4,29 @@ import './PopUpList.css';
 function PopUpList({ onClose, taskItem }) {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  
+    useEffect(() => {
+        const getTaskItems = async () => {
+            const response = await fetch(`https://localhost:7029/tasks/${taskItem.id}/users`);
 
-  useEffect(() => {
-    fetch('https://localhost:7029/users') //change to fetch assigned users
-      .then((response) => response.json())
-      .then((data) => setUsers(data.$values))
-      .catch((error) => console.log(error));
-  }, []);
+            if (!response.ok) {
+                const message = `An error occurred: ${response.statusText}`;
+                window.alert(message);
+                return;
+            }
 
+            const items = await response.json();
+            setUsers(items.$values);
+            console.log(taskItem.id)
+        }
+
+        getTaskItems();
+
+    }, []);
+    
   const handleSearchTermChange = (event) => {
     setSearchTerm(event.target.value);
   };
-
 
   const deleteUser = async (e) =>{
     //DELETE request

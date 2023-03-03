@@ -38,8 +38,8 @@ public class TaskController : ControllerBase
     {
         return await _taskService.CreateTask(projectId, task);
     }
-    [HttpPost("/{id:long}")]
-    public async Task<User> AddUserToTask(long id, [FromBody] User user)
+    [HttpPut("{id:long}")]
+    public async Task<List<User>> AddUserToTask(long id, [FromBody] User user)
     {
         return await _taskService.AddUserToTask(id, user);
     }
@@ -53,5 +53,11 @@ public class TaskController : ControllerBase
     public async Task<TaskItem> DeleteTask(long id)
     {
         return await _taskService.DeleteTask(id);
+    }
+
+    [HttpDelete("/tasks/user/{id:long}")]
+    public async Task<User> RemoveUserFromTask(long id, [FromBody] User user)
+    {
+        return await _taskService.RemoveUserFromTask(id, user);
     }
 }

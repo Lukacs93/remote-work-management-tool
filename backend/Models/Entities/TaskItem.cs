@@ -11,8 +11,8 @@ public class TaskItem
     public long DateId { get; set; }
 
     public long ProjectId { get; set; } // The Project its part of
-    
-    public List<User>? UsersOnTask { get; set; } 
+
+    public List<User>? UsersOnTask { get; set; } = new List<User>();
     
     public string Description { get; set; }
 
