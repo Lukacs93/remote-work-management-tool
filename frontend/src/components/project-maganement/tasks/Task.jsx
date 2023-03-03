@@ -25,8 +25,8 @@ const Task = ({taskItem, deleteTaskItem}) => {
                 <option value='done'>Done</option>
             </select>
             <div>
-      <button onClick={() => setShowAssign(true)}>Assign Users</button>
-      <button onClick={() => setShowList(true)}>Assigned Users</button>
+              <div className="task-button-container"><button onClick={() => setShowAssign(true)}>Assign Users</button>
+      <button onClick={() => setShowList(true)}>Assigned Users</button> </div>     
       {showAssign && (
         <div className="PopUpAssign-parent">
           <PopUpAssign onClose={handleClose} taskItem={taskItem}/>
