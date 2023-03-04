@@ -211,6 +211,12 @@ body{
     display: block;
 }
 
+a:-webkit-any-link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
 .saved-reports {
     border-width: 0;
     border-style: solid;
