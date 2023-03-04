@@ -1,16 +1,15 @@
-﻿import React from 'react';
+﻿import React, { useState }from 'react';
 import './Dashboard.css'
 import Header from './DashboardHeader'
 import {Link, useLocation} from "react-router-dom";
 
 const Dashboard = () => {
-    //assigning location variable
+    const [activeButton, setActiveButton] = useState('dashboard'); 
+
     const location = useLocation();
-
-    //destructuring pathname from location
+    
     const { pathname } = location;
-
-    //Javascript split method to get the name of the path in array
+    
     const splitLocation = pathname.split("/");
     console.log(splitLocation[1])
     
@@ -35,7 +34,7 @@ const Dashboard = () => {
                 </div>
                 <div className="dashboard-menu-container">
                     <nav>
-                        <Link to="/dashboard" className="dashboard-button-container active" role="button">
+                        <Link to="/dashboard" className={`dashboard-button-container ${activeButton === 'dashboard' ? 'active' : ''}`} onClick={() => setActiveButton('dashboard')} role="button">
                             <div className="dashboard-icon-container">
                                 <div className="dashboard-menu-icon">
                                     <img src={require('../../assets/dashboard.png')} className="dashboard-icon" alt="dashboard" />
@@ -50,7 +49,7 @@ const Dashboard = () => {
                                 <span>Dashboard</span>
                             </div>
                         </Link>
-                        <Link to="/projects"  className="dashboard-button-container" role="button">
+                        <Link to="/projects" className={`dashboard-button-container ${activeButton === 'projects' ? 'active' : ''}`} onClick={() => setActiveButton('projects')} role="button">
                             <div className="dashboard-icon-container">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6e6e6e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path><polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon></svg>
                                 {/*className="dashboard-menu-icon"*/}
@@ -59,7 +58,7 @@ const Dashboard = () => {
                                 <span>Projects</span>
                             </div>
                         </Link>
-                        <Link to="/tasks"  className="dashboard-button-container" role="button">
+                        <Link to="/tasks" className={`dashboard-button-container ${activeButton === 'tasks' ? 'active' : ''}`} onClick={() => setActiveButton('tasks')} role="button">
                             <div className="dashboard-icon-container">
                                 <svg className="dashboard-menu-icon">
                                     <path
