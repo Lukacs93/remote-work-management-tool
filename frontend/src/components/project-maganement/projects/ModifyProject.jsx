@@ -3,6 +3,7 @@ import './ModifyProject.css'
 
 const UpdateProject = (props) =>
 {
+    const [showSuccessText, setShowSuccessText] = useState(false)
     const [form,setForm]=useState(
         {
         "id": props.project.id,
@@ -24,33 +25,38 @@ const UpdateProject = (props) =>
             },
             body: JSON.stringify(form)
         })
-    
+        setShowSuccessText(true)
         setTimeout(() => {
+            props.setModal(!props.modal)
+            setShowSuccessText(false)
         }, 2000);
         props.setIsModified(!props.isModified)
         props.setIsSubmit(!props.isSubmit)
-        props.setModal(!props.modal)
     }
 
     return (
         <div className="update-project-container">
             <div className="update-project-form-container">
-            <form className="update-project-form" onSubmit={handleSubmit}>
-                <h2>Update Project</h2>
-                <input className="update-project-input" id="DateID" 
-                     placeholder='DateID'
-                     onChange={(e) => setForm({...form, DateId: parseInt(e.target.value)})}
-                 />
-                <input className="update-project-input" id="ManagerID"
-                      placeholder='ManagerID'
-                      onChange={(e) => setForm({...form, ManagerID: parseInt(e.target.value)})}
-                />
-                <input className="update-project-input" id="ProjectStatus"
-                      placeholder='Project Status'
-                      onChange={(e) => setForm({...form, ProjectStatus: parseInt(e.target.value)})}
-                />
-                <button className="update-project-submit-button" type="submit">Update</button>
-            </form>
+                {showSuccessText ?
+                    <p className="project-delete-message">Project Successfully Updated</p>
+                    :                    
+                    <form className="update-project-form" onSubmit={handleSubmit}>
+                        <h2>Update Project</h2>
+                        <input className="update-project-input" id="DateID" 
+                             placeholder='DateID'
+                             onChange={(e) => setForm({...form, DateId: parseInt(e.target.value)})}
+                         />
+                        <input className="update-project-input" id="ManagerID"
+                              placeholder='ManagerID'
+                              onChange={(e) => setForm({...form, ManagerID: parseInt(e.target.value)})}
+                        />
+                        <input className="update-project-input" id="ProjectStatus"
+                              placeholder='Project Status'
+                              onChange={(e) => setForm({...form, ProjectStatus: parseInt(e.target.value)})}
+                        />
+                        <button className="update-project-submit-button" type="submit">Update</button>
+                    </form>
+                }
             </div>
         </div>
     )

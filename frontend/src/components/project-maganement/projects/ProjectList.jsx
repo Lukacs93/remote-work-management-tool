@@ -14,7 +14,9 @@ const ProjectList = (prop) =>
             await fetch(`https://localhost:7029/projects`)
                 .then((resp)=>resp.json())
                 .then((resp)=>{setProjects(resp.$values)
+                    setTimeout(() => {
                     setIsLoading("done")
+                    }, 1000);
                 })
         }
         getProjects()
@@ -23,7 +25,9 @@ const ProjectList = (prop) =>
     
     return (
         <div>
-            {isLoading === "loading" && ( <div className="loader"></div>  )}
+            <div className="loader-container">
+                {isLoading === "loading" && ( <div className="loader"></div>  )}
+            </div>
             <div className="project-list-container">
                 {isLoading === "done" && (
                     <div className='projects-container'>
