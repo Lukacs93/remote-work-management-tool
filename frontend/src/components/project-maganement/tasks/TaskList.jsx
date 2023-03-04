@@ -21,7 +21,7 @@ const ListTasks = () =>
     const onSubmit = async (e) => {
         e.preventDefault();
        console.log(form)
-        await fetch('https://localhost:7029/projects/4/add-task', {
+        await fetch('https://localhost:7029/projects/20/add-task', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -76,7 +76,7 @@ const ListTasks = () =>
     
     return (
         <div>
-            <header>
+            <header className="task-header-container">
                 <div className="title">Tasks</div>
                 <div className="task-header-button-container">
                     {showSearch &&
@@ -138,13 +138,13 @@ const ListTasks = () =>
                 {taskItems && 
                     taskItems.map(taskItem => {
                         return (
-                            <>
+                            <div key={taskItem.$id}>
                             {deletedItemId === taskItem.id  ? 
                                 <p className="delete-message">Task Successfully Deleted</p>
                                  :
                                 <Task taskItem={taskItem} deleteTaskItem={deleteTaskItem} key={taskItem.$id}/>
                             }
-                            </>
+                            </div>
                         )
                     })
                 }

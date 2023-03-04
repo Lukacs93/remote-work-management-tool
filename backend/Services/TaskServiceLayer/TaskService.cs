@@ -72,7 +72,7 @@ public class TaskService : ITaskService
        
        if (projectToAddTask != null)
        {
-           _context.Tasks.Add(task);
+          // _context.Tasks.Add(task);
            projectToAddTask.Tasks?.Add(task);
        }
        

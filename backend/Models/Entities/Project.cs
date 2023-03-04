@@ -14,7 +14,7 @@ public class Project
 
     public List<User>? UsersInTheProject { get; set; }
 
-    public List<TaskItem>? Tasks { get; set; }
+    public List<TaskItem>? Tasks { get; set; } = new List<TaskItem>();
 
     public Status? ProjectStatus { get; set; }
 }
