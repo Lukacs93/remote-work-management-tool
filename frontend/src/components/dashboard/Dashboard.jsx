@@ -4,7 +4,13 @@ import Header from './DashboardHeader'
 import {Link, useLocation} from "react-router-dom";
 
 const Dashboard = () => {
-    const [activeButton, setActiveButton] = useState('dashboard'); 
+    const [activeButton, setActiveButton] = useState('dashboard');
+
+    const [sidebarOpen, setSidebarOpen] = useState(true);
+
+    const toggleSidebar = () => {
+        setSidebarOpen(!sidebarOpen);
+    };
 
     const location = useLocation();
     
@@ -16,13 +22,13 @@ const Dashboard = () => {
     return (
         <>
             {splitLocation[1] === "dashboard" ? 
-            <Header />
+            <Header sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar}/>
                 :
                 ""
             }
-            <div className="dashboard-container">
+            <div className={`dashboard-container ${sidebarOpen ? '' : 'sidebar-closed'}`}>
                 <div className="minimize-menu">
-                    <button className="minimize-menu-button" type="button">
+                    <button className="minimize-menu-button" onClick={toggleSidebar} type="button">
                         <svg className="dashboard-menu-icon">
                             <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z">
                             </path>

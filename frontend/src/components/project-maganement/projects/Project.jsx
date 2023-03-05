@@ -7,8 +7,7 @@ const Project = (props) => {
     const [modal,setModal]=useState(false);
     const [showDetails, setShowDetails] = useState(false);
     const [showSuccessText, setShowSuccessText] = useState(false)
-
-
+    
     const handleClick=async ()=>{
         await fetch(await fetch(`https://localhost:7029/projects/${props.id}`,{
             method: 'DELETE'
@@ -42,7 +41,6 @@ const Project = (props) => {
                     <div className="project-status">Project Status: {props.project.projectStatus}</div>
                     <button onClick={() => setShowDetails(!showDetails)}>See More</button>
                 </div>
-
             </div>
             <div className={`App ${showDetails ? "project-details-open" : ""}`}>
 

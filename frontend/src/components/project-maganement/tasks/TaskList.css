@@ -41,15 +41,46 @@
     color: white;
     background-color: transparent;
     border: none;
-    padding: 5px 10px;
     cursor: pointer;
+    align-items: center;
+    position: relative;
+    text-align: left;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    border-radius: 100%;
+    padding: 5px 10px;
     font-size: 25px;
-    transition: transform 0.5s;
-    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    display: inline-block;
 }
 
+.search-btn:after {
+    content: "";
+    background: white;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.search-btn:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+
+
+
+
 .search-btn:hover {
-    transform: scale(1.3);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 100%;
 }
 
 .new-btn {

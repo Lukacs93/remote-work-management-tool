@@ -1,11 +1,11 @@
 ﻿import React from 'react'
 import './Dashboard.css'
 
-function Header() {
+function Header({ sidebarOpen, toggleSidebar }) {
     return (
-        <div className="dashboard-header-container">
+        <div className={`dashboard-header-container ${sidebarOpen ? 'dashboard-header-minimize' : '' }`}>
             <div className="dashboard-notification">
-                <button className="dashboard-hamburger-button">
+                <button onClick={toggleSidebar} className={`dashboard-hamburger-button ${sidebarOpen ? 'none' : '' }`}>
                     <svg className="dashboard-menu-icon">
                         <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z">
                         </path>

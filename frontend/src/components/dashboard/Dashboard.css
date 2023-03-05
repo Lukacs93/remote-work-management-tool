@@ -3,6 +3,7 @@
     color: darkgray;
     font-size: 50px;
 }
+
 body{
     background-color: #f5f5f5;
     font-family: 'Proxima Nova';
@@ -16,27 +17,36 @@ body{
     box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px, rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
     display: flex;
     flex-direction: column;
-    width: 100%;
     height: 65px;
     margin-left: 240px;
-    /*width: calc(100% - 240px);*/
-
+    width: 100%;
     position: absolute;
     top: 0px;
     left: auto;
     right: 0px;
+    min-width: 400px;
     background-color: rgb(25, 118, 210);
     color: rgb(255, 255, 255);
-    /*z-index: 1201;*/
+    z-index: 1201;
     transition: width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
 }
 
-.dashboard-hamburger-button{
+.dashboard-header-minimize{
+    width: calc(100% - 240px);
+}
+
+.dashboard-hamburger-button{ 
     background-color: transparent;
     outline: 0;
     border: 0;
     margin: 0;
     color: white;
+    /*display: none;*/
+    fill: white;
+}
+
+.none {
+    display: none;
 }
 
 /*bell*/
@@ -60,8 +70,7 @@ body{
 }
 
 .dashboard-header-text {
-    margin: 0;
-    margin-left: 220px;
+    margin-left: 50px;
     font-family: "Roboto","Helvetica","Arial",sans-serif;
     font-weight: 500;
     font-size: 1.25rem;
@@ -124,8 +133,14 @@ body{
     flex-direction: column;
     height: 100%;
     z-index: 1200;
-    position: fixed;
+    /*position: fixed;*/
     width: 240px;
+    position: fixed;
+    transition: width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+}
+
+.sidebar-closed {
+    width: 72px;
 }
 
 .minimize-menu {
@@ -247,6 +262,8 @@ a:-webkit-any-link {
     border-top-width: thin;
     margin-top: 8px;
     margin-bottom: 8px;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .sub-menu-title {
