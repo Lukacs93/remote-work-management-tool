@@ -75,19 +75,7 @@ const ListTasks = () =>
     }
     
     return (
-        <div>
-            <header className="task-header-container">
-                <div className="title">Tasks</div>
-                <div className="task-header-button-container">
-                    {showSearch &&
-                        <div className={`search-container ${showSearch ? "show" : ""}`}>
-                            <input type="text" placeholder="Search" />
-                        </div>
-                    }
-                    <button className="search-btn" onClick={() => setShowSearch(!showSearch)}><i className="fa fa-search"></i></button>
-                    <button onClick={handleCreateNewTask} className="new-btn">New</button>
-                </div>
-            </header>
+        <div >
             {showForm ?
                 <div className="add-task-form-container">
                     <div>
@@ -134,6 +122,17 @@ const ListTasks = () =>
                 </div>
                 : ""
             }
+
+            <div onClick={handleCreateNewTask} className="add-new-container">
+                <div className="minimize-add-new">
+                    <button className="add-new-button"  type="button">
+                        <span className="add-new-button-icon">
+                            +
+                        </span>
+                    </button>
+                    <div>Add New Task</div> 
+                </div>
+            </div>
             <div className="task-container">
                 {taskItems && 
                     taskItems.map(taskItem => {

@@ -12,20 +12,16 @@ const Dashboard = () => {
         setSidebarOpen(!sidebarOpen);
     };
 
-    const location = useLocation();
-    
-    const { pathname } = location;
-    
-    const splitLocation = pathname.split("/");
-    console.log(splitLocation[1])
+    // const location = useLocation();
+    //
+    // const { pathname } = location;
+    //
+    // const splitLocation = pathname.split("/");
+    // console.log(splitLocation[1])
     
     return (
         <>
-            {splitLocation[1] === "dashboard" ? 
             <Header sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar}/>
-                :
-                ""
-            }
             <div className={`dashboard-container ${sidebarOpen ? '' : 'sidebar-closed'}`}>
                 <div className="minimize-menu">
                     <button className="minimize-menu-button" onClick={toggleSidebar} type="button">
@@ -33,7 +29,7 @@ const Dashboard = () => {
                             <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z">
                             </path>
                         </svg>
-                        {/*<div className="css-dashboard-menu-icon">*/}
+                        {/*<div className="dashboard-menu-icon">*/}
                         {/*    <a >&#8249; </a>*/}
                         {/*</div>*/}
                     </button>
@@ -42,14 +38,14 @@ const Dashboard = () => {
                     <nav>
                         <Link to="/dashboard" className={`dashboard-button-container ${activeButton === 'dashboard' ? 'active' : ''}`} onClick={() => setActiveButton('dashboard')} role="button">
                             <div className="dashboard-icon-container">
-                                <div className="dashboard-menu-icon">
-                                    <img src={require('../../assets/dashboard.png')} className="dashboard-icon" alt="dashboard" />
-                                </div>
-                                {/*<svg className="css-dashboard-menu-icon" focusable="false"*/}
-                                {/*     aria-hidden="true" viewBox="0 0 24 24" data-testid="DashboardIcon">*/}
-                                {/*    <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z">*/}
-                                {/*    </path>*/}
-                                {/*</svg>*/}
+                                {/*<div className="dashboard-menu-icon">*/}
+                                {/*    <img src={require('../../assets/dashboard.png')} className="dashboard-icon" alt="dashboard" />*/}
+                                {/*</div>*/}
+                                <svg className="dashboard-menu-icon" focusable="false"
+                                     aria-hidden="true" viewBox="0 0 24 24" data-testid="DashboardIcon">
+                                    <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z">
+                                    </path>
+                                </svg>
                             </div>
                             <div className="dashboard-menu-text">
                                 <span>Dashboard</span>

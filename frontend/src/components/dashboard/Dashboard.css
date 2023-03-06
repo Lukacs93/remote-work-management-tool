@@ -190,14 +190,13 @@ body{
 }
 
 .dashboard-button-container {
-    border-radius: 0;
     cursor: pointer;
     display: flex;
     align-items: center;
     position: relative;
     text-align: left;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 16px;
     padding-right: 16px;
     -webkit-transition-duration: 0.4s;

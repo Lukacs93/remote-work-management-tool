@@ -1,7 +1,14 @@
-﻿import React from 'react'
+﻿import React, {useState} from 'react'
 import './Dashboard.css'
+import {useLocation} from "react-router-dom";
 
 function Header({ sidebarOpen, toggleSidebar }) {
+    const [showSearch, setShowSearch] = useState(false);
+    
+    const location = useLocation();
+    const { pathname } = location;
+    const splitLocation = pathname.charAt(1).toUpperCase() + pathname.slice(2).split("/");
+    
     return (
         <div className={`dashboard-header-container ${sidebarOpen ? 'dashboard-header-minimize' : '' }`}>
             <div className="dashboard-notification">
@@ -12,8 +19,21 @@ function Header({ sidebarOpen, toggleSidebar }) {
                     </svg>
                 </button>
                 <h1 className="dashboard-header-text">
-                    Dashboard
+                    {splitLocation}
                 </h1>
+                {showSearch &&
+                    <div className={`search-container ${showSearch ? "show" : ""}`}>
+                        <input type="text" placeholder="Search" />
+                    </div>
+                }
+                
+                {splitLocation === "Projects" || splitLocation === "Tasks" ?
+                    <div className="task-header-button-container">
+                        <button className="search-btn" onClick={() => setShowSearch(!showSearch)}><i className="fa fa-search"></i></button>
+                    </div>
+                    :
+                    ""
+                }
                 <button className="dashboard-notification-icon">
                       <span className="dashboard-notification-number">
                           <svg className="dashboard-menu-icon">
@@ -25,9 +45,7 @@ function Header({ sidebarOpen, toggleSidebar }) {
                       </span>
                 </button>
             </div>
-
         </div>
-
     );
 }
 

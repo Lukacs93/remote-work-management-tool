@@ -16,20 +16,17 @@ const ProjectDashboard = () =>
     }
     
     return (
-        <div >
-             <header className="project-header-container">
-                 <div className="title">Projects</div>
-                 <div className="task-header-button-container">
-                     {showSearch &&
-                         <div className={`search-container ${showSearch ? "show" : ""}`}>
-                             <input type="text" placeholder="Search" />
-                         </div>
-                     }
-                     <button className="search-btn" onClick={() => setShowSearch(!showSearch)}><i className="fa fa-search"></i></button>
-                     <button onClick={handleCreateNewTask} className="new-btn">New</button>
-                 </div>
-             </header>
-                        
+        <div>
+            <div onClick={handleCreateNewTask} className="add-new-container">
+                <div className="minimize-add-new-project">
+                    <button className="add-new-button"  type="button">
+                        <span className="add-new-button-icon">
+                            +
+                        </span>
+                    </button>
+                    <div>Add New Project</div>
+                </div>
+            </div>
             {showForm && (
                 <div>
                     <CreateProject

@@ -25,18 +25,25 @@ const ProjectList = (prop) =>
     
     return (
         <div>
-            <div className="loader-container">
-                {isLoading === "loading" && ( <div className="loader"></div>  )}
-            </div>
-            <div className="project-list-container">
-                {isLoading === "done" && (
-                    <div className='projects-container'>
-                       {projects.map(project => (
-                           <Project id={project.id} isModified={isModified} setIsModified={setIsModified} setIsLoading={setIsLoading} project={project} setIsSubmit={prop.setIsSubmit} IsSubmit={prop.isSubmit} />
-                       ))}
+            {isLoading === "loading" ? (
+                    <div className="loader-container">
+                        <div className="loader"></div>
                     </div>
-                )}
-            </div>
+                )
+                :
+
+                <div className="project-list-container">
+                    {isLoading === "done" && (
+                        <div className='projects-container'>
+                            {projects.map(project => (
+                                <Project id={project.id} isModified={isModified} setIsModified={setIsModified}
+                                         setIsLoading={setIsLoading} project={project} setIsSubmit={prop.setIsSubmit}
+                                         IsSubmit={prop.isSubmit}/>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            }
         </div>
     )
 }
