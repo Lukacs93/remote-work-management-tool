@@ -1,47 +1,4 @@
-﻿.search-btn {
-    color: white;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    align-items: center;
-    position: relative;
-    text-align: left;
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    text-decoration: none;
-    overflow: hidden;
-    border-radius: 100%;
-    padding: 5px 10px;
-    font-size: 25px;
-    display: inline-block;
-}
-
-.search-btn:after {
-    content: "";
-    background: white;
-    display: block;
-    position: absolute;
-    padding-top: 300%;
-    padding-left: 350%;
-    margin-left: -20px!important;
-    margin-top: -120%;
-    opacity: 0;
-    transition: all 0.8s
-}
-
-.search-btn:active:after {
-    padding: 0;
-    margin: 0;
-    opacity: 1;
-    transition: 0s
-}
-
-.search-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 100%;
-}
-
-.task-container{
+﻿.task-container{
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -136,27 +93,27 @@
     cursor: pointer;
 }
 
-.search-container {
-    display: flex;
-    justify-content: flex-end;
-}
+/*.search-container {*/
+/*    display: flex;*/
+/*    justify-content: flex-end;*/
+/*}*/
 
-.search-container input{
-    width: 300px;
-}
+/*.search-container input{*/
+/*    width: 300px;*/
+/*}*/
 
 .add-new-container {
     display: flex;
-    background-color: rgba(217, 217, 217, 0.75);
-    border: rgba(159, 159, 159, 0.45) solid 1px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px, rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
     color: rgba(0, 0, 0, 0.87);
+    background-color: white;
     border-bottom-left-radius: 15px;
     border-top-left-radius: 15px;
     position: fixed;
     width: 70px;
     right: 0; /* Position the container to the right */
     transition: width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin-left 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
-    margin-top: 50px;
+    margin-top: 80px;
     cursor: pointer;
 }
 
@@ -179,7 +136,7 @@
     display: flex;
     fill: currentColor;
     transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     align-items: center;
 }
 

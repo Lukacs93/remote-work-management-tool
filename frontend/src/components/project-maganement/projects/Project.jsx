@@ -25,8 +25,9 @@ const Project = (props) => {
 
     return(
         <div className="single-project-container">
-            <div className="single-project">
+            <div className="single-project" onClick={() => setShowDetails(!showDetails)}>
                 <div>
+                    <div className="project-id">Title</div>
                     <div className="project-id">ProjectID: {props.project.id}</div>
                     <div className="date-id">DateID: {props.project.dateId}</div>
                     <div className="manager-id">ManagerID: {props.project.managerId}</div>
@@ -39,7 +40,7 @@ const Project = (props) => {
                         </div>
                     )}
                     <div className="project-status">Project Status: {props.project.projectStatus}</div>
-                    <button onClick={() => setShowDetails(!showDetails)}>See More</button>
+                    <button className="see-more-button">See More</button>
                 </div>
             </div>
             <div className={`App ${showDetails ? "project-details-open" : ""}`}>
@@ -64,7 +65,7 @@ const Project = (props) => {
                                             setModal(!modal)
                                         }}>Modify
                                         </button>
-                                        <button className='single-project-button'>Tasks for the Project</button>
+                                        <button className='single-project-button'>Tasks</button>
                                         <button className='single-project-button'
                                                 onClick={handleClick}>Delete
                                         </button>
