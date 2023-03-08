@@ -13,7 +13,7 @@ const ProjectList = (prop) =>
         const getProjects = async() => { 
             await fetch(`https://localhost:7029/projects`)
                 .then((resp)=>resp.json())
-                .then((resp)=>{setProjects(resp.$values)
+                .then((resp)=>{setProjects(resp)
                     setTimeout(() => {
                     setIsLoading("done")
                     }, 1000);
@@ -35,8 +35,8 @@ const ProjectList = (prop) =>
                 <div className="project-list-container">
                     {isLoading === "done" && (
                         <div className='projects-container'>
-                            {projects.map(project => (
-                                <Project id={project.id} isModified={isModified} setIsModified={setIsModified}
+                            {projects && projects.map(project => (
+                                <Project key={project.id} id={project.id} isModified={isModified} setIsModified={setIsModified}
                                          setIsLoading={setIsLoading} project={project} setIsSubmit={prop.setIsSubmit}
                                          IsSubmit={prop.isSubmit}/>
                             ))}

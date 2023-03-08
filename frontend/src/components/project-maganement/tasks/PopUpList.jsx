@@ -17,7 +17,7 @@ function PopUpList({ onClose, taskItem }) {
             }
 
             const items = await response.json();
-            setUsers(items.$values);
+            setUsers(items);
         }
 
         getTaskItems();

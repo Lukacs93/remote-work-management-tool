@@ -9,7 +9,7 @@ function PopUpAssign({ onClose, taskItem }) {
   useEffect(() => {
     fetch('https://localhost:7029/users')
       .then((response) => response.json())
-      .then((data) => setUsers(data.$values))
+      .then((data) => setUsers(data))
       .catch((error) => console.log(error));
   }, []);
 

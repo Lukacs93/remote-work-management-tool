@@ -3,7 +3,7 @@ import { useState , useEffect } from 'react'
 import './TaskList.css'
 import Task from "./Task";
 
-const ListTasks = () =>
+const TaskList = () =>
 {
     const [taskItems, setTaskItems] = useState([])
     const [deletedItemId, setDeletedItemId] = useState(null);
@@ -47,12 +47,10 @@ const ListTasks = () =>
             }
 
             const items = await response.json();
-            setTaskItems(items.$values);
-            console.log(items)
+            setTaskItems(items);
         }
 
         getTaskItems();
-        
     }, [isSubmit]);
 
     const deleteTaskItem = async (id) => {
@@ -70,6 +68,7 @@ const ListTasks = () =>
     }
 
     const handleCreateNewTask = () => {
+        console.log(taskItems)
         setShowForm(!showForm)
         setIsSubmit(false)
     }
@@ -137,11 +136,11 @@ const ListTasks = () =>
                 {taskItems && 
                     taskItems.map(taskItem => {
                         return (
-                            <div className="task-item" key={taskItem.$id}>
+                            <div className="task-item" key={taskItem.id}>
                             {deletedItemId === taskItem.id  ? 
                                 <p className="delete-message">Task Successfully Deleted</p>
                                  :
-                                <Task taskItem={taskItem} deleteTaskItem={deleteTaskItem} key={taskItem.$id}/>
+                                <Task taskItem={taskItem} deleteTaskItem={deleteTaskItem} key={taskItem.id}/>
                             }
                             </div>
                         )
@@ -152,5 +151,5 @@ const ListTasks = () =>
     )
 }
 
-export default ListTasks
+export default TaskList
 

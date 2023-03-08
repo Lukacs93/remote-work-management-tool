@@ -34,10 +34,10 @@ const Project = (props) => {
                 <div className="project-id">ProjectID: {props.project.id}</div>
                 <div className="date-id">DateID: {props.project.dateId}</div>
                 <div className="manager-id">ManagerID: {props.project.managerId}</div>
-                {props.project.usersInTheProject.$values !== null && (
+                {props.project.usersInTheProject !== null && (
                     <div className="users">
                         <div className="users-title">Users in the project:</div>
-                        {props.project.usersInTheProject.$values.map(user => {
+                        {props.project.usersInTheProject.map(user => {
                             return <UserList user={user}/>
                         })}
                     </div>
@@ -87,10 +87,10 @@ const Project = (props) => {
                                     <div className="project-id">ProjectID: {props.project.id}</div>
                                     <div className="date-id">DateID: {props.project.dateId}</div>
                                     <div className="manager-id">ManagerID: {props.project.managerId}</div>
-                                    {props.project.usersInTheProject.$values !== null && (
+                                    {props.project.usersInTheProject !== null && (
                                         <div className="users">
                                             <div className="users-title">Users in the project:</div>
-                                            {props.project.usersInTheProject.$values.map(user => {
+                                            {props.project.usersInTheProject.map(user => {
                                                 return <UserList user={user}/>
                                             })}
                                         </div>
