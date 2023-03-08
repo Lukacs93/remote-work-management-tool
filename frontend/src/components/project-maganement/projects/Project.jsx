@@ -26,22 +26,24 @@ const Project = (props) => {
     return(
         <div className="single-project-container">
             <div className="single-project" onClick={() => setShowDetails(!showDetails)}>
-                <div>
-                    <div className="project-id">Title</div>
-                    <div className="project-id">ProjectID: {props.project.id}</div>
-                    <div className="date-id">DateID: {props.project.dateId}</div>
-                    <div className="manager-id">ManagerID: {props.project.managerId}</div>
-                    {props.project.usersInTheProject.$values !== null && (
-                        <div className="users">
-                            <div className="users-title">Users in the project:</div>
-                            {props.project.usersInTheProject.$values.map(user => {
-                                return <UserList user={user}/>
-                            })}
-                        </div>
-                    )}
-                    <div className="project-status">Project Status: {props.project.projectStatus}</div>
-                    <button className="see-more-button">See More</button>
+                <div className="single-project-close-button-container">
+                    
+                <button className="single-project-close-button">&times;</button>
                 </div>
+                <div className="project-id">Title</div>
+                <div className="project-id">ProjectID: {props.project.id}</div>
+                <div className="date-id">DateID: {props.project.dateId}</div>
+                <div className="manager-id">ManagerID: {props.project.managerId}</div>
+                {props.project.usersInTheProject.$values !== null && (
+                    <div className="users">
+                        <div className="users-title">Users in the project:</div>
+                        {props.project.usersInTheProject.$values.map(user => {
+                            return <UserList user={user}/>
+                        })}
+                    </div>
+                )}
+                <div className="project-status">Project Status: {props.project.projectStatus}</div>
+                <button className="see-more-button">See More</button>
             </div>
             <div className={`App ${showDetails ? "project-details-open" : ""}`}>
 
@@ -63,8 +65,9 @@ const Project = (props) => {
                                     <div className="single-project-button-container">
                                         <button className='single-project-button' onClick={() => {
                                             setModal(!modal)
-                                        }}>Modify
+                                        }}>Edit
                                         </button>
+                                        <button className='single-project-button'>Assign</button>
                                         <button className='single-project-button'>Tasks</button>
                                         <button className='single-project-button'
                                                 onClick={handleClick}>Delete

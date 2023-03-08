@@ -18,6 +18,7 @@
 
 .update-project-form h2 {
     padding-bottom: 18px;
+    font-weight: 500;
 }
 
 .update-project-input {
@@ -28,9 +29,35 @@
     border: none;
 }
 
+/*.search-container {*/
+/*    margin: 20px;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    position: relative;*/
+/*    float: right;*/
+/*    padding: 0;*/
+/*}*/
+
+.update-project-input{
+    display: flex;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    padding: 0.5rem;
+    font-weight: 50;
+    border: none;
+    outline: none;
+    top: 0;
+    right: 0;
+    background: none;
+    z-index: 3;
+    border-bottom: 1px solid #888888;
+    border-right: 1px solid #888888;
+}
+
 .update-project-submit-button
 {
-    display: inline-block;
+    display: flex;
     font-weight: 400;
     color: #fff;
     text-align: center;

@@ -4,7 +4,7 @@ import './ModifyProject.css'
 const UpdateProject = (props) =>
 {
     const [showSuccessText, setShowSuccessText] = useState(false)
-    const [form,setForm]=useState(
+    const [form,setForm] = useState(
         {
         "id": props.project.id,
         "DateId": 0,
@@ -25,11 +25,14 @@ const UpdateProject = (props) =>
             },
             body: JSON.stringify(form)
         })
+        
         setShowSuccessText(true)
+        
         setTimeout(() => {
             props.setModal(!props.modal)
             setShowSuccessText(false)
         }, 2000);
+        
         props.setIsModified(!props.isModified)
         props.setIsSubmit(!props.isSubmit)
     }
@@ -41,7 +44,7 @@ const UpdateProject = (props) =>
                     <p className="project-delete-message">Project Successfully Updated</p>
                     :                    
                     <form className="update-project-form" onSubmit={handleSubmit}>
-                        <h2>Update Project</h2>
+                        <h2>Edit Project</h2>
                         <input className="update-project-input" id="DateID" 
                              placeholder='DateID'
                              onChange={(e) => setForm({...form, DateId: parseInt(e.target.value)})}
@@ -54,7 +57,7 @@ const UpdateProject = (props) =>
                               placeholder='Project Status'
                               onChange={(e) => setForm({...form, ProjectStatus: parseInt(e.target.value)})}
                         />
-                        <button className="update-project-submit-button" type="submit">Update</button>
+                        <button className="update-project-submit-button" type="submit">Save</button>
                     </form>
                 }
             </div>

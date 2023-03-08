@@ -25,27 +25,27 @@ const Task = ({taskItem, deleteTaskItem}) => {
                 <option value='review'>Review</option>
                 <option value='done'>Done</option>
             </select>
-            <div>
-              <div className="task-button-container"><button onClick={() => setShowAssign(true)}>Assign Users</button>
-              <button onClick={() => setShowList(true)}>Assigned Users</button> </div>     
-              {showAssign && (
-                  <div className="PopUpAssign-parent">
-                      <PopUpAssign onClose={handleClose} taskItem={taskItem}/>
-                  </div>
-              )}
-              {showList && (
-                  <div className="PopUpList-parent">
-                      <PopUpList onClose={handleClose} taskItem={taskItem} />
-                  </div>)}
-            </div>
-            <div className="task-button-container">
-                <button>
-                    Edit
-                </button>
-                <button onClick={() => {deleteTaskItem(taskItem.id)}}>
-                    Delete
-                </button>
-            </div>
+              <div className="task-button-container">
+                  <button onClick={() => setShowAssign(true)}>Assign Users</button>
+                  <button onClick={() => setShowList(true)}>Assigned Users</button> 
+     
+                  {showAssign && (
+                      <div className="PopUpAssign-parent">
+                          <PopUpAssign onClose={handleClose} taskItem={taskItem}/>
+                      </div>
+                  )}
+                  {showList && (
+                      <div className="PopUpList-parent">
+                          <PopUpList onClose={handleClose} taskItem={taskItem} />
+                      </div>)}
+    
+                    <button>
+                        Edit
+                    </button>
+                    <button onClick={() => {deleteTaskItem(taskItem.id)}}>
+                        Delete
+                    </button>
+              </div>
         </div>
     )
 }

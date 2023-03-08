@@ -137,7 +137,7 @@ const ListTasks = () =>
                 {taskItems && 
                     taskItems.map(taskItem => {
                         return (
-                            <div key={taskItem.$id}>
+                            <div className="task-item" key={taskItem.$id}>
                             {deletedItemId === taskItem.id  ? 
                                 <p className="delete-message">Task Successfully Deleted</p>
                                  :

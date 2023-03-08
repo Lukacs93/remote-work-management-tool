@@ -1,19 +1,33 @@
 ﻿.task-container{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
     align-items: center;
     padding-top: 140px;
     padding-bottom: 40px;
-    padding-left: 100px;
     flex-wrap: wrap;
     row-gap: 30px;
+}
+
+/*.task-container {*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    overflow: auto;*/
+/*    cursor: pointer;*/
+/*}*/
+
+
+/*.task-container div{*/
+/*    width: 85%;*/
+/*}*/
+
+.task-item{
+    justify-content: center;
     cursor: pointer;
 }
 
-.task-container div{
-    width: 85%;
-}
 
 .delete-message{
     font-family: 'Proxima Nova';
@@ -57,7 +71,7 @@
     border-radius: 0.25rem;
     display: flex;
     justify-content: center;
-    box-shadow: 0 11px 15px rgba(81,169,225,.2),0 9px 46px rgba(81,169,225,.12),0 24px 40px rgba(81,169,225,.14);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px, rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
     margin-bottom: 1.5rem;
     background-color: #fff;
     padding: 1.5rem;
@@ -107,8 +121,8 @@
     box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px, rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
     color: rgba(0, 0, 0, 0.87);
     background-color: white;
-    border-bottom-left-radius: 15px;
-    border-top-left-radius: 15px;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
     position: fixed;
     width: 70px;
     right: 0; /* Position the container to the right */

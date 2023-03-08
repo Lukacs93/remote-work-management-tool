@@ -3,12 +3,11 @@
     justify-content: space-between;
     height: 100%;
     padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 5px rgba(81,169,225,.2),0 3px 14px rgba(81,169,225,.12),0 8px 10px rgba(81,169,225,.14);
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px, rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
     color: #141414;
     transition: box-shadow .2s;
     background-color: white;
-    width: 100%;
     gap: 200px;
 }
 
@@ -16,8 +15,14 @@
     font-family: 'Proxima Nova';
     font-size: 20px;
     font-weight: 300;
+    white-space: nowrap;
+    max-width: 100px;
 }
 
+.task-content h2 {
+    font-family: 'Proxima Nova';
+    font-size: 25px;
+}
 /*.task-content h2 {*/
 /*    font-family: 'Proxima Nova';*/
 /*    font-size: 25px;*/
@@ -30,10 +35,15 @@
 
 .task-button-container{
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 10px;
 }
+
 .task-button-container button{
-    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #007bff;
     color: #fff;
     padding: 8px 16px;
@@ -41,4 +51,5 @@
     border: none;
     font-size: 16px;
     cursor: pointer;
+    white-space: nowrap;
 }
