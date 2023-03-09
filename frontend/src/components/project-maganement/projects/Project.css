@@ -124,6 +124,7 @@
     justify-content: space-between;
     padding-left: 16px;
     padding-right: 16px;
+    height: 60px;
 }
 
 .project-details-btn-container button{

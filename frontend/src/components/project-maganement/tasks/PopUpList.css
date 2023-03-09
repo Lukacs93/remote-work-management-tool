@@ -1,109 +1,80 @@
-.pop-up-assign {
-    position: fixed;
+.pop-up-assigned{
+    position: relative;
     top: 15%;
     left: 15%;
-    width: 70%;
-    height: 70%;
     z-index: 100;
     background-color: white;
-    border: 1px solid #ccc;
+
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-    padding: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: center;
+}
+
+.PopUpList-parent{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.pop-up-assigned-body{
     display: flex;
     flex-direction: column;
-  }
-  
-  .pop-up-assign h3 {
+}
+
+.pop-up-assigned-user{
+    background-color: white;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.3);
+    border-width: thin;
+}
+.pop-up-assigned-user:hover {
+    color: rgba(25, 118, 210, 0.8);
+}
+.pop-up-assign h3 {
     font-size: 1.5rem;
     margin-bottom: 20px;
-  }
-  
-  .pop-up-assign input {
+}
+
+.pop-up-assign input {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 1.2rem;
-  }
-  
-  .pop-up-assign ul {
+}
+
+.pop-up-assign ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow-y: scroll;
-  }
-  
-  .pop-up-assign li {
+}
+
+.pop-up-assign li {
     padding: 10px;
     cursor: pointer;
-  }
-  
-  .pop-up-assign li:hover,
-  .pop-up-assign .selected {
+}
+
+.pop-up-assign li:hover,
+.pop-up-assign .selected {
     background-color: #ccc;
-  }
-  
-  .pop-up-assign .footer {
+}
+
+.pop-up-assign .footer {
     margin-top: auto;
     display: flex;
     justify-content: flex-end;
-  }
-  
-  .pop-up-assign button {
-    padding: 10px;
-    margin-left: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .pop-up-assign button:hover {
-    background-color: #0069d9;
-  }
-  
-  .pop-up-assign .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 1.5rem;
-    color: #ccc;
-    cursor: pointer;
-  }
-  
-  .pop-up-assign .close-btn:hover {
-    color: #666;
-  }
-  .popup {
-    position: fixed;
-    top: 15%;
-    left: 15%;
-    width: 70%;
-    height: 70%;
-    background: #ffffff;
-    z-index: 999;
-    box-shadow: 0 0 20px #999999;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .popup-inner {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .popup-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background: #eeeeee;
-  }
-  
-  .popup-close {
-    background: none;
-    border: none;
-    font-size: 20
-  }
+}
+

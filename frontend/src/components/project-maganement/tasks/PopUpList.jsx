@@ -54,30 +54,32 @@ e.id = parseInt(e.id)
   );
 
   return (
-    <div className="pop-up-assign">
-      <div className="pop-up-assign-header">
-        <input type="text" placeholder="Search Users" value={searchTerm} onChange={handleSearchTermChange} />
-      </div>
-      <button className="popup-close" onClick={onClose}>
-            X
-          </button>     
-      <div className="pop-up-assign-body">
-        {filteredUsers.map((user) => (
-          <div
-            key={user.id}
-            className={`pop-up-assign-user`}
-            
-          >
-            {user.firstName} {user.lastName}
-            <button className="popup-close" onClick={() => deleteUser(user)}>
-            X
-          </button>  
+      <div className="pop-up-assign">
+          <div className="pop-up-assign-header">
+              <input type="text" placeholder="Search Users" value={searchTerm} onChange={handleSearchTermChange} />
+              <button className="popup-close" onClick={onClose}>
+                  Close
+              </button>
           </div>
-        ))}
+          <div className="pop-up-assigned-body">
+              {filteredUsers.map((user) => (
+                  <div
+                      key={user.id}
+                      className={`pop-up-assigned-user`}
+
+                  >
+                   <div>{user.firstName} {user.lastName}</div>
+                      <div>
+                          <button className="popup-user-delete" onClick={() => deleteUser(user)}>
+                              &times;
+                          </button>
+                      </div>
+                  </div>
+              ))}
+          </div>
+          <div className="pop-up-assign-footer">
+          </div>
       </div>
-      <div className="pop-up-assign-footer">      
-      </div>
-    </div>
   );
 }
 
