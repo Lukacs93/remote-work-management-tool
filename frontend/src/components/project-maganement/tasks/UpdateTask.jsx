@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 const UpdateTask = ({ taskItem }) =>
 {
     const [showSuccessText, setShowSuccessText] = useState(false)
+    
     const [form,setForm] = useState (
         {
             "id": taskItem.id,
@@ -13,6 +14,26 @@ const UpdateTask = ({ taskItem }) =>
             "taskStatus": 0
         })
 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        await fetch(`https://localhost:7029/task/${taskItem.id}`,{
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(form)
+        })
+
+        setShowSuccessText(true)
+
+        setTimeout(() => {
+
+            setShowSuccessText(false)
+        }, 2000);
+        
+    }
+    
     return (
         <div className="update-project-container">
             <div className="update-project-form-container">
