@@ -3,13 +3,14 @@ import './Task.css'
 import PopUpAssign from "./PopUpAssign";
 import PopUpList from "./PopUpList";
 import UserList from "../projects/UsersList";
-import ModifyProject from "../projects/ModifyProject";
+import UpdateTask from "./UpdateTask";
 
 
 const Task = ({taskItem, deleteTaskItem}) => {
     const [showAssign, setShowAssign] = useState(false);
     const [showList, setShowList] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
+    const [updateTask, setUpdateTask] = useState(false);
     
     const handleClose=()=>{
         setShowAssign(false);
@@ -50,7 +51,7 @@ const Task = ({taskItem, deleteTaskItem}) => {
                             <div className="task-details-btn-container">
                                 <div>
                                     <button className='single-task-button'>Task</button>
-                                    <button className='single-task-button'>Edit</button>
+                                    <button className='single-task-button' onClick={() => setUpdateTask(!updateTask)}>Edit</button>
                                     <button className='single-task-button' onClick={() => setShowAssign(!showAssign)}>Assign</button>
                                     <button className='single-task-button'>Project</button>
                                     <button className='single-task-button' onClick={() => {deleteTaskItem(taskItem.id)}}>Delete</button>
@@ -63,6 +64,9 @@ const Task = ({taskItem, deleteTaskItem}) => {
                                 </div>
                             </div>
                             <div className="task-details-container">
+                                {updateTask &&
+                                    <UpdateTask taskItem={taskItem}/>
+                                }
                                 {showList ? (
 
                                     <PopUpList onClose={handleClose} taskItem={taskItem} />
@@ -95,7 +99,8 @@ const Task = ({taskItem, deleteTaskItem}) => {
                                                                 : taskItem.taskStatus === 1 ? "Review"
                                                                     : taskItem.taskStatus === 1 ? "Done" 
                                                                         :"Not Started"
-                                                        }</div>
+                                                        }
+                                                        </div>
                                                     </div>
                                             </div>
                                         }
