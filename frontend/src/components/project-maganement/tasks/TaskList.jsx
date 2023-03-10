@@ -51,7 +51,7 @@ const TaskList = () =>
         }
 
         getTaskItems();
-    }, [isSubmit]);
+    }, [isSubmit, taskItems]);
 
     const deleteTaskItem = async (id) => {
         setDeletedItemId(id);
