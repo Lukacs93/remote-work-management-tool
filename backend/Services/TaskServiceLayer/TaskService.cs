@@ -81,28 +81,11 @@ public class TaskService : ITaskService
        return task;
     }
 
-    public async Task<TaskItem> UpdateTask(TaskItem task)
+    public async Task<TaskItem> UpdateTask(TaskItem task, long id)
     {
-        var taskToUpdate = await _context.Tasks.FirstOrDefaultAsync(t => t.Id == task.Id);
-        
-        if (taskToUpdate != null)
-        {
-            if (!string.IsNullOrEmpty(task.Description))
-            {
-                taskToUpdate.Description = task.Description;
-            }
+        var taskToUpdate = await _context.Tasks.FirstAsync(t => t.Id == id);
 
-            if (!string.IsNullOrEmpty(task.Note))
-            {
-                taskToUpdate.Note = task.Note;
-            }
-
-            if (task.TaskStatus != null)
-            {
-                taskToUpdate.TaskStatus = task.TaskStatus;
-            }
-        }
-
+        _context.Entry(taskToUpdate).CurrentValues.SetValues(task);
         await _context.SaveChangesAsync();
 
         return taskToUpdate;

@@ -11,6 +11,6 @@ public interface ITaskService
     Task<List<User>> AddUserToTask(long id, User user);
     Task<User> RemoveUserFromTask(long id, User user);
     Task<TaskItem> CreateTask(long projectId, TaskItem task);
-    Task<TaskItem> UpdateTask(TaskItem task);
+    Task<TaskItem> UpdateTask(TaskItem task, long id);
     Task<TaskItem> DeleteTask(long id);
 }

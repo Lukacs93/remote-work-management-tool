@@ -43,10 +43,10 @@ public class TaskController : ControllerBase
     {
         return await _taskService.AddUserToTask(id, user);
     }
-    [HttpPut]
-    public async Task<TaskItem> UpdateTask(TaskItem task)
+    [HttpPut("/task/{id}")]
+    public async Task<TaskItem> UpdateTask([FromBody] TaskItem task, long id)
     {
-        return await _taskService.UpdateTask(task);
+        return await _taskService.UpdateTask(task, id);
     }
 
     [HttpDelete("{id:long}")]

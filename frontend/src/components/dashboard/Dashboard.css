@@ -247,6 +247,11 @@ body{
     display: block;
 }
 
+a:link, a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
 a:-webkit-any-link {
     text-decoration: none;
     color: inherit;
