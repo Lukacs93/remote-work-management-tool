@@ -51,7 +51,7 @@ const TaskList = () =>
         }
 
         getTaskItems();
-    }, [isSubmit, taskItems]);
+    }, [isSubmit]);
 
     const deleteTaskItem = async (id) => {
         setDeletedItemId(id);
@@ -74,7 +74,7 @@ const TaskList = () =>
     }
     
     return (
-        <div >
+        <div className="task-list-wrapper">
             {showForm ?
                 <div className="add-task-form-container">
                     <div>
@@ -122,6 +122,18 @@ const TaskList = () =>
                 : ""
             }
 
+            {/*<div className="">*/}
+            {/*        <span>*/}
+            {/*            <input className="" type="text" placeholder="Search"/>*/}
+            {/*            <div className="">*/}
+            {/*                <div className="dashboard-menu-icon">*/}
+            {/*                    <i className="fa fa-search"></i>*/}
+            {/*                </div>*/}
+            {/*                */}
+            {/*            </div>*/}
+            {/*        </span>*/}
+            {/*</div>*/}
+            
             <div onClick={handleCreateNewTask} className="add-new-container">
                 <div className="minimize-add-new">
                     <button className="add-new-button"  type="button">
@@ -133,19 +145,38 @@ const TaskList = () =>
                 </div>
             </div>
             <div className="task-container">
-                {taskItems && 
-                    taskItems.map(taskItem => {
-                        return (
-                            <div className="task-item" key={taskItem.id}>
-                            {deletedItemId === taskItem.id  ? 
-                                <p className="delete-message">Task Successfully Deleted</p>
-                                 :
+                <table >
+                    <thead>
+                    <tr className="task-table-header">
+                        <th><span className="header-title">Name</span></th>
+                        <th><span className="header-title">Description</span></th>
+                        <th><span className="header-title">Status</span></th>
+                        <th><span className="header-title">Expiration Date</span></th>
+                        <th><span className="header-title">Started</span></th>
+                        <th><span className="header-title">Actions</span></th>
+                    </tr>
+                    </thead>
+    
+                    <tbody>
+    
+    
+                    {taskItems &&
+                        taskItems.map((taskItem, key) => {
+                            return (
+                                // <div className="task-item" key={taskItem.id}>
+                                // {deletedItemId === taskItem.id  ? 
+                                //     <p className="delete-message">Task Successfully Deleted</p>
+                                //      :
                                 <Task taskItem={taskItem} deleteTaskItem={deleteTaskItem} key={taskItem.id}/>
-                            }
-                            </div>
-                        )
-                    })
-                }
+                                // }
+                                // </div>
+                            )
+                        })
+                    }
+    
+                    </tbody>
+                </table>
+                
             </div>
         </div>
     )

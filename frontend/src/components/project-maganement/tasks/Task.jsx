@@ -11,40 +11,71 @@ const Task = ({taskItem, deleteTaskItem}) => {
     const [showList, setShowList] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
     const [updateTask, setUpdateTask] = useState(false);
+
+    const handleShowAssign = () => {
+        setShowDetails(true)
+        setShowList(true);
+        setShowAssign(false);
+    }
+
+    const handleShowUsers = () => {
+        setShowDetails(true)
+        setShowList(false);
+        setShowAssign(true);
+    }
     
     const handleClose=()=>{
         setShowAssign(false);
         setShowList(false);
     }
-
+    
     return (
-        <div>
-            <div className="task-content" onClick={() => setShowDetails(true)}>
-                <div>
-                    <h2>name</h2>
+        <>
+   
+            <tr className="task-content" >
+                <td >
+                    <p>name</p>
+                </td>
+                <td>
                     <p>{taskItem.description}</p>
-                </div>
-                <select>
-                    <option value='notStarted'>Not Started</option>
-                    <option value='inProgress'>In Progress</option>
-                    <option value='review'>Review</option>
-                    <option value='done'>Done</option>
-                </select>
-                <div className="task-button-container">
-                    <button onClick={() => setShowAssign(true)}>Assign Users</button>
-                    <button onClick={() => setShowList(true)}>Assigned Users</button>
-                    
-                    <button>
-                        Edit
-                    </button>
-                    <button onClick={() => {deleteTaskItem(taskItem.id)}}>
-                        Delete
-                    </button>
-                </div>
-            </div>
+                </td>
+                <td>
+                    <select className="task-status-dropdown">
+                        <option value='notStarted'>Not Started</option>
+                        <option value='inProgress'>In Progress</option>
+                        <option value='review'>Review</option>
+                        <option value='done'>Done</option>
+                    </select>
+                </td>
+                <td>2023-05-10</td>
+                <td>2023-01-10</td>
+                <td>                    
+                    <div className="task-button-container">
+                        <div className="task-show-more-button">
+                            <div className="task-action-button">Edit</div>
+                        </div>
+                        <div className="task-show-more-button">
+                            <div className="task-action-button" onClick={handleShowUsers}>Assign</div>
+                        </div>
+                        <div className="task-show-more-button">
+                            <div className="task-action-button" onClick={handleShowAssign}>Users</div>
+                        </div>
+                        <div className="task-show-more-button">
+                            <span className="task-action-icon" onClick={() => setShowDetails(true)}>
+                                &#xFE19;
+                            </span>
+                        </div>
+                        <div className="task-action-icon" onClick={() => {deleteTaskItem(taskItem.id)}}>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3 6l3 18h12l3-18h-18zm19-4v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.316c0 .901.73 2 1.631 2h5.711z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </td>
+            </tr>
 
             {showDetails ?
-                <div className={`App ${showDetails ? "task-details-open" : ""}`}>
+                <tr className={`App ${showDetails ? "task-details-open" : ""}`}>
                     <div className="task-details-popup-wrapper">
                         <div className="task-details-content task-animate">
 
@@ -53,6 +84,7 @@ const Task = ({taskItem, deleteTaskItem}) => {
                                     <button className='single-task-button'>Task</button>
                                     <button className='single-task-button' onClick={() => setUpdateTask(!updateTask)}>Edit</button>
                                     <button className='single-task-button' onClick={() => setShowAssign(!showAssign)}>Assign</button>
+                                    <button className='single-task-button' onClick={() => setShowList(!showList)}>Users</button>
                                     <button className='single-task-button'>Project</button>
                                     <button className='single-task-button' onClick={() => {deleteTaskItem(taskItem.id)}}>Delete</button>
                                 </div>
@@ -73,8 +105,6 @@ const Task = ({taskItem, deleteTaskItem}) => {
                                 ) 
                                     : 
                                     <div>
-                                        
-                                        
                                         {showAssign ?
                                             <PopUpAssign onClose={handleClose} taskItem={taskItem}/> 
                                             :
@@ -109,11 +139,11 @@ const Task = ({taskItem, deleteTaskItem}) => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </tr>
                 :
                 ""
             }
-        </div>
+        </>
     )
 }
 

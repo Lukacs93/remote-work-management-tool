@@ -2,7 +2,6 @@
     position: relative;
     top: 15%;
     left: 15%;
-    z-index: 100;
     background-color: white;
 
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
@@ -23,6 +22,7 @@
 .pop-up-assigned-body{
     display: flex;
     flex-direction: column;
+    padding-bottom: 10px;
 }
 
 .pop-up-assigned-user{

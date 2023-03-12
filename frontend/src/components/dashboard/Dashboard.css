@@ -42,6 +42,7 @@ body{
     color: white;
     /*display: none;*/
     fill: white;
+    cursor: pointer;
 }
 
 .none {

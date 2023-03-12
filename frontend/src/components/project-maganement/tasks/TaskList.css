@@ -1,14 +1,29 @@
 ﻿.task-container{
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 140px;
-    padding-bottom: 40px;
-    flex-wrap: wrap;
-    row-gap: 30px;
+
+
+    background-color: white;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    padding: 16px;
+    border-radius: 4px;
+
 }
 
+/*html{*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    height: 100%;*/
+/*}*/
+.task-list-wrapper{
+    min-width: 1900px; /* sets the minimum width of the body element */
+    margin: 0 20px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 200px;
+
+
+}
 /*.task-container {*/
 /*    display: flex;*/
 /*    flex-wrap: wrap;*/
@@ -165,3 +180,59 @@
     font-size: 20px;
     font-weight: 300;
 }
+
+
+
+table{
+    padding: 40px;
+}
+
+
+th{
+    padding-right: 1em;
+    padding-left: 1em;
+    padding-bottom: 1em;
+    text-align: left;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.01071em;
+    display: table-cell;
+    vertical-align: inherit;
+    border-bottom: 1px solid rgba(224, 224, 224, 1);
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.header-title{
+    border-left: 3px solid rgba(0, 0, 0, 0.15);
+    padding-left: 10px;
+}
+
+
+td{
+    padding: 8px;
+    padding-right: 5em;
+    padding-left: 1em;
+    width: 100px; /* set a fixed width for all cells */
+    white-space: nowrap; /* prevent text from wrapping to a new line */
+    overflow: hidden; /* hide any text that overflows the cell */
+    text-overflow: ellipsis;
+    border-bottom: 1px solid rgba(224, 224, 224, 1);
+}
+
+td:last-child{
+    padding-right: 1em;
+}
+
+
+
+td:nth-child(2){
+    max-width: 400px;
+}
+
+
+table{
+    border-collapse: separate;
+    border-spacing: 0 0.2em;
+}
+
