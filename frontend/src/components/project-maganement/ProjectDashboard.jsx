@@ -17,14 +17,21 @@ const ProjectDashboard = () =>
     
     return (
         <div>
-            <div onClick={handleCreateNewTask} className="add-new-container">
-                <div className="minimize-add-new-project">
-                    <button className="add-new-button"  type="button">
-                        <span className="add-new-button-icon">
-                            +
-                        </span>
-                    </button>
-                    <div>Add New Project</div>
+            <div className="project-list-action-button-container">
+                <div className="task-list-search-container">
+                    <form className="task-list-search-input-container">
+                        {/*<i className="fa fa-search"></i>*/}
+                        <input className="task-list-search-input" type="search" placeholder="Search..."/>
+                    </form>
+                </div>
+                <div onClick={handleCreateNewTask} className="add-new-container">
+                    <div className="minimize-add-new">
+                        <button className="add-new-button"  type="button">
+                            <span className="add-new-button-icon">
+                                +
+                            </span>
+                        </button>
+                    </div>
                 </div>
             </div>
             {showForm && (

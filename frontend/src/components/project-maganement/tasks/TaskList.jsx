@@ -75,7 +75,6 @@ const TaskList = () =>
     
     return (
         <div>
-
             <div className="task-list-wrapper">
                 <div className="task-list-action-button-container">
                     <div className="task-list-search-container">
@@ -87,10 +86,9 @@ const TaskList = () =>
                     <div onClick={handleCreateNewTask} className="add-new-container">
                         <div className="minimize-add-new">
                             <button className="add-new-button"  type="button">
-                                    <span className="add-new-button-icon">
-                                        +
-                                    </span>
-                                    <div>New</div>
+                                <span className="add-new-button-icon">
+                                    +
+                                </span>
                             </button>
                         </div>
                     </div>

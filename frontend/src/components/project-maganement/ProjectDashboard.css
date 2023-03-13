@@ -26,14 +26,14 @@
     cursor:pointer;
 }
 
-.minimize-add-new-project {
+
+.project-list-action-button-container {
+    /*min-width: 1890px; !* sets the minimum width of the body element *!*/
     display: flex;
+    justify-content: flex-end;
     align-items: center;
-    white-space: nowrap;
-    overflow: hidden;
-    gap: 20px;
-    padding-left:8px;
-    padding-right: 8px;
-    font-size: 20px;
-    font-weight: 300;
+    padding-top: 100px;
+    margin-right: 300px;
+    /*padding-bottom: 40px;*/
+    gap: 30px;
 }

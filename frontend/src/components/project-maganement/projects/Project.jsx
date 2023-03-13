@@ -112,7 +112,6 @@ const Project = (props) => {
                                             setModal={setModal} class='modify-project'/>
                                     </div>)
                                 }
-       
                             </div>
                         }
                     </div>
