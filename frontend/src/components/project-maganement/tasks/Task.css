@@ -14,10 +14,9 @@
 
 .task-content p {
     font-family: 'Proxima Nova';
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 300;
     white-space: nowrap;
-
 }
 
 /*.task-content h2 {*/
@@ -36,8 +35,6 @@
     align-items: center;
     gap: 25px;
 }
-
-
 
 .task-button-container button{
     display: flex;
@@ -153,7 +150,7 @@
 }
 
 .task-action-button:hover {
-    background-color: rgba(0, 0, 0, 0.04);
+    color: rgba(0, 0, 0, 1);
 }
 
 .task-action-button{
@@ -165,14 +162,14 @@
     outline: 0;
     border: 0;
     margin: 0;
-    border-radius: 10px;
+    border-radius: 6px;
     padding: 8px;
     cursor: pointer;
     /*color: rgba(143, 143, 143, 0.36);*/
     /*color: rgba(137, 147, 165, 0.62);*/
     color: rgb(157,166,181);
     font-weight: 300;
-    font-size: 1.3em;
+    font-size: 1.1em;
 }
 
 .task-action-icon {

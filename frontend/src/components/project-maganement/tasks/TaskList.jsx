@@ -74,109 +74,109 @@ const TaskList = () =>
     }
     
     return (
-        <div className="task-list-wrapper">
-            {showForm ?
-                <div className="add-task-form-container">
-                    <div>
-                        <div>
-                            {/*<h2>{toggleSubmit ? "Add Task" : " Edit Task"}</h2>*/}
-                        </div>
-                        {!isSubmit ?
-                            //form can be replaced to another component
-                            <form onSubmit={onSubmit} className="add-task-form">
-                                <label htmlFor="title" className="description-label">
-                                    Task Name:
-                                </label>
-                                <input
-                                    type="text"
-                                    name="title"
-                                    id="title"
-                                    placeholder="title"
-                                    className="add-task-input"
-                                    // value={inputTitle}
-                                />
-                                <label className="description-label" htmlFor="description">
-                                    Add Description:
-                                </label>
-                                <input
-                                    type="text"
-                                    name="description"
-                                    id="description"
-                                    placeholder="Description"
-                                    className="add-task-input"
-                                    onChange={(e) => setForm({...form, description: e.target.value})}
-                                    // value={inputDesc}
-                                />
-                                <button className="task-submit-button">Add New Task</button>
-                            </form>
-                            :
-                            <p className="success-message">Task Successfully Created</p>
-                        }
-                    </div>
-                    <div className="close-button-container">
-                        <button onClick={() => setShowForm(!showForm)} className="close-button">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div>
-                : ""
-            }
+        <div>
 
-            {/*<div className="">*/}
-            {/*        <span>*/}
-            {/*            <input className="" type="text" placeholder="Search"/>*/}
-            {/*            <div className="">*/}
-            {/*                <div className="dashboard-menu-icon">*/}
-            {/*                    <i className="fa fa-search"></i>*/}
-            {/*                </div>*/}
-            {/*                */}
-            {/*            </div>*/}
-            {/*        </span>*/}
-            {/*</div>*/}
-            
-            <div onClick={handleCreateNewTask} className="add-new-container">
-                <div className="minimize-add-new">
-                    <button className="add-new-button"  type="button">
-                        <span className="add-new-button-icon">
-                            +
-                        </span>
-                    </button>
-                    <div>Add New Task</div> 
+            <div className="task-list-wrapper">
+                <div className="task-list-action-button-container">
+                    <div className="task-list-search-container">
+                        <form className="task-list-search-input-container">
+                            {/*<i className="fa fa-search"></i>*/}
+                            <input className="task-list-search-input" type="search" placeholder="Search..."/>
+                        </form>
+                    </div>
+                    <div onClick={handleCreateNewTask} className="add-new-container">
+                        <div className="minimize-add-new">
+                            <button className="add-new-button"  type="button">
+                                    <span className="add-new-button-icon">
+                                        +
+                                    </span>
+                                    <div>New</div>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className="task-container">
-                <table >
-                    <thead>
-                    <tr className="task-table-header">
-                        <th><span className="header-title">Name</span></th>
-                        <th><span className="header-title">Description</span></th>
-                        <th><span className="header-title">Status</span></th>
-                        <th><span className="header-title">Expiration Date</span></th>
-                        <th><span className="header-title">Started</span></th>
-                        <th><span className="header-title">Actions</span></th>
-                    </tr>
-                    </thead>
+                {showForm ?
+                    <div className="add-task-form-container">
+                        <div>
+                            <div>
+                                {/*<h2>{toggleSubmit ? "Add Task" : " Edit Task"}</h2>*/}
+                            </div>
+                            {!isSubmit ?
+                                //form can be replaced to another component
+                                <form onSubmit={onSubmit} className="add-task-form">
+                                    <label htmlFor="title" className="description-label">
+                                        Task Name:
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="title"
+                                        id="title"
+                                        placeholder="title"
+                                        className="add-task-input"
+                                        // value={inputTitle}
+                                    />
+                                    <label className="description-label" htmlFor="description">
+                                        Add Description:
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="description"
+                                        id="description"
+                                        placeholder="Description"
+                                        className="add-task-input"
+                                        onChange={(e) => setForm({...form, description: e.target.value})}
+                                        // value={inputDesc}
+                                    />
+                                    <button className="task-submit-button">Add New Task</button>
+                                </form>
+                                :
+                                <p className="success-message">Task Successfully Created</p>
+                            }
+                        </div>
+                        <div className="close-button-container">
+                            <button onClick={() => setShowForm(!showForm)} className="close-button">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    : ""
+                }
     
-                    <tbody>
-    
-    
-                    {taskItems &&
-                        taskItems.map((taskItem, key) => {
-                            return (
-                                // <div className="task-item" key={taskItem.id}>
-                                // {deletedItemId === taskItem.id  ? 
-                                //     <p className="delete-message">Task Successfully Deleted</p>
-                                //      :
-                                <Task taskItem={taskItem} deleteTaskItem={deleteTaskItem} key={taskItem.id}/>
-                                // }
-                                // </div>
-                            )
-                        })
-                    }
-    
-                    </tbody>
-                </table>
-                
+
+                <div className="task-container">
+                    <table >
+                        <thead>
+                        <tr className="task-table-header">
+                            <th><span className="header-title">Name</span></th>
+                            <th><span className="header-title">Description</span></th>
+                            <th><span className="header-title">Status</span></th>
+                            <th><span className="header-title">Expiration Date</span></th>
+                            <th><span className="header-title">Started</span></th>
+                            <th><span className="header-title">Actions</span></th>
+                        </tr>
+                        </thead>
+        
+                        <tbody>
+        
+        
+                        {taskItems &&
+                            taskItems.map((taskItem, key) => {
+                                return (
+                                    // <div className="task-item" key={taskItem.id}>
+                                    // {deletedItemId === taskItem.id  ? 
+                                    //     <p className="delete-message">Task Successfully Deleted</p>
+                                    //      :
+                                    <Task taskItem={taskItem} deleteTaskItem={deleteTaskItem} key={taskItem.id}/>
+                                    // }
+                                    // </div>
+                                )
+                            })
+                        }
+        
+                        </tbody>
+                    </table>
+                    
+                </div>
             </div>
         </div>
     )
