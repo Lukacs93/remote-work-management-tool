@@ -47,18 +47,7 @@ public class ProjectService : IProjectService
     public async Task UpdateProject(Project project, long id)
     {
         var updatedProject = await GetProjectById(id);
-        
-        // if (updatedProject != null)
-        // {
-        //     updatedProject.UsersInTheProject = project.UsersInTheProject;
-        //     updatedProject.ProjectStatus = project.ProjectStatus;
-        //     updatedProject.Tasks = project.Tasks;
-        //     updatedProject.DateId = project.DateId;
-        //     updatedProject.ManagerId = project.ManagerId;
-        //
-        // }
 
-        //project.Id = id;
         _context.Entry(updatedProject).CurrentValues.SetValues(project);
         await _context.SaveChangesAsync();
     }
