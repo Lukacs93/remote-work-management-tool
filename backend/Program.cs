@@ -1,9 +1,12 @@
+using System.Text;
 using System.Text.Json.Serialization;
 using backend.Data;
 using backend.Services.ProjectServiceLayer;
 using backend.Services.TaskServiceLayer;
 using backend.Services.UserServiceLayer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,9 +30,35 @@ builder.Services.AddCors(options =>
     });
 });
 
+var configuration = builder.Configuration;
+
+var authenticationConfiguration = new AuthenticationConfiguration();
+configuration.Bind("Authentication", authenticationConfiguration);
+
+builder.Services.AddSingleton(authenticationConfiguration);
+
+builder.Services.AddSingleton<AccessTokenGenerator>();
+builder.Services.AddSingleton<IPasswordHasher, BcryptPasswordHasher>();
+builder.Services.AddSingleton<IUserService, InMemoryUserService>();
+
 builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IUserService, UserService>();
+
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(o =>
+{
+    o.TokenValidationParameters = new TokenValidationParameters()
+    {
+        IssuerSigningKey =
+            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationConfiguration.AccessTokenSecret)),
+        ValidIssuer = authenticationConfiguration.Issuer,
+        ValidAudience = authenticationConfiguration.Audience,
+        ValidateIssuerSigningKey = true,
+        ValidateIssuer = true,
+        ValidateAudience = true
+    };
+});
 
 builder.Services.AddControllers().AddNewtonsoftJson(options => 
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
@@ -55,6 +84,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
