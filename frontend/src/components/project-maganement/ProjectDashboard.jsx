@@ -6,7 +6,6 @@ import './ProjectDashboard.css'
 const ProjectDashboard = () =>
 {
     const [Option, changeOption]=useState("none")
-    const [showSearch, setShowSearch] = useState(false)
     const [isSubmit, setIsSubmit] = useState(false)
     const [showForm, setShowForm] = useState(false)
     
@@ -16,9 +15,9 @@ const ProjectDashboard = () =>
     }
     
     return (
-        <div>
+        <div className="test">
             <div className="project-list-action-button-container">
-                <div className="task-list-search-container">
+                <div className="project-list-search-container">
                     <form className="task-list-search-input-container">
                         {/*<i className="fa fa-search"></i>*/}
                         <input className="task-list-search-input" type="search" placeholder="Search..."/>
