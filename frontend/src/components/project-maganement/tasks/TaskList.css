@@ -142,6 +142,7 @@
     box-shadow: 0 0 2px 0 rgba(17, 131, 214, 0.5);
     border-color: rgba(17, 131, 214, 0.44);
     outline: none;
+    background-color: white;
 }
 
 
@@ -176,7 +177,7 @@
 }
 
 .add-new-button:hover{
-    color: rgba(17, 131, 214, 0.44)
+    /*color: rgba(17, 131, 214, 0.44);*/
 }
 
 .add-new-button-icon{
@@ -198,7 +199,7 @@
 }
 
 .add-new-button-icon:hover {
-    background-color: rgba(0, 0, 0, 0.04);
+    background-color: white;
 }
 
 .minimize-add-new {
@@ -239,7 +240,8 @@ td{
     padding: 8px;
     padding-right: 5em;
     padding-left: 1em;
-    width: 100px; /* set a fixed width for all cells */
+    /*width: 100px; !* set a fixed width for all cells *!*/
+    max-width: 280px;
     white-space: nowrap; /* prevent text from wrapping to a new line */
     overflow: hidden; /* hide any text that overflows the cell */
     text-overflow: ellipsis;

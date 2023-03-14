@@ -15,7 +15,7 @@ const ProjectDashboard = () =>
     }
     
     return (
-        <div className="test">
+        <div className="project-list-wrapper">
             <div className="project-list-action-button-container">
                 <div className="project-list-search-container">
                     <form className="task-list-search-input-container">

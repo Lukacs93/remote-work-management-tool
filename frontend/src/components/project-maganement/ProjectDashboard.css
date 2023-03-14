@@ -40,7 +40,12 @@
 .project-list-search-container{
     width: 800px;
 }
-.test{
+
+.project-list-search-container input{
+    border-radius: 20px;
+}
+
+.project-list-wrapper{
     padding-top: 100px;
     width: 100%;
 }
