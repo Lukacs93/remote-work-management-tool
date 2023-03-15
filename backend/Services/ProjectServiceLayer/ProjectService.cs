@@ -23,12 +23,10 @@ public class ProjectService : IProjectService
 
     public async Task<Project> GetProjectById(long id)
     {
-        Project hali = await _context.Projects
+        return await _context.Projects
             .Where(p => p.Id == id)
             .Include(p => p.Tasks)
-            .FirstAsync();
-
-        return hali;
+            .FirstAsync(); ;
     }
 
 

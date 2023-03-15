@@ -30,10 +30,22 @@
 .project-list-action-button-container {
     /*min-width: 1890px; !* sets the minimum width of the body element *!*/
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    position: relative;
     align-items: center;
-    padding-top: 100px;
-    margin-right: 300px;
+    margin-right: 100px;
     /*padding-bottom: 40px;*/
     gap: 30px;
+}
+.project-list-search-container{
+    width: 800px;
+}
+
+.project-list-search-container input{
+    border-radius: 20px;
+}
+
+.project-list-wrapper{
+    padding-top: 100px;
+    width: 100%;
 }

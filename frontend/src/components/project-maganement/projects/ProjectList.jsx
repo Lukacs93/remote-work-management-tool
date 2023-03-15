@@ -24,7 +24,7 @@ const ProjectList = (prop) =>
     },[prop.isSubmit, isModified])
     
     return (
-        <div>
+        <div className="project-list-container">
             {isLoading === "loading" ? (
                     <div className="loader-container">
                         <div className="loader"></div>
@@ -32,7 +32,7 @@ const ProjectList = (prop) =>
                 )
                 :
 
-                <div className="project-list-container">
+                <div >
                     {isLoading === "done" && (
                         <div className='projects-container'>
                             {projects && projects.map(project => (

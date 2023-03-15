@@ -1,7 +1,9 @@
 .loader-container{
     display: flex;
     justify-content: center;
+    width: fit-content;
     padding-top: 140px;
+    padding-right: 4%;
 }
 
 .loader {
@@ -18,6 +20,11 @@
     100% { transform: rotate(360deg); }
   }
   
+.project-list-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .projects-container {
     display: flex;
@@ -25,8 +32,16 @@
     /*justify-content: center; responsive*/
     justify-content: flex-start;
     gap: 30px;
-    margin-left: 15%;
-    margin-right: 10%;
-    padding-bottom: 40px;
+    padding: 4%;
     padding-top: 70px;
+    width: 100%;
+}
+
+@media (max-width: 1921px) {
+    .projects-container {
+        padding: 0;
+        padding-left: 40px;
+        padding-top: 50px;
+        gap: 14px
+    }
 }
