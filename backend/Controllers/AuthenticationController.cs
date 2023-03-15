@@ -79,6 +79,9 @@ public class AuthenticationController : Controller
             return Unauthorized();
         }
 
+        var response = await _authenticator.Authenticate(user);
+
+        return Ok(response);
     }
     
     //If the user doesnt provide username and password
