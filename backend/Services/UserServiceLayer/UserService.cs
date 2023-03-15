@@ -29,7 +29,6 @@ namespace backend.Services.UserServiceLayer
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<User>> GetAllUsers()
         {
             // return await _context.Users.Include(u => u.CurrentProjects)
@@ -44,6 +43,29 @@ namespace backend.Services.UserServiceLayer
         }
 
         public async Task<User> UpdateUser(User user)
+        {
+            throw new NotImplementedException();
+        }
+        
+        
+        
+        
+        public Task<TestUser> GetByEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<TestUser> GetByUsername(string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<TestUser> Create(TestUser user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<TestUser> GetById(Guid userId)
         {
             throw new NotImplementedException();
         }
