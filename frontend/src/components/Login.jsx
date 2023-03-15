@@ -4,6 +4,27 @@ function Login() {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
 
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const response = await fetch("https://localhost:7029/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: 'include',
+            body: JSON.stringify({ userName, password })
+        });
+
+        if (response.ok) {
+            // Redirect the user to the home page
+            window.location.href = "/dashboard";
+        } else {
+            // Handle the error
+            const data = await response.json();
+            alert(data.message);
+        }
+    };
 
     return (
         <form onSubmit={handleSubmit}>
