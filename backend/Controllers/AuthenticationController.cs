@@ -12,6 +12,8 @@ public class AuthenticationController : Controller
     private readonly IUserService _userService;
     private readonly IPasswordHasher _passwordHasher;
     private readonly Authenticator _authenticator;
+    private readonly RefreshTokenValidator _refreshTokenValidator;
+    private readonly IRefreshTokenService _refreshTokenService;
     
     public AuthenticationController(IUserService userService, IPasswordHasher passwordHasher)
     {
@@ -82,6 +84,44 @@ public class AuthenticationController : Controller
 
         var response = await _authenticator.Authenticate(user);
 
+        return Ok(response);
+    }
+    
+    [HttpPost("refresh")]
+    public async Task<IActionResult> Refresh([FromBody] RefreshRequest refreshRequest)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequestModelState();
+        }
+            
+        //validate refresh token to make sure it exist in the database
+        var isValidRefreshToken = _refreshTokenValidator.Validate(refreshRequest.RefreshToken);
+        if (!isValidRefreshToken)
+        {
+            return BadRequest(new ErrorResponse("Invalid/Expired refresh token."));
+        }
+
+        var refreshTokenDTO = await _refreshTokenService.GetByToken(refreshRequest.RefreshToken);
+        if (refreshTokenDTO == null)
+        {
+            return NotFound(new ErrorResponse("Invalid refresh token"));
+        }
+        
+        //delete refresh token to cant be used multiple times
+        await _refreshTokenService.Delete(refreshTokenDTO.Id);
+
+        
+        var user = await _userService.GetById(refreshTokenDTO.UserId);
+        if (user == null)
+        {
+            return NotFound(new ErrorResponse("User not found"));
+        }
+
+        //az adott tokenhez tartozó felhasználó lekérdezése
+        var response = await _authenticator.Authenticate(user);
+        
+        //send refresh token back to the user
         return Ok(response);
     }
     
