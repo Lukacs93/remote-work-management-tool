@@ -59,6 +59,13 @@ public class AuthenticationController : Controller
         return Ok();
     }
     
-    
+    //If the user doesnt provide username and password
+    private IActionResult BadRequestModelState()
+    {
+        var errorMessages = ModelState.Values.SelectMany(v =>
+            v.Errors.Select(e => e.ErrorMessage));
+        
+        return BadRequest(new ErrorResponse(errorMessages));
+    }
 
 }
