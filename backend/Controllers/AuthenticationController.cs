@@ -1,5 +1,6 @@
 ﻿using backend.Models.Entities;
 using backend.Models.Requests;
+using backend.Services.PasswordHashers;
 using backend.Services.UserServiceLayer;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,7 +9,14 @@ namespace backend.Controllers;
 public class AuthenticationController : Controller
 {
     private readonly IUserService _userService;
-    
+    private readonly IPasswordHasher _passwordHasher;
+
+    public AuthenticationController(IUserService userService, IPasswordHasher passwordHasher)
+    {
+        _userService = userService;
+        _passwordHasher = passwordHasher;
+    }
+
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterRequest registerRequest)
     {
