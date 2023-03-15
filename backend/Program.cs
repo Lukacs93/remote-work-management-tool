@@ -6,6 +6,7 @@ using backend.Services.PasswordHashers;
 using backend.Services.ProjectServiceLayer;
 using backend.Services.TaskServiceLayer;
 using backend.Services.TokenGenerators;
+using backend.Services.TokenValidators;
 using backend.Services.UserServiceLayer;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;

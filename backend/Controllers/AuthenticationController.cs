@@ -118,7 +118,8 @@ public class AuthenticationController : Controller
             return NotFound(new ErrorResponse("User not found"));
         }
 
-        //az adott tokenhez tartozó felhasználó lekérdezése
+        //we need to invalidate refresh tokens without changing the secret key
+        //get the user for the given token to figure out who sent the refresh request
         var response = await _authenticator.Authenticate(user);
         
         //send refresh token back to the user
