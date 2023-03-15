@@ -36,6 +36,7 @@ builder.Services.AddCors(options =>
 
 var configuration = builder.Configuration;
 
+//deserializing appsettings values to c# objects
 var authenticationConfiguration = new AuthenticationConfiguration();
 configuration.Bind("Authentication", authenticationConfiguration);
 

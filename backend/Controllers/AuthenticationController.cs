@@ -11,7 +11,8 @@ public class AuthenticationController : Controller
 {
     private readonly IUserService _userService;
     private readonly IPasswordHasher _passwordHasher;
-
+    private readonly Authenticator _authenticator;
+    
     public AuthenticationController(IUserService userService, IPasswordHasher passwordHasher)
     {
         _userService = userService;
