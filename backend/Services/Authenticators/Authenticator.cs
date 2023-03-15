@@ -19,7 +19,7 @@ public class Authenticator
         _refreshTokenGenerator = refreshTokenGenerator;
     }
     
-    public async Task<AuthenticatedUserResponse> Authenticate(TestUser user)
+    public async Task<AuthenticatedUserResponse> Authenticate(User user)
     {
         //generate access tokens for user
         var accessToken = _accessTokenGenerator.GenerateToken(user);
@@ -29,7 +29,7 @@ public class Authenticator
         RefreshToken refreshTokenDTO = new RefreshToken()
         {
             Token = refreshToken,
-            UserId = user.id
+            UserId = user.Id
         };
 
         await _refreshTokenService.Create(refreshTokenDTO);

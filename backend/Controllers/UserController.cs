@@ -28,9 +28,9 @@ namespace backend.Controllers
         }
 
         [HttpPost("add-user")]
-        public async Task<User> CreateUser(long userId, [FromBody] User user)
+        public async Task<User> CreateUser([FromBody] User user)
         {
-            return await _userService.CreateUser(userId, user);
+            return await _userService.CreateUser(user);
         }
 
         [HttpPut]

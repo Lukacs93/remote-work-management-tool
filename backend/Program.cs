@@ -52,7 +52,6 @@ builder.Services.AddSingleton<RefreshTokenValidator>();
 builder.Services.AddSingleton<Authenticator>();
 builder.Services.AddSingleton<TokenGenerator>();
 builder.Services.AddSingleton<IPasswordHasher, BcryptPasswordHasher>();
-builder.Services.AddSingleton<ITestUserService, TestUserService>();
 builder.Services.AddSingleton<IRefreshTokenService, InMemoryRefreshTokenService>();
 
 builder.Services.AddScoped<ITaskService, TaskService>();

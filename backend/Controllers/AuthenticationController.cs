@@ -14,13 +14,13 @@ namespace backend.Controllers;
 
 public class AuthenticationController : Controller
 {
-    private readonly ITestUserService _userService;
+    private readonly IUserService _userService;
     private readonly IPasswordHasher _passwordHasher;
     private readonly Authenticator _authenticator;
     private readonly RefreshTokenValidator _refreshTokenValidator;
     private readonly IRefreshTokenService _refreshTokenService;
     
-    public AuthenticationController(ITestUserService userService, IPasswordHasher passwordHasher, Authenticator authenticator, RefreshTokenValidator refreshTokenValidator, IRefreshTokenService refreshTokenService)
+    public AuthenticationController(IUserService userService, IPasswordHasher passwordHasher, Authenticator authenticator, RefreshTokenValidator refreshTokenValidator, IRefreshTokenService refreshTokenService)
     {
         _userService = userService;
         _passwordHasher = passwordHasher;
@@ -59,14 +59,16 @@ public class AuthenticationController : Controller
 
         //create user and store it
         var passwordHash = _passwordHasher.HashPassword(registerRequest.password);
-        var registrationUser = new TestUser()
+        var registrationUser = new User()
         {
+            FirstName = registerRequest.Username,
+            LastName = registerRequest.Username,
             Email = registerRequest.Email,
             Username = registerRequest.Username,
             PasswordHash = passwordHash
         };
 
-        await _userService.Create(registrationUser);
+        await _userService.CreateUser(registrationUser);
         return Ok();
     }
     
@@ -92,6 +94,11 @@ public class AuthenticationController : Controller
 
         var response = await _authenticator.Authenticate(user);
 
+        Response.Cookies.Append("jwt", response.AccessToken, new CookieOptions
+        {
+            HttpOnly = true
+        });
+        
         return Ok(response);
     }
     
@@ -119,7 +126,7 @@ public class AuthenticationController : Controller
         //delete refresh token to cant be used multiple times
         await _refreshTokenService.Delete(refreshTokenDTO.Id);
         
-        var user = await _userService.GetById(refreshTokenDTO.UserId);
+        var user = await _userService.GetUserById(refreshTokenDTO.UserId);
         if (user == null)
         {
             return NotFound(new ErrorResponse("User not found"));
@@ -128,6 +135,11 @@ public class AuthenticationController : Controller
         //we need to invalidate refresh tokens without changing the secret key
         //get the user for the given token to figure out who sent the refresh request
         var response = await _authenticator.Authenticate(user);
+        
+        Response.Cookies.Append("refjwt", response.RefreshToken, new CookieOptions
+        {
+            HttpOnly = true
+        });
         
         //send refresh token back to the user
         return Ok(response);
@@ -138,17 +150,24 @@ public class AuthenticationController : Controller
     public async Task<IActionResult> Logout()
     {
         //user's id that we want to invalidate refresh tokens for
-        var unparsedUserId = HttpContext.User.FindFirstValue("id");
+        // var unparsedUserId = HttpContext.User.FindFirstValue("id");
+        //
+        // if (!Guid.TryParse(unparsedUserId, out Guid userId))
+        // {
+        //     return Unauthorized();
+        // }
+        //
+        // //delete from db
+        // await _refreshTokenService.DeleteAll(userId);
+        //
+        // return NoContent();
+        
+        Response.Cookies.Delete("jwt");
 
-        if (!Guid.TryParse(unparsedUserId, out Guid userId))
+        return Ok(new
         {
-            return Unauthorized();
-        }
-
-        //delete from db
-        await _refreshTokenService.DeleteAll(userId);
-
-        return NoContent();
+            message = "success"
+        });
     }
     
     //if the user doesnt provide username and password
