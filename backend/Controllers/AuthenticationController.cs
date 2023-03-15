@@ -1,4 +1,5 @@
-﻿using backend.Models.Entities;
+﻿using System.Security.Claims;
+using backend.Models.Entities;
 using backend.Models.Requests;
 using backend.Models.Responses;
 using backend.Services.Authenticators;
@@ -6,6 +7,7 @@ using backend.Services.PasswordHashers;
 using backend.Services.RefreshTokenServiceLayer;
 using backend.Services.TokenValidators;
 using backend.Services.UserServiceLayer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers;
@@ -55,8 +57,8 @@ public class AuthenticationController : Controller
             return Conflict(new ErrorResponse("Username already exist"));
         }
 
-        //Create user and store it
-        string passwordHash = _passwordHasher.HashPassword(registerRequest.password);
+        //create user and store it
+        var passwordHash = _passwordHasher.HashPassword(registerRequest.password);
         var registrationUser = new TestUser()
         {
             Email = registerRequest.Email,
@@ -116,7 +118,6 @@ public class AuthenticationController : Controller
         
         //delete refresh token to cant be used multiple times
         await _refreshTokenService.Delete(refreshTokenDTO.Id);
-
         
         var user = await _userService.GetById(refreshTokenDTO.UserId);
         if (user == null)
@@ -132,7 +133,25 @@ public class AuthenticationController : Controller
         return Ok(response);
     }
     
-    //If the user doesnt provide username and password
+    [Authorize]
+    [HttpDelete("logout")]
+    public async Task<IActionResult> Logout()
+    {
+        //user's id that we want to invalidate refresh tokens for
+        var unparsedUserId = HttpContext.User.FindFirstValue("id");
+
+        if (!Guid.TryParse(unparsedUserId, out Guid userId))
+        {
+            return Unauthorized();
+        }
+
+        //delete from db
+        await _refreshTokenService.DeleteAll(userId);
+
+        return NoContent();
+    }
+    
+    //if the user doesnt provide username and password
     private IActionResult BadRequestModelState()
     {
         var errorMessages = ModelState.Values.SelectMany(v =>
