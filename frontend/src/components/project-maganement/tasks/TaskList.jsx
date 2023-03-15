@@ -20,7 +20,7 @@ const TaskList = () =>
     const onSubmit = async (e) => {
         e.preventDefault();
        console.log(form)
-        await fetch('https://localhost:7029/projects/20/add-task', {
+        await fetch('https://localhost:7029/projects/1/add-task', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
