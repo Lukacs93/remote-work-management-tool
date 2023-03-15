@@ -1,4 +1,6 @@
-﻿namespace backend.Services.RefreshTokenServiceLayer;
+﻿using backend.Models;
+
+namespace backend.Services.RefreshTokenServiceLayer;
 
 public interface IRefreshTokenService
 {

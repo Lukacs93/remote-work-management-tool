@@ -2,6 +2,8 @@
 using backend.Models.Requests;
 using backend.Models.Responses;
 using backend.Services.PasswordHashers;
+using backend.Services.RefreshTokenServiceLayer;
+using backend.Services.TokenValidators;
 using backend.Services.UserServiceLayer;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,10 +17,13 @@ public class AuthenticationController : Controller
     private readonly RefreshTokenValidator _refreshTokenValidator;
     private readonly IRefreshTokenService _refreshTokenService;
     
-    public AuthenticationController(IUserService userService, IPasswordHasher passwordHasher)
+    public AuthenticationController(IUserService userService, IPasswordHasher passwordHasher, Authenticator authenticator, RefreshTokenValidator refreshTokenValidator, IRefreshTokenService refreshTokenService)
     {
         _userService = userService;
         _passwordHasher = passwordHasher;
+        _authenticator = authenticator;
+        _refreshTokenValidator = refreshTokenValidator;
+        _refreshTokenService = refreshTokenService;
     }
 
     [HttpPost("register")]
