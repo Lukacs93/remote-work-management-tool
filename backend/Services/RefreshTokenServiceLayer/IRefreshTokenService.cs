@@ -9,5 +9,5 @@ public interface IRefreshTokenService
 
     Task Delete(Guid id);
 
-    Task DeleteAll(Guid userId);
+    Task DeleteAll(long userId);
 }

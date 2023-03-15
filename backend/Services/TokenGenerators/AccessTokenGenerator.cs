@@ -15,11 +15,11 @@ public class AccessTokenGenerator
         _tokenGenerator = tokenGenerator;
     }
 
-    public string GenerateToken(TestUser user)
+    public string GenerateToken(User user)
     {
         var claims = new List<Claim>()
         {
-            new Claim("id", user.id.ToString()),
+            new Claim("id", user.Id.ToString()),
             new Claim(ClaimTypes.Email, user.Email),
             new Claim(ClaimTypes.Name, user.Username)
         };

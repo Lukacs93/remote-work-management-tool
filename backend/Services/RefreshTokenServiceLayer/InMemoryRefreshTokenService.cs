@@ -22,7 +22,7 @@ public class InMemoryRefreshTokenService : IRefreshTokenService
         return Task.CompletedTask;
     }
 
-    public Task DeleteAll(Guid userId)
+    public Task DeleteAll(long userId)
     {
         _refreshTokens.RemoveAll(r => r.UserId == userId);
         
