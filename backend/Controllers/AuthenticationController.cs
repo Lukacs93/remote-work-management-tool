@@ -12,13 +12,13 @@ namespace backend.Controllers;
 
 public class AuthenticationController : Controller
 {
-    private readonly IUserService _userService;
+    private readonly ITestUserService _userService;
     private readonly IPasswordHasher _passwordHasher;
     private readonly Authenticator _authenticator;
     private readonly RefreshTokenValidator _refreshTokenValidator;
     private readonly IRefreshTokenService _refreshTokenService;
     
-    public AuthenticationController(IUserService userService, IPasswordHasher passwordHasher, Authenticator authenticator, RefreshTokenValidator refreshTokenValidator, IRefreshTokenService refreshTokenService)
+    public AuthenticationController(ITestUserService userService, IPasswordHasher passwordHasher, Authenticator authenticator, RefreshTokenValidator refreshTokenValidator, IRefreshTokenService refreshTokenService)
     {
         _userService = userService;
         _passwordHasher = passwordHasher;
