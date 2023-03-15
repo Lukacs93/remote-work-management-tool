@@ -59,6 +59,28 @@ public class AuthenticationController : Controller
         return Ok();
     }
     
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequestModelState();
+        }
+
+        var user = await _userService.GetByUsername(loginRequest.Username);
+        if (user == null)
+        {
+            return Unauthorized();
+        }
+
+        var isCorrectPassword = _passwordHasher.VerifyPassword(loginRequest.Password, user.PasswordHash);
+        if (!isCorrectPassword)
+        {
+            return Unauthorized();
+        }
+
+    }
+    
     //If the user doesnt provide username and password
     private IActionResult BadRequestModelState()
     {
