@@ -1,6 +1,7 @@
 ﻿using backend.Models.Entities;
 using backend.Models.Requests;
 using backend.Models.Responses;
+using backend.Services.Authenticators;
 using backend.Services.PasswordHashers;
 using backend.Services.RefreshTokenServiceLayer;
 using backend.Services.TokenValidators;

@@ -2,6 +2,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using backend.Data;
 using backend.Models;
+using backend.Services.Authenticators;
 using backend.Services.PasswordHashers;
 using backend.Services.ProjectServiceLayer;
 using backend.Services.RefreshTokenServiceLayer;
