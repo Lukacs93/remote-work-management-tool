@@ -1,5 +1,6 @@
 ﻿using backend.Models.Entities;
 using backend.Models.Requests;
+using backend.Models.Responses;
 using backend.Services.PasswordHashers;
 using backend.Services.UserServiceLayer;
 using Microsoft.AspNetCore.Mvc;
@@ -21,9 +22,11 @@ public class AuthenticationController : Controller
     public async Task<IActionResult> Register([FromBody] RegisterRequest registerRequest)
     {
         //validate RegisterRequest data
+        
+        //gives back every error message associated with invalid model state
         if (!ModelState.IsValid)
         {
-            BadRequest();
+            BadRequestModelState();
         }
         
         if (registerRequest.password != registerRequest.ConfirmPassword)
@@ -55,5 +58,7 @@ public class AuthenticationController : Controller
         await _userService.Create(registrationUser);
         return Ok();
     }
+    
+    
 
 }

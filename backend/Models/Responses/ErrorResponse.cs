@@ -9,6 +9,7 @@ public class ErrorResponse
         
     }
 
+    //list of error messages
     public ErrorResponse(IEnumerable<string> errorMessages)
     {
         ErrorMessages = errorMessages;
