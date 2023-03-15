@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using backend.Models;
 using backend.Models.Entities;
 
 namespace backend.Services.TokenGenerators;

@@ -1,6 +1,7 @@
 using System.Text;
 using System.Text.Json.Serialization;
 using backend.Data;
+using backend.Models;
 using backend.Services.PasswordHashers;
 using backend.Services.ProjectServiceLayer;
 using backend.Services.TaskServiceLayer;
@@ -50,6 +51,10 @@ builder.Services.AddSingleton<IPasswordHasher, BcryptPasswordHasher>();
 builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IRefreshTokenService, InMemoryRefreshTokenService>();
 
+builder.Services.AddScoped<ITaskService, TaskService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
+builder.Services.AddScoped<IUserService, UserService>();
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(o =>
 {
@@ -92,6 +97,12 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+
+});
 
 app.MapControllers();
 
