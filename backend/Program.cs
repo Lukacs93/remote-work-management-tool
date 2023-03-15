@@ -1,9 +1,11 @@
 using System.Text;
 using System.Text.Json.Serialization;
 using backend.Data;
+using backend.Services.PasswordHashers;
 using backend.Services.ProjectServiceLayer;
 using backend.Services.TaskServiceLayer;
 using backend.Services.UserServiceLayer;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -39,7 +41,7 @@ builder.Services.AddSingleton(authenticationConfiguration);
 
 builder.Services.AddSingleton<AccessTokenGenerator>();
 builder.Services.AddSingleton<IPasswordHasher, BcryptPasswordHasher>();
-builder.Services.AddSingleton<IUserService, InMemoryUserService>();
+builder.Services.AddSingleton<IUserService, UserService>();
 
 builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
