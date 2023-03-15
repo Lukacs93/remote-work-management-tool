@@ -10,6 +10,12 @@ namespace backend.Models.Entities
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+        
+        public string Email { get; set; }
+        
+        public string Username { get; set; }
+        
+        public string PasswordHash { get; set; }
 
         public List<Project>? CurrentProjects { get; set; }// Those projects that the use is in as a manager or just a user
 

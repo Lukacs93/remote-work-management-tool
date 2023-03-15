@@ -10,6 +10,5 @@ namespace backend.Services.UserServiceLayer
         Task<User> UpdateUser(User user);
         Task<User> DeleteUser(long id);
         
-       
     }
 }

@@ -159,5 +159,4 @@ public class AuthenticationController : Controller
         
         return BadRequest(new ErrorResponse(errorMessages));
     }
-
 }
