@@ -10,7 +10,10 @@ const Project = (props) => {
     
     const handleClick=async ()=>{
         await fetch(await fetch(`https://localhost:7029/projects/${props.id}`,{
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'Authorization' : `Bearer ${localStorage.getItem("token")}`,
+            },
         }))
         
         setShowSuccessText(true)
@@ -20,7 +23,6 @@ const Project = (props) => {
             props.setIsSubmit(!props.IsSubmit)
             setShowSuccessText(false)
         }, 2000);
-
     }
 
     return(

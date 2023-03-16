@@ -21,6 +21,7 @@ const UpdateProject = (props) =>
         await fetch(`https://localhost:7029/projects/${props.project.id}`,{
             method: 'PUT',
             headers: {
+                'Authorization' : `Bearer ${localStorage.getItem("token")}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(form)
