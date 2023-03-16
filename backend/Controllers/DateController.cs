@@ -10,9 +10,9 @@ namespace backend.Controllers
     {
         private readonly IDateService _dateService;
 
-        public DateController(IDateService datetService)
+        public DateController(IDateService dateService)
         {
-            _dateService = datetService;
+            _dateService = dateService;
         }
 
         [HttpGet("{id}")]
