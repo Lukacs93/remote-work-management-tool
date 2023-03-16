@@ -1,10 +1,11 @@
 ﻿using backend.Models.Entities;
 using backend.Services.ProjectServiceLayer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers;
 
-[ApiController, Route("/projects")]
+[ApiController, Route("/projects"), Authorize]
 public class ProjectController : ControllerBase
 {
     private readonly IProjectService _projectService;

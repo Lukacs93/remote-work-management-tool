@@ -16,7 +16,8 @@ namespace backend.Models.Entities
         public string Username { get; set; }
         
         public string PasswordHash { get; set; }
-
+        
+        public string Role { get; set; }
         public List<Project>? CurrentProjects { get; set; }// Those projects that the use is in as a manager or just a user
 
         public List<TaskItem>? Tasks { get; set; }

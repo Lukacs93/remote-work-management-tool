@@ -28,7 +28,7 @@ const Navbar = () => {
                     </div>
                 </ul>
                 <div className='navbar-button-container'>
-                    <Link to={"/dashboard"}><button className="sign-in-btn">Sign In</button></Link>
+                    <Link to={"/login"}><button className="sign-in-btn">Sign In</button></Link>
                 </div>
             </nav>
         </div>

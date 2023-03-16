@@ -61,10 +61,11 @@ public class AuthenticationController : Controller
         var passwordHash = _passwordHasher.HashPassword(registerRequest.password);
         var registrationUser = new User()
         {
-            FirstName = registerRequest.Username,
-            LastName = registerRequest.Username,
+            FirstName = registerRequest.FirstName,
+            LastName = registerRequest.LastName,
             Email = registerRequest.Email,
             Username = registerRequest.Username,
+            Role = registerRequest.Role,
             PasswordHash = passwordHash
         };
 
