@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import ModifyProject from './ModifyProject.jsx'
 import UserList from './UsersList'
 import './Project.css'
+import Date from '../date/Date'
 
 const Project = (props) => {
     const [modal,setModal]=useState(false);
@@ -9,7 +10,7 @@ const Project = (props) => {
     const [showSuccessText, setShowSuccessText] = useState(false)
     
     const handleClick=async ()=>{
-        await fetch(await fetch(`https://localhost:7029/projects/${props.id}`,{
+        await fetch(await fetch(`https://localhost:7029/projects/${props.project.id}`,{
             method: 'DELETE'
         }))
         
@@ -20,26 +21,37 @@ const Project = (props) => {
             props.setIsSubmit(!props.IsSubmit)
             setShowSuccessText(false)
         }, 2000);
-
     }
+
+    const [dates,setDates]=useState()
+
+    useEffect(()=>
+    {
+        const getDates=async()=>{
+            await fetch(`https://localhost:7029/dates/${props.project.dateId}`)
+                .then((resp)=>resp.json())
+                .then((resp)=>{setDates(resp)
+                    setTimeout(() => {
+                    }, 3000);
+                })
+        }
+        getDates()
+        console.log(props.project)
+    },[modal])
 
     return(
         <div className="single-project-container">
             <div className="single-project" onClick={() => setShowDetails(!showDetails)}>
                 <div className="single-project-close-button-container">
                     
-                <button className="single-project-close-button">&times;</button>
+
                 </div>
-                <div className="project-id">Title</div>
-                <div className="project-id">ProjectID: {props.project.id}</div>
-                <div className="date-id">DateID: {props.project.dateId}</div>
-                <div className="manager-id">ManagerID: {props.project.managerId}</div>
-                {props.project.usersInTheProject !== null && (
+                <div className="project-id">Title: {props.project.name}</div>
+                <div className="manager"> Manager: {props.manager.firstName} {props.manager.lastName}</div>
+                {props.project.usersOnProject.length !== null && (
                     <div className="users">
-                        <div className="users-title">Users in the project:</div>
-                        {props.project.usersInTheProject.map(user => {
-                            return <UserList user={user}/>
-                        })}
+                        <div className="users-title">Users in the project: {props.project.usersOnProject.length+1}</div>
+                        
                     </div>
                 )}
                 <div className="project-status">Project Status: {props.project.projectStatus}</div>
@@ -79,24 +91,20 @@ const Project = (props) => {
                                 
                                 <div className="project-details-container">
                                     <div className="project-description">
-                                        <h2>Project Details</h2>
-                                        <p>Purpose of the project is to improve organizational efficiency, increase
-                                            profitability, reduce costs, or create new business opportunities. It may
-                                            involve the development of new products or services, the implementation of
-                                            new technology or processes, or the expansion of existing operations into
-                                            new markets or geographies.
+                                        <h1 className='projectDetailsHeader'>Details</h1>
+                                        <p className="projectDescriptionParagraph">{props.project.description}
                                         </p>
                                     </div>
                                         <div className="project-details">
-                                        <div className="project-id">ProjectID: {props.project.id}</div>
-                                        <div className="date-id">DateID: {props.project.dateId}</div>
-                                        <div className="manager-id">ManagerID: {props.project.managerId}</div>
-                                        {props.project.usersInTheProject !== null && (
+                                        <div className="project-id">Title: {props.project.name}</div>
+                                        <div className="manager"> Manager: {props.manager.firstName} {props.manager.lastName}</div>
+                                       <Date date={dates}/>
+                                        {props.project.usersOnProject !== null && (
                                             <div className="users">
-                                                <div className="users-title">Users in the project:</div>
-                                                {props.project.usersInTheProject.map(user => {
+                                                <div className="users-title">Users in the project: {props.project.usersOnProject.map(user => {
                                                     return <UserList user={user}/>
-                                                })}
+                                                })}</div>
+
                                             </div>
                                         )}
                                         <div className="project-status">Project Status: {props.project.projectStatus}</div>

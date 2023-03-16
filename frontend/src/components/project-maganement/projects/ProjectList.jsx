@@ -7,9 +7,22 @@ const ProjectList = (prop) =>
     const[isLoading, setIsLoading] = useState("loading")
     const[projects, setProjects] = useState([])
     const[isModified, setIsModified] = useState(false)
-    
+    const [manager, setManager]=useState({
+            "firstName":"",
+            "lastName":""
+        })
     useEffect(()=>
     {
+
+
+        const getUser=async()=>{
+            await fetch(`https://localhost:7029/users/${prop.userid}`)
+                .then((resp)=>resp.json())
+                .then((resp)=>{setManager(resp)
+                    setTimeout(() => {
+                    }, 3000);
+                })
+        }
         const getProjects = async() => { 
             await fetch(`https://localhost:7029/projects`)
                 .then((resp)=>resp.json())
@@ -19,10 +32,11 @@ const ProjectList = (prop) =>
                     }, 1000);
                 })
         }
+
+        getUser()
         getProjects()
-    
-    },[prop.isSubmit, isModified])
-    
+},[prop.isSubmit, isModified])
+
     return (
         <div className="project-list-container">
             {isLoading === "loading" ? (
@@ -36,9 +50,14 @@ const ProjectList = (prop) =>
                     {isLoading === "done" && (
                         <div className='projects-container'>
                             {projects && projects.map(project => (
-                                <Project key={project.id} id={project.id} isModified={isModified} setIsModified={setIsModified}
-                                         setIsLoading={setIsLoading} project={project} setIsSubmit={prop.setIsSubmit}
-                                         IsSubmit={prop.isSubmit}/>
+                                       <Project key={project.id}
+                                                isModified={isModified}
+                                                setIsModified={setIsModified}
+                                                setIsLoading={setIsLoading}
+                                                manager={manager}
+                                                project={project}
+                                                setIsSubmit={prop.setIsSubmit}
+                                                IsSubmit={prop.isSubmit}/>
                             ))}
                         </div>
                     )}
