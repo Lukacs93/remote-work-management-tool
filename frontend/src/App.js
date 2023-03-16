@@ -8,7 +8,8 @@ import LandingPage from "./components/landing-page/LandingPage";
 import ProjectDashboard from "./components/project-maganement/ProjectDashboard";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
-import ProtectedRoutes from "./components/Auth/ProtectedRoutes";
+import ProtectedRoutes from "./components/auth/ProtectedRoutes";
+import Admin from "./components/admin/Admin";
 
 function App() {
     const navigate = useNavigate();
@@ -56,7 +57,7 @@ function App() {
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/login" element={<Login handleLogin={handleLogin}/>} />
                 <Route element={<ProtectedRoutes isProtected={user} />}>
-                    <Route path="/admin" element={[<Dashboard user={user} handleLogout={handleLogout}/>, <Profile />]} />
+                    <Route path="/admin" element={[<Dashboard user={user} handleLogout={handleLogout}/>, <Admin />]} />
                     <Route path="/dashboard" element={<Dashboard user={user} handleLogout={handleLogout}/>} />
                     <Route path="/projects" element={[<Dashboard user={user} handleLogout={handleLogout}/>,
                         <ProjectDashboard user={user} token={token}/>]} />
