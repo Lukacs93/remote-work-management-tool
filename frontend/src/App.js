@@ -14,6 +14,8 @@ function App() {
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null);
     
+    const userRole = 'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+    
     useEffect(() => {
         const token = localStorage.getItem("jwtToken");
         if (token) {
@@ -22,16 +24,16 @@ function App() {
             setToken(token)
         }
     }, []);
-
+    console.log(user)
     const handleLogin = (responseToken) => {
 
         if (responseToken) {
             localStorage.setItem("jwtToken", responseToken);
             const decodedToken = jwt_decode(responseToken);
-            const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+            const role = decodedToken[userRole];
             setUser(decodedToken);
-     
-            console.log(user)
+            console.log(role)
+
             if (decodedToken && role === "Admin") {
                 navigate('/projects', { replace: true });
             } else {
@@ -54,10 +56,10 @@ function App() {
         <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login handleLogin={handleLogin}/>} />
-            <Route path="/profile" element={[<Dashboard handleLogout={handleLogout}/>, <Profile />]} />
-            <Route path="/dashboard" element={<Dashboard handleLogout={handleLogout}/>} />
-            <Route path="/projects" element={[<Dashboard handleLogout={handleLogout}/>, <ProjectDashboard/>]} />
-            <Route path="/tasks" element={[<Dashboard handleLogout={handleLogout}/>, <TaskList />]} />
+            <Route path="/profile" element={[<Dashboard user={user} handleLogout={handleLogout}/>, <Profile />]} />
+            <Route path="/dashboard" element={<Dashboard user={user} handleLogout={handleLogout}/>} />
+            <Route path="/projects" element={[<Dashboard user={user} handleLogout={handleLogout}/>, <ProjectDashboard/>]} />
+            <Route path="/tasks" element={[<Dashboard user={user} handleLogout={handleLogout}/>, <TaskList />]} />
         </Routes>
     </div>
   );

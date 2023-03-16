@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace backend.Models.Entities
 {
@@ -15,6 +16,7 @@ namespace backend.Models.Entities
         
         public string Username { get; set; }
         
+        [JsonIgnore]
         public string PasswordHash { get; set; }
         
         public string Role { get; set; }
