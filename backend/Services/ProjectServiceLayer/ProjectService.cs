@@ -16,8 +16,7 @@ public class ProjectService : IProjectService
     public async Task<List<Project>> GetAllProjects()
     {
         return await _context.Projects
-            .Include(p => p.Tasks)
-            .Include(p => p.UsersInTheProject)
+            .Include(p => p.UsersOnProject)
             .ToListAsync();
     }
 
@@ -25,7 +24,6 @@ public class ProjectService : IProjectService
     {
         return await _context.Projects
             .Where(p => p.Id == id)
-            .Include(p => p.Tasks)
             .FirstAsync(); ;
     }
 
@@ -38,7 +36,6 @@ public class ProjectService : IProjectService
 
         return await _context.Projects
             .Where(p => p.Id == project.Id)
-            .Include(p => p.Tasks)
             .FirstOrDefaultAsync() ?? throw new InvalidOperationException();
     }
 
