@@ -2,7 +2,35 @@
 import './Admin.css'
 
 const Admin = ({  }) => {
+    const[registerForm, setRegisterForm] = useState({
+        "firstName": "",
+        "lastName": "",
+        "role": "",
+        "email": "",
+        "username": "",
+        "password": "",
+        "confirmPassword": ""
+    })
 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        await fetch('https://localhost:7029/register',{
+            method: 'POST',
+            headers: {
+                'Authorization' : `Bearer ${localStorage.getItem("token")}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(registerForm)
+        })
+        // setShowSuccessText(true)
+
+        setTimeout(() => {
+            // setShowSuccessText(false)
+        }, 2000);
+        
+    }
+    
 return(
     <div className="admin-container">
         <div className="title">Register a user</div>
