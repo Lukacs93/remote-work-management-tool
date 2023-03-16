@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {Link, useParams} from "react-router-dom";
 import './ModifyProject.css'
+import Status from '../status/Status'
 
 const UpdateProject = (props) =>
 {
@@ -78,8 +79,7 @@ if(isValidDate(form.DeadLine))
                              onChange={(e) => setForm({...form, DeadLine: parseInt(e.target.value)})}
                          />
                          </label>
-                        <input className="update-project-input" id="ProjectStatus"
-                              placeholder='Project Status'
+                        <Status className="update-project-input" id="ProjectStatus"
                               onChange={(e) => setForm({...form, ProjectStatus: parseInt(e.target.value)})}
                         />
                         {form.Finished && 
