@@ -29,7 +29,20 @@ public class ProjectService : IProjectService
             .FirstAsync();
     }
 
+   public async Task<List<TaskItem>> GetTasksByProjectID(long id)
+    {
+        Project projectList= await _context.Projects
+            .Include(p => p.Tasks)
+            .FirstAsync(p => p.Id == id);
+        List<TaskItem> tasks = new List<TaskItem>();
+        if(projectList.Tasks != null)
+        foreach (var task in projectList.Tasks)
+        {
+            tasks.Add(task);
+        }
 
+        return tasks;
+    }
     public async Task<Project> CreateProject(string DeadLine, Project project)
     {
         project.DateId = await _dateService.CreateDate(project.Id, DeadLine, true);

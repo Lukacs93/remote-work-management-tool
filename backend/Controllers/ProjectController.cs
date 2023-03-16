@@ -38,7 +38,11 @@ public class ProjectController : ControllerBase
     {
         return await _projectService.GetProjectById(id);
     }
-
+    [HttpGet("tasks/{id}")]
+    public async Task<List<TaskItem>> GetTasksByProjectID(long id)
+    {
+        return await _projectService.GetTasksByProjectID(id);
+    }
 
 
     [HttpPut("{id}")]
