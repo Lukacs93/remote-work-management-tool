@@ -34,8 +34,7 @@ public class ProjectController : ControllerBase
         return await _projectService.GetProjectById(id);
     }
 
-
-
+    
     [HttpPut("{id}")]
     public async Task UpdateProject([FromBody] Project project, long id)
     {

@@ -3,7 +3,7 @@ import CreateProject from './projects/CreateProject.jsx'
 import ProjectList from './projects/ProjectList.jsx'
 import './ProjectDashboard.css'
 
-const ProjectDashboard = () =>
+const ProjectDashboard = ({ token }) =>
 {
     const [Option, changeOption]=useState("none")
     const [isSubmit, setIsSubmit] = useState(false)
@@ -46,7 +46,7 @@ const ProjectDashboard = () =>
                 </div> 
             )}
             <div>
-                <ProjectList isSubmit={isSubmit} setIsSubmit={setIsSubmit} />
+                <ProjectList token={token} isSubmit={isSubmit} setIsSubmit={setIsSubmit} />
             </div>
     </div>
     )
