@@ -14,16 +14,24 @@ const Admin = ({  }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
-        await fetch('https://localhost:7029/register',{
+        
+        const response = await fetch('https://localhost:7029/register',{
             method: 'POST',
             headers: {
                 'Authorization' : `Bearer ${localStorage.getItem("token")}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(registerForm)
-        })
+        });
 
+        if (!response.ok) {
+            const errorResponse = await response.json();
+            const errorMessage = errorResponse.errorMessages[0];
+            alert(errorMessage)
+            console.log(errorMessage);
+            return
+        }
+        
         setRegisterForm({
             "firstName": '',
             "lastName": '',
@@ -37,8 +45,8 @@ const Admin = ({  }) => {
 
         setTimeout(() => {
             // setShowSuccessText(false)
-        }, 2000);
-        
+            alert("User Successfully Registered")
+        }, 1000);
     }
     
 return (
@@ -79,14 +87,14 @@ return (
                         <div className="input-box">
                             <span className="details">Password</span>
                             <input onChange={(e) => setRegisterForm({...registerForm, password: e.target.value})}
-                                   type="text"
+                                   type="password"
                                    value={registerForm.password}
                                    placeholder="Enter your password" required/>
                         </div>
                         <div className="input-box">
                             <span className="details">Confirm Password</span>
                             <input onChange={(e) => setRegisterForm({...registerForm, confirmPassword: e.target.value})}
-                                   type="text"
+                                   type="password"
                                    value={registerForm.confirmPassword}
                                    placeholder="Confirm your password" required />
                         </div>
@@ -114,5 +122,3 @@ return (
 }
 
 export default Admin
-
-

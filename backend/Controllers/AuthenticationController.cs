@@ -69,8 +69,8 @@ public class AuthenticationController : Controller
             PasswordHash = passwordHash
         };
 
-        await _userService.CreateUser(registrationUser);
-        return Ok();
+        var response = await _userService.CreateUser(registrationUser);
+        return Ok(response);
     }
     
     [HttpPost("login")]
@@ -113,6 +113,7 @@ public class AuthenticationController : Controller
     {
         if (!ModelState.IsValid)
         {
+            Console.WriteLine("here");
             return BadRequestModelState();
         }
             
