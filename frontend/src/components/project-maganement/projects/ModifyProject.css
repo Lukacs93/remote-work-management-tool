@@ -41,8 +41,10 @@
 
 .update-project-input{
     display: flex;
+    width: 95%;
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
+    margin-left: 1rem;
     padding: 0.5rem;
     font-weight: 50;
     border: none;
@@ -55,7 +57,7 @@
     border-right: 1px solid #888888;
 }
 
-.update-project-submit-button
+.update-project-submit-button,.update-project-finished-button
 {
     display: flex;
     font-weight: 400;
@@ -69,4 +71,11 @@
     line-height: 1.5;
     border-radius: 0.25rem;
     cursor: pointer;
+}
+
+.update-project-finished-button:hover,.update-project-submit-button:hover
+{
+    background-color: #51A9E1;
+    border: 1px solid #51A9E1;
+    transition: 150ms;
 }
