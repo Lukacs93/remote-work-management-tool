@@ -58,42 +58,18 @@ builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
-builder.Services.AddAuthentication(o =>
-{
-    o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddCookie(o =>
-{
-    o.Cookie.Name = "token";
-
-}).AddJwtBearer(o =>
-{
-    o.RequireHttpsMetadata = false;
-    o.SaveToken = true;
-    o.TokenValidationParameters = new TokenValidationParameters()
-    {
-        IssuerSigningKey =
-            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationConfiguration.AccessTokenSecret)),
-        ValidIssuer = authenticationConfiguration.Issuer,
-        ValidAudience = authenticationConfiguration.Audience,
-        ValidateIssuerSigningKey = true,
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ClockSkew = TimeSpan.Zero
-    };
-    o.Events = new JwtBearerEvents
-    {
-        OnMessageReceived = context =>
-        {
-            context.Token = context.Request.Cookies["X-Access-Token"];
-            return Task.CompletedTask;
-        }
-    };
-
-});
-
-// builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(o =>
+// builder.Services.AddAuthentication(o =>
 // {
+//     o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+//     o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+// }).AddCookie(o =>
+// {
+//     o.Cookie.Name = "token";
+//
+// }).AddJwtBearer(o =>
+// {
+//     o.RequireHttpsMetadata = false;
+//     o.SaveToken = true;
 //     o.TokenValidationParameters = new TokenValidationParameters()
 //     {
 //         IssuerSigningKey =
@@ -105,7 +81,31 @@ builder.Services.AddAuthentication(o =>
 //         ValidateAudience = true,
 //         ClockSkew = TimeSpan.Zero
 //     };
+//     o.Events = new JwtBearerEvents
+//     {
+//         OnMessageReceived = context =>
+//         {
+//             context.Token = context.Request.Cookies["X-Access-Token"];
+//             return Task.CompletedTask;
+//         }
+//     };
+//
 // });
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(o =>
+{
+    o.TokenValidationParameters = new TokenValidationParameters()
+    {
+        IssuerSigningKey =
+            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationConfiguration.AccessTokenSecret)),
+        ValidIssuer = authenticationConfiguration.Issuer,
+        ValidAudience = authenticationConfiguration.Audience,
+        ValidateIssuerSigningKey = true,
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ClockSkew = TimeSpan.Zero
+    };
+});
 
 builder.Services.AddControllers().AddNewtonsoftJson(options => 
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);

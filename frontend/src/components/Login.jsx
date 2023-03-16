@@ -1,6 +1,6 @@
-﻿import React, { useState } from "react";
+﻿import React, {useEffect, useState} from "react";
 
-function Login() {
+function Login({ handleLogin }) {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
 
@@ -16,15 +16,20 @@ function Login() {
             body: JSON.stringify({ userName, password })
         });
 
-        if (response.ok) {
-            // Redirect the user to the home page
-            window.location.href = "/dashboard";
-        } else {
-            // Handle the error
-            const data = await response.json();
-            alert(data.message);
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.alert(message);
+            return;
         }
-    };
+ 
+            // Redirect the user to the home page
+           // window.location.href = "/dashboard";
+
+            const data = await response.json();
+            console.log(data)
+        
+    }
+    
 
     return (
         <form onSubmit={handleSubmit}>

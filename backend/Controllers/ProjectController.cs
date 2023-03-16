@@ -21,6 +21,7 @@ public class ProjectController : ControllerBase
         return await _projectService.GetAllProjects();
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public async Task CreateProject([FromBody] Project project)
     {

@@ -95,15 +95,15 @@ public class AuthenticationController : Controller
 
         var response = await _authenticator.Authenticate(user);
 
-        HttpContext.Response.Cookies.Append("X-Access-Token", response.AccessToken,
-            new CookieOptions
-            {
-                Expires = DateTime.Now.AddMinutes(15),
-                HttpOnly = true,
-                Secure = true,
-                IsEssential = true,
-                SameSite = SameSiteMode.None
-            });
+        // HttpContext.Response.Cookies.Append("X-Access-Token", response.AccessToken,
+        //     new CookieOptions
+        //     {
+        //         Expires = DateTime.Now.AddMinutes(15),
+        //         HttpOnly = true,
+        //         Secure = true,
+        //         IsEssential = true,
+        //         SameSite = SameSiteMode.None
+        //     });
         
         return Ok(response);
     }
