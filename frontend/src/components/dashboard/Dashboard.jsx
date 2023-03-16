@@ -3,7 +3,7 @@ import './Dashboard.css'
 import Header from './DashboardHeader'
 import {Link, useLocation} from "react-router-dom";
 
-const Dashboard = () => {
+const Dashboard = ({ handleLogout }) => {
     const [activeButton, setActiveButton] = useState('dashboard');
 
     const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -21,7 +21,7 @@ const Dashboard = () => {
     
     return (
         <>
-            <Header sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar}/>
+            <Header sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} handleLogout={handleLogout}/>
             <div className={`dashboard-container ${sidebarOpen ? '' : 'sidebar-closed'}`}>
                 <div className="minimize-menu">
                     <button className="minimize-menu-button" onClick={toggleSidebar} type="button">

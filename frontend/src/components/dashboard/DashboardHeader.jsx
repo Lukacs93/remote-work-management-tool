@@ -2,11 +2,14 @@
 import './Dashboard.css'
 import {useLocation} from "react-router-dom";
 
-function Header({ sidebarOpen, toggleSidebar }) {
+function Header({ sidebarOpen, toggleSidebar, handleLogout }) {
     const location = useLocation();
     const { pathname } = location;
     const splitLocation = pathname.charAt(1).toUpperCase() + pathname.slice(2).split("/");
-    
+    function menuToggle() {
+        const toggleMenu = document.querySelector(".menu");
+        toggleMenu.classList.toggle("active");
+    }
     return (
         <div className={`dashboard-header-container ${sidebarOpen ? 'dashboard-header-minimize' : '' }`}>
             <div className="dashboard-notification">
@@ -46,6 +49,34 @@ function Header({ sidebarOpen, toggleSidebar }) {
                           <span className="dashboard-notification-text">+1</span>
                       </span>
                 </button>
+                <div className="action dashboard-notification">
+                    <div className="profile" onClick={menuToggle}>
+                        {/*<img src="./assets/avatar.jpg"/>*/}
+                        L A
+                    </div>
+                    <div className="menu">
+                        <h3>Someone Famous<br/><span>Website Designer</span></h3>
+                        <ul>
+                            <li>
+                                <img src={require('../../assets/dashboard.png')} className="dashboard-icon" alt="dashboard" /><a href="#">My profile</a>
+                            </li>
+                            <li>
+                                <img src={require('../../assets/dashboard.png')} className="dashboard-icon" alt="dashboard" /><a href="#">Edit profile</a>
+                            </li>
+                            <li>
+                                <img src={require('../../assets/dashboard.png')} className="dashboard-icon" alt="dashboard" /><a href="#">Inbox</a>
+                            </li>
+                            <li>
+                                <img src={require('../../assets/dashboard.png')} className="dashboard-icon" alt="dashboard" /><a href="#">Setting</a>
+                            </li>
+                            <li><img src={require('../../assets/dashboard.png')} className="dashboard-icon" alt="dashboard" /><a href="#">Help</a></li>
+                            <li>
+                                <img src={require('../../assets/dashboard.png')} className="dashboard-icon" alt="dashboard" /><a href="#">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
             </div>
         </div>
     );
