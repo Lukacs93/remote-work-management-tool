@@ -10,7 +10,7 @@ const UpdateTask = ({ taskItem,doReload }) =>
             "id": taskItem.id,
             "name":"",
             "description":"",
-            "taskStatus":"",
+            "taskStatus":-1,
             "dateId":taskItem.dateId,
             "projectId":taskItem.projectId
         })
@@ -45,7 +45,7 @@ setTimeout(() => {
 
 
 const setStatus=(status)=>{
-    setForm({...form, taskStatus: status})
+    setForm({...form, taskStatus: parseInt(status)})
 }
 
     return (
