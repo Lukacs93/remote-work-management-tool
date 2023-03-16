@@ -140,9 +140,9 @@ setDate({
                                                         <div className="">Task members: {taskItem.usersOnTask.map(user => `${user.firstName} ${user.lastName}`).join(', ')}</div>
                                                         <div className="task-status">Task Status: {
                                                             taskItem.taskStatus === 1 ? "In Progress"
-                                                                : taskItem.taskStatus === 1 ? "Review"
-                                                                    : taskItem.taskStatus === 1 ? "Done" 
-                                                                        :"Not Started"
+                                                                : taskItem.taskStatus === 2 ? "Review"
+                                                                    : taskItem.taskStatus === 3 ? "Done" 
+                                                                        : "Not Started"
                                                         }
                                                         </div>
                                                     </div>

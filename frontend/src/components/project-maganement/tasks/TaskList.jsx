@@ -14,7 +14,6 @@ const TaskList = (props) =>
     const [isSubmit, setIsSubmit] = useState(false)
     const [form, setForm] = useState({
         name:"",
-        dateId: 1,
         deadLine:"",
         projectId: params.id,
         description: "",
