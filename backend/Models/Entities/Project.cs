@@ -12,7 +12,7 @@ public class Project
 
     public long ManagerId { get; set; } // The user of the one in charge of the project
 
-    public long DateId { get; set; }
+    public long? DateId { get; set; }
 
     public List<User>? UsersOnProject { get; set; }
 
