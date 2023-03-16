@@ -8,16 +8,15 @@ import LandingPage from "./components/landing-page/LandingPage";
 import ProjectDashboard from "./components/project-maganement/ProjectDashboard";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
-import ProtectedRoute from "./components/Auth/ProtectedRoute";
-import ProtectedRoutes from "./components/Auth/ProtectedRoute";
+import ProtectedRoutes from "./components/Auth/ProtectedRoutes";
 
 function App() {
     const navigate = useNavigate();
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState();
     const [token, setToken] = useState(null);
     
     const userRole = 'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
-    
+
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (token) {
@@ -26,7 +25,7 @@ function App() {
             setToken(token)
         }
     }, []);
-    console.log(user)
+    
     const handleLogin = (responseToken) => {
 
         if (responseToken) {
@@ -34,10 +33,8 @@ function App() {
             const decodedToken = jwt_decode(responseToken);
             const role = decodedToken[userRole];
             setUser(decodedToken);
-            console.log(role)
-
             if (decodedToken && role === "Admin") {
-                navigate('/projects', { replace: true });
+                navigate('/admin', { replace: true });
             } else {
                 navigate('/dashboard', { replace: true });
             }
@@ -59,10 +56,10 @@ function App() {
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/login" element={<Login handleLogin={handleLogin}/>} />
                 <Route element={<ProtectedRoutes isProtected={user} />}>
-                    <Route path="/profile" element={[<Dashboard user={user} handleLogout={handleLogout}/>, <Profile />]} />
+                    <Route path="/admin" element={[<Dashboard user={user} handleLogout={handleLogout}/>, <Profile />]} />
                     <Route path="/dashboard" element={<Dashboard user={user} handleLogout={handleLogout}/>} />
                     <Route path="/projects" element={[<Dashboard user={user} handleLogout={handleLogout}/>,
-                        <ProjectDashboard token={token}/>]} />
+                        <ProjectDashboard user={user} token={token}/>]} />
                     <Route path="/tasks" element={[<Dashboard user={user} handleLogout={handleLogout}/>, <TaskList />]} />
                 </Route>
             </Routes>

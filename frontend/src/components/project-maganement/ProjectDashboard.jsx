@@ -3,7 +3,7 @@ import CreateProject from './projects/CreateProject.jsx'
 import ProjectList from './projects/ProjectList.jsx'
 import './ProjectDashboard.css'
 
-const ProjectDashboard = ({ token }) =>
+const ProjectDashboard = ({ user, token }) =>
 {
     const [Option, changeOption]=useState("none")
     const [isSubmit, setIsSubmit] = useState(false)
@@ -36,6 +36,7 @@ const ProjectDashboard = ({ token }) =>
             {showForm && (
                 <div>
                     <CreateProject
+                        user={user}
                         changeOption={changeOption}
                         setShowForm={setShowForm}
                         showForm={showForm}

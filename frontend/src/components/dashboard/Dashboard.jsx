@@ -18,7 +18,7 @@ const Dashboard = ({ user, handleLogout }) => {
     //
     // const splitLocation = pathname.split("/");
     // console.log(splitLocation[1])
-    
+
     return (
         <>
             <Header sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} handleLogout={handleLogout}/>
@@ -38,9 +38,9 @@ const Dashboard = ({ user, handleLogout }) => {
                     <nav>
                         {user && user['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === "Admin" &&
 
-                            <Link to="/Admin"
+                            <Link to="/admin"
                                   className={`dashboard-button-container ${activeButton === 'admin' ? 'active' : ''}`}
-                                  onClick={() => setActiveButton('projects')} role="button">
+                                  onClick={() => setActiveButton('admin')} role="button">
                                 <div className="dashboard-icon-container">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                          className="bi bi-person-lock" viewBox="0 0 16 16">

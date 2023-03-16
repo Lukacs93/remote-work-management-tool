@@ -37,7 +37,10 @@ const CreateProject = (props) =>
         <div className="add-task-form-container">
             <div>
                 {showSuccessText ?
-                    <p className="success-message">Project Successfully Created</p>
+                    props.user['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === 'Admin' ?
+                        <p className="success-message">Project Successfully Created</p> 
+                        :   
+                        <p className="success-message error-message">You dont have permission to create a project</p>
                     :
                     <form onSubmit={handleSubmit} className="add-task-form">
                         <input id="ManagerId"
