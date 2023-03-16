@@ -14,9 +14,9 @@ public class Project
 
     public long? DateId { get; set; }
 
-    public List<User>? UsersOnProject { get; set; }
+    public List<User>? UsersOnProject { get; set; }=new List<User>();
 
-    public List<TaskItem>? Tasks { get; set; }
+    public List<TaskItem>? Tasks { get; set; }= new List<TaskItem>();
 
     public Status? ProjectStatus { get; set; }
 
