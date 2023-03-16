@@ -55,7 +55,7 @@ function Header({ sidebarOpen, toggleSidebar, handleLogout }) {
                         L A
                     </div>
                     <div className="menu">
-                        <h3>Someone Famous<br/><span>Website Designer</span></h3>
+                        <h3>Lukacs Laszlo<br/><span>Developer</span></h3>
                         <ul>
                             <li>
                                 <img src={require('../../assets/dashboard.png')} className="dashboard-icon" alt="dashboard" /><a href="#">My profile</a>
@@ -70,7 +70,7 @@ function Header({ sidebarOpen, toggleSidebar, handleLogout }) {
                                 <img src={require('../../assets/dashboard.png')} className="dashboard-icon" alt="dashboard" /><a href="#">Setting</a>
                             </li>
                             <li><img src={require('../../assets/dashboard.png')} className="dashboard-icon" alt="dashboard" /><a href="#">Help</a></li>
-                            <li>
+                            <li onClick={handleLogout}>
                                 <img src={require('../../assets/dashboard.png')} className="dashboard-icon" alt="dashboard" /><a href="#">Logout</a>
                             </li>
                         </ul>

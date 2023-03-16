@@ -41,10 +41,12 @@ function App() {
     };
 
     const handleLogout = () => {
+        console.log("clicked")
         localStorage.removeItem("jwtToken");
         setUser(null);
         setToken(null);
         navigate('/login', { replace: true });
+        
     };
     
   return (
@@ -53,9 +55,9 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login handleLogin={handleLogin}/>} />
             <Route path="/profile" element={[<Dashboard handleLogout={handleLogout}/>, <Profile />]} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/projects" element={[<Dashboard/>, <ProjectDashboard/>]} />
-            <Route path="/tasks" element={[<Dashboard />, <TaskList />]} />
+            <Route path="/dashboard" element={<Dashboard handleLogout={handleLogout}/>} />
+            <Route path="/projects" element={[<Dashboard handleLogout={handleLogout}/>, <ProjectDashboard/>]} />
+            <Route path="/tasks" element={[<Dashboard handleLogout={handleLogout}/>, <TaskList />]} />
         </Routes>
     </div>
   );
