@@ -13,9 +13,6 @@ public class RemotivateContext : DbContext
     
     public DbSet<User> Users { get; set; }
 
-    public DbSet<UsersOnTasks> UsersOnTasks { get; set; }
-
-    public DbSet<UsersOnProject> UsersOnProject { get; set; }
 
     public DbSet<TaskItemNotes> TaskItemNotes { get; set; }
 
