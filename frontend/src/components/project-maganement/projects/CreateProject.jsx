@@ -9,7 +9,7 @@ const CreateProject = (props) =>
         "ManagerId": 742,
         "ProjectStatus": 720
     })
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(Form)
@@ -17,6 +17,7 @@ const CreateProject = (props) =>
         await fetch('https://localhost:7029/projects',{
             method: 'POST',
             headers: {
+                'Authorization' : `Bearer ${localStorage.getItem("token")}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(Form)

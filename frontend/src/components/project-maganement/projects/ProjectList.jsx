@@ -7,16 +7,15 @@ const ProjectList = (prop) =>
     const[isLoading, setIsLoading] = useState("loading")
     const[projects, setProjects] = useState([])
     const[isModified, setIsModified] = useState(false)
-    
-    const jwtToken = localStorage.getItem("token");
-    
+
+
     useEffect(()=>
     {
         async function getProjects() {
-          const response = await fetch(`https://localhost:7029/projects`, {
+            const response = await fetch(`https://localhost:7029/projects`, {
                 method: "GET",
                 headers: {
-                    "Authorization": `Bearer ${jwtToken}`
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
                 }
             });
 
@@ -25,7 +24,7 @@ const ProjectList = (prop) =>
                 alert(message);
                 return;
             }
-        
+
             const result = await response.json();
             setProjects(result)
             setTimeout(() => {
