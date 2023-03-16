@@ -3,7 +3,7 @@ import { useState , useEffect } from 'react'
 import './TaskList.css'
 import Task from "./Task";
 
-const TaskList = () =>
+const TaskList = (props) =>
 {
     const [taskItems, setTaskItems] = useState([])
     const [deletedItemId, setDeletedItemId] = useState(null);
