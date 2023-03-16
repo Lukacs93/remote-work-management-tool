@@ -39,9 +39,10 @@ public class TaskController : ControllerBase
         return await _taskService.CreateTask(projectId, task);
     }
     [HttpPut("{id:long}")]
-    public async Task<List<User>> AddUserToTask(long id, [FromBody] User user)
+    public async Task AddUserToTask(long id, [FromBody] User user)
     {
-        return await _taskService.AddUserToTask(id, user);
+        await _taskService.AddUserToTask(id, user);
+        Console.WriteLine("Successfully added User to Task");
     }
     [HttpPut("/task/{id}")]
     public async Task<TaskItem> UpdateTask([FromBody] TaskItem task, long id)
