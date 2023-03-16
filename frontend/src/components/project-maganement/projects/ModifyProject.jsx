@@ -9,13 +9,14 @@ const UpdateProject = (props) =>
     const [form,setForm] = useState(
         {
         "id": props.project.id,
+        "name":props.project.name,
         "DeadLine": "",
         "ProjectStatus": 0,
-        "Finished":false,
         "tasks": props.project.tasks
     })
 
     const isValidDate=(dateString)=>{
+        console.log(dateString)
         // First check for the pattern
         if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString))
             return false;
@@ -39,14 +40,20 @@ const UpdateProject = (props) =>
     return day > 0 && day <= monthLength[month - 1];
     }
 
-    const isFinished=()=>{
-
-        setForm({...form, Finished: !form.Finished})
-    }
     const handleSubmit = async (e) => {
         e.preventDefault()
+
 if(isValidDate(form.DeadLine))
-        await fetch(`https://localhost:7029/projects/${props.project.id}`,{
+if(form.name==="" || form.name===undefined)
+{
+    console.log(form)
+    console.log("====================")
+    setForm({...form, name: props.project.name})
+    console.log("====================")
+    console.log(props.project.name)
+
+}
+        await fetch(`https://localhost:7029/projects/${form.id}`,{
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -73,20 +80,22 @@ if(isValidDate(form.DeadLine))
                     :
                     <form className="update-project-form" onSubmit={handleSubmit}>
                         <h2>Edit Project</h2>
+                        <label>Name
+                        <input className="update-project-input" id="Name" 
+                             placeholder='Name'
+                             onChange={(e) => setForm({...form, Name: e.target.value})}
+                         />
+                         </label>
                         <label>DeadLine
                         <input className="update-project-input" id="Date" 
                              placeholder='DD/MM/YYY'
-                             onChange={(e) => setForm({...form, DeadLine: parseInt(e.target.value)})}
+                             onChange={(e) => setForm({...form, DeadLine: e.target.value})}
                          />
                          </label>
                         <Status className="update-project-input" id="ProjectStatus"
                               onChange={(e) => setForm({...form, ProjectStatus: parseInt(e.target.value)})}
                         />
-                        {form.Finished && 
-                        <button className="update-project-finished-button" onClick={isFinished}>Finished</button>}
-                        {!form.Finished && 
-                        <button className="update-project-finished-button" onClick={isFinished}>Not Finished</button>}
-
+                        
                         <button className="update-project-submit-button"  type="submit">Save</button>
                     </form>
                 }
