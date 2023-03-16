@@ -8,9 +8,11 @@ public class TaskItem
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public long Id { get; set; }
 
+    public string Name { get; set; }
+
     public long NoteId { get; set; }
 
-    public long UsersOnTask { get; set; }
+    public List<User> UsersOnTask { get; set; }
 
     public long ProjectId { get; set; } // The Project its part of
 

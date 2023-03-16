@@ -7,11 +7,16 @@ public class Project
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public long Id { get; set; }
+
+    public string Name { get; set; }
+
     public long ManagerId { get; set; } // The user of the one in charge of the project
 
     public long DateId { get; set; }
 
-    public long UsersOnProject { get; set; }
+    public List<User> UsersOnProject { get; set; }
+
+    public List<TaskItem> Tasks { get; set; }
 
     public Status? ProjectStatus { get; set; }
 

@@ -6,6 +6,9 @@ namespace backend.Models.Entities
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
+
+        public long TaskNote { get; set; }
+
         public string Note { get; set; } = "";
     }
 }
