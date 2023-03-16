@@ -10,9 +10,9 @@ public class TaskItem
 
     public string Name { get; set; }
 
-    public long NoteId { get; set; }
+    public List<TaskItemNotes>? Notes { get; set; } = new List<TaskItemNotes>();
 
-    public List<User> UsersOnTask { get; set; }
+    public List<User>? UsersOnTask { get; set; } = new List<User>();
 
     public long ProjectId { get; set; } // The Project its part of
 
