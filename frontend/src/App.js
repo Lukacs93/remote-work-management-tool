@@ -12,7 +12,7 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/projects" element={[<Dashboard/>, <ProjectDashboard userid="1"/>]} />
-            <Route path="/tasks" element={[<Dashboard />, <TaskList />]} />
+            <Route path="/tasks/:id" element={[<Dashboard />, <TaskList />]} />
         </Routes>
     </div>
   );

@@ -2,9 +2,11 @@ import React from 'react'
 import { useState , useEffect } from 'react'
 import './TaskList.css'
 import Task from "./Task";
+import { useParams } from 'react-router-dom';
 
 const TaskList = (props) =>
 {
+    const params=useParams()
     const [taskItems, setTaskItems] = useState([])
     const [deletedItemId, setDeletedItemId] = useState(null);
     const [showForm, setShowForm] = useState(false);
@@ -17,9 +19,10 @@ const TaskList = (props) =>
         taskStatus: 1
     })
 
+
     const onSubmit = async (e) => {
         e.preventDefault();
-       console.log(form)
+
         await fetch('https://localhost:7029/projects/20/add-task', {
             method: 'POST',
             headers: {
@@ -36,8 +39,9 @@ const TaskList = (props) =>
     }
 
     useEffect(() => {
+        
         const getTaskItems = async () => {
-            const response = await fetch(`https://localhost:7029/tasks`);
+            const response = await fetch(`https://localhost:7029/projects/tasks/${params.id}`);
 
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
@@ -138,6 +142,9 @@ const TaskList = (props) =>
                 : ""
             }
             
+
+
+            
             <div className="task-container">
                 <table >
                     <thead>
@@ -167,6 +174,10 @@ const TaskList = (props) =>
                     </tbody>
                 </table>
             </div>
+
+
+
+
         </div>
     )
 }

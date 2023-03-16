@@ -3,12 +3,13 @@ import ModifyProject from './ModifyProject.jsx'
 import UserList from './UsersList'
 import './Project.css'
 import Date from '../date/Date'
+import {Link} from "react-router-dom";
 
 const Project = (props) => {
     const [modal,setModal]=useState(false);
     const [showDetails, setShowDetails] = useState(false);
     const [showSuccessText, setShowSuccessText] = useState(false)
-    
+    const taskLink=`/tasks/${props.project.id}`
     const handleClick=async ()=>{
         await fetch(await fetch(`https://localhost:7029/projects/${props.project.id}`,{
             method: 'DELETE'
@@ -75,7 +76,9 @@ const Project = (props) => {
                                         }}>Edit
                                         </button>
                                         <button className='single-project-button'>Assign</button>
-                                        <button className='single-project-button'>Tasks</button>
+                                        <Link to={taskLink}  role="button">
+                                        <button className='single-project-button' >Tasks</button>
+                                        </Link>
                                         <button className='single-project-button'
                                                 onClick={handleClick}>Delete
                                         </button>
