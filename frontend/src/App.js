@@ -11,7 +11,7 @@ function App() {
         <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/projects" element={[<Dashboard/>, <ProjectDashboard/>]} />
+            <Route path="/projects" element={[<Dashboard/>, <ProjectDashboard userid={0}/>]} />
             <Route path="/tasks" element={[<Dashboard />, <TaskList />]} />
         </Routes>
     </div>
