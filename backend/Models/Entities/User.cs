@@ -11,8 +11,8 @@ namespace backend.Models.Entities
 
         public string LastName { get; set; }
 
-        public List<Project>? CurrentProjects { get; set; }// Those projects that the use is in as a manager or just a user
+        public string UserName { get; set; }
 
-        public List<TaskItem>? Tasks { get; set; }
+        public string PassWord { get; set; }
     }
 }

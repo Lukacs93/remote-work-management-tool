@@ -7,16 +7,16 @@ public class TaskItem
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public long Id { get; set; }
-    
-    public long DateId { get; set; }
+
+    public long NoteId { get; set; }
+
+    public long UsersOnTask { get; set; }
 
     public long ProjectId { get; set; } // The Project its part of
 
-    public List<User>? UsersOnTask { get; set; } = new List<User>();
-    
-    public string Description { get; set; }
+    public long DateId { get; set; }
 
-    public string Note { get; set; }
+    public string Description { get; set; }
 
     public Status? TaskStatus { get; set; }
 }
