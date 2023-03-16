@@ -21,13 +21,11 @@ function Login({ handleLogin }) {
             window.alert(message);
             return;
         }
- 
-            // Redirect the user to the home page
-           // window.location.href = "/dashboard";
 
-            const data = await response.json();
-            console.log(data)
+        const data = await response.json();
+        console.log(data)
         
+        handleLogin(data.accessToken)
     }
     
 

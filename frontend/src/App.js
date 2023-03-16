@@ -30,22 +30,29 @@ function App() {
             const decodedToken = jwt_decode(responseToken);
             const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
             setUser(decodedToken);
-
+     
+            console.log(user)
             if (decodedToken && role === "Admin") {
-                navigate('/admin', { replace: true });
+                navigate('/projects', { replace: true });
             } else {
-                navigate('/main', { replace: true });
+                navigate('/dashboard', { replace: true });
             }
         }
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem("jwtToken");
+        setUser(null);
+        setToken(null);
+        navigate('/login', { replace: true });
+    };
     
   return (
     <div className="App">
         <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route path="/login" element={<Login onLogin={handleLogin}/>} />
-            <Route path="/profile" element={[<Dashboard />, <Profile />]} />
+            <Route path="/login" element={<Login handleLogin={handleLogin}/>} />
+            <Route path="/profile" element={[<Dashboard handleLogout={handleLogout}/>, <Profile />]} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/projects" element={[<Dashboard/>, <ProjectDashboard/>]} />
             <Route path="/tasks" element={[<Dashboard />, <TaskList />]} />
