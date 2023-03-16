@@ -8,22 +8,24 @@ const TaskList = (props) =>
 {
     const params=useParams()
     const [taskItems, setTaskItems] = useState([])
+    const [reload,doReload]=useState(false);
     const [deletedItemId, setDeletedItemId] = useState(null);
     const [showForm, setShowForm] = useState(false);
     const [isSubmit, setIsSubmit] = useState(false)
     const [form, setForm] = useState({
+        name:"",
         dateId: 1,
-        projectId: 5,
+        deadLine:"",
+        projectId: params.id,
         description: "",
-        note: "Empty note",
         taskStatus: 1
     })
 
 
     const onSubmit = async (e) => {
         e.preventDefault();
-
-        await fetch('https://localhost:7029/projects/20/add-task', {
+console.log(form)
+        await fetch(`https://localhost:7029/projects/${params.id}/add-task`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -54,7 +56,7 @@ const TaskList = (props) =>
         }
 
         getTaskItems();
-    }, [isSubmit]);
+    }, [isSubmit,reload]);
 
     const deleteTaskItem = async (id) => {
         setDeletedItemId(id);
@@ -113,6 +115,19 @@ const TaskList = (props) =>
                                     id="title"
                                     placeholder="title"
                                     className="add-task-input"
+                                    onChange={(e) => setForm({...form, name: e.target.value})}
+                                    // value={inputTitle}
+                                />
+                                <label htmlFor="title" className="description-label">
+                                    Dead Line: (DD/MM/YYYY)
+                                </label>
+                                 <input
+                                    type="text"
+                                    name="deadLine"
+                                    id="deadLine"
+                                    placeholder="DD/MM/YYYY"
+                                    className="add-task-input"
+                                    onChange={(e) => setForm({...form, deadLine: e.target.value})}
                                     // value={inputTitle}
                                 />
                                 <label className="description-label" htmlFor="description">
@@ -165,7 +180,7 @@ const TaskList = (props) =>
                                 // {deletedItemId === taskItem.id  ? 
                                 //     <p className="delete-message">Task Successfully Deleted</p>
                                 //      :
-                                <Task taskItem={taskItem} deleteTaskItem={deleteTaskItem} key={taskItem.id}/>
+                                <Task taskItem={taskItem} deleteTaskItem={deleteTaskItem} doReload={doReload} key={taskItem.id}/>
                                 // }
                                 // </div>
                             )

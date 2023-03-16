@@ -7,7 +7,7 @@ import UpdateTask from "./UpdateTask";
 import Status from '../status/Status'
 
 
-const Task = ({taskItem, deleteTaskItem}) => {
+const Task = ({taskItem, deleteTaskItem, doReload}) => {
     const [showAssign, setShowAssign] = useState(false);
     const [showList, setShowList] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
@@ -76,9 +76,6 @@ setDate({
                 <td>                    
                     <div className="task-button-container">
                         <div className="task-show-more-button">
-                            <div className="task-action-button">Edit</div>
-                        </div>
-                        <div className="task-show-more-button">
                             <div className="task-action-button" onClick={handleShowUsers}>Assign</div>
                         </div>
                         <div className="task-show-more-button">
@@ -105,7 +102,6 @@ setDate({
 
                             <div className="task-details-btn-container">
                                 <div>
-                                    <button className='single-task-button'>Task</button>
                                     <button className='single-task-button' onClick={() => setUpdateTask(!updateTask)}>Edit</button>
                                     <button className='single-task-button' onClick={() => setShowAssign(!showAssign)}>Assign</button>
                                     <button className='single-task-button' onClick={() => setShowList(!showList)}>Users</button>
@@ -121,7 +117,7 @@ setDate({
                             </div>
                             <div className="task-details-container">
                                 {updateTask &&
-                                    <UpdateTask taskItem={taskItem}/>
+                                    <UpdateTask doReload={doReload} taskItem={taskItem}/>
                                 }
                                 {showList ? (
 
@@ -134,21 +130,15 @@ setDate({
                                             :
                                             <div>
                                                 <div className="task-description">
-                                                    <h2>Project Details</h2>
-                                                    <span>Purpose of the project is to improve organizational efficiency, increase
-                                                        profitability, reduce costs, or create new business opportunities. It may
-                                                        involve the development of new products or services, the implementation of
-                                                        new technology or processes, or the expansion of existing operations into
-                                                        new markets or geographies.
+                                                    <h2>Task Details</h2>
+                                                    <span>{taskItem.description}
                                                     </span>
                                                 </div>
                                                     <div className="task-details">
-                                                        <div className="task-id">Task ID: {taskItem.id}</div>
+                                                        <div className="task-id">Task name: {taskItem.name}</div>
                                                         <div className="">Project: </div>
-                                                        <div className="task-id">Name: Lorem Ipsum</div>
-                                                        <div>Description: {taskItem.description}</div>
-                                                        <div className="">Team members: {taskItem.usersOnTask.map(user => `${user.firstName} ${user.lastName}`).join(', ')}</div>
-                                                        <div className="task-status">Project Status: {
+                                                        <div className="">Task members: {taskItem.usersOnTask.map(user => `${user.firstName} ${user.lastName}`).join(', ')}</div>
+                                                        <div className="task-status">Task Status: {
                                                             taskItem.taskStatus === 1 ? "In Progress"
                                                                 : taskItem.taskStatus === 1 ? "Review"
                                                                     : taskItem.taskStatus === 1 ? "Done" 
