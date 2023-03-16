@@ -1,5 +1,6 @@
 ﻿using backend.Data;
 using backend.Models.Entities;
+using backend.Services.DateServiceLayer;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.Services.ProjectServiceLayer;
@@ -7,10 +8,11 @@ namespace backend.Services.ProjectServiceLayer;
 public class ProjectService : IProjectService
 {
     private readonly RemotivateContext _context;
-
+    private readonly DateService _dateService;
     public ProjectService(RemotivateContext context)
     {
         _context = context;
+        _dateService = new DateService(_context);
     }
 
     public async Task<List<Project>> GetAllProjects()
@@ -24,14 +26,15 @@ public class ProjectService : IProjectService
     {
         return await _context.Projects
             .Where(p => p.Id == id)
-            .FirstAsync(); ;
+            .FirstAsync();
     }
 
 
-    public async Task<Project> CreateProject(Project project)
+    public async Task<Project> CreateProject(string DeadLine, Project project)
     {
+        project.DateId = await _dateService.CreateDate(project.Id, DeadLine, true);
+      
         _context.Projects.Add(project);
-        
         await _context.SaveChangesAsync();
 
         return await _context.Projects
@@ -52,5 +55,19 @@ public class ProjectService : IProjectService
         Project removedProject = await GetProjectById(id);
         _context.Projects.Remove(removedProject);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task AddUserToProject(long id, User user)
+    {
+        var projectToAddUser = await _context.Projects.FirstOrDefaultAsync(t => t.Id == id);
+
+        if (_context.Users.Any(i => i.Id == user.Id))
+        {
+            if (projectToAddUser != null)
+            {
+                projectToAddUser.UsersOnProject.Add(user);
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }
