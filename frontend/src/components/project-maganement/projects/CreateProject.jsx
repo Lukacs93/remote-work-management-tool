@@ -5,15 +5,24 @@ const CreateProject = (props) =>
 {
     const [showSuccessText, setShowSuccessText] = useState(false)
     const [Form,setForm]=useState({
-        "DateId": 712,
-        "ManagerId": 742,
-        "ProjectStatus": 720
+        "ProjectName":"",
+        "Description": ""
+    })
+
+    const [project, setProject]=useState({
+        "ManagerId":0,
+        "DateId":0,
+        
+
     })
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(Form)
     
+
+
+
         await fetch('https://localhost:7029/projects',{
             method: 'POST',
             headers: {
@@ -39,23 +48,18 @@ const CreateProject = (props) =>
                     <p className="success-message">Project Successfully Created</p>
                     :
                     <form onSubmit={handleSubmit} className="add-task-form">
-                        <input id="ManagerId"
-                               placeholder='ManagerId'
+
+                        <input id="ProjectName"
                                type="number"
-                               onChange={(e) => setForm({...Form, ManagerId: parseInt(e.target.value)})}
+                               placeholder='Project Name'
                                className="add-task-input"
+                               onChange={(e) => setForm({...Form, ProjectName: parseInt(e.target.value)})}
                         ></input>
-                        <input id="ProjectStatus"
+                        <input id="Description"
                                type="number"
-                               placeholder='ProjectStatus'
+                               placeholder='Description'
                                className="add-task-input"
-                               onChange={(e) => setForm({...Form, ProjectStatus: parseInt(e.target.value)})}
-                        ></input>
-                        <input id="DateId"
-                               type="number"
-                               placeholder='DateId'
-                               className="add-task-input"
-                               onChange={(e) => setForm({...Form, DateId: parseInt(e.target.value)})}
+                               onChange={(e) => setForm({...Form, Description: parseInt(e.target.value)})}
                         ></input>
                         <button className="task-submit-button">Create Project</button>
                     </form>

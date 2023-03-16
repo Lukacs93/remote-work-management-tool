@@ -3,7 +3,7 @@ import CreateProject from './projects/CreateProject.jsx'
 import ProjectList from './projects/ProjectList.jsx'
 import './ProjectDashboard.css'
 
-const ProjectDashboard = () =>
+const ProjectDashboard = (props) =>
 {
     const [Option, changeOption]=useState("none")
     const [isSubmit, setIsSubmit] = useState(false)
@@ -41,6 +41,7 @@ const ProjectDashboard = () =>
                         showForm={showForm}
                         isSubmit={isSubmit}
                         setIsSubmit={setIsSubmit}
+                        user={props.user}
                         className='add-task-form-container'
                     />
                 </div> 
