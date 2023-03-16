@@ -40,7 +40,6 @@ public class ProjectService : IProjectService
         {
             tasks.Add(task);
         }
-
         return tasks;
     }
     public async Task<Project> CreateProject(string DeadLine, Project project)
@@ -57,7 +56,9 @@ public class ProjectService : IProjectService
 
     public async Task UpdateProject(Project project, long id)
     {
-        var updatedProject = await GetProjectById(id);
+        var updatedProject = await _context.Projects
+            .Where(p => p.Id == id)
+            .FirstAsync();
 
         _context.Entry(updatedProject).CurrentValues.SetValues(project);
         await _context.SaveChangesAsync();
