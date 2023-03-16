@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using backend.Data;
+using backend.Services.DateServiceLayer;
 using backend.Services.ProjectServiceLayer;
 using backend.Services.TaskServiceLayer;
 using backend.Services.UserServiceLayer;
@@ -30,6 +31,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IDateService, DateService>();
 
 builder.Services.AddControllers().AddNewtonsoftJson(options => 
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
