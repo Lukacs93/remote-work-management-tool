@@ -1,4 +1,5 @@
-﻿using backend.Models.Entities;
+﻿using backend.DTO;
+using backend.Models.Entities;
 using backend.Services.ProjectServiceLayer;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,9 +22,15 @@ public class ProjectController : ControllerBase
     }
 
     [HttpPost]
-    public async Task CreateProject([FromBody] Project project)
+    public async Task CreateProject([FromBody] CreateProjectDTO projectDTO)
     {
-        await _projectService.CreateProject(project);
+        Project project = new Project();
+        project.Name = projectDTO.ProjectName;
+        project.ManagerId = projectDTO.ManagerId;
+        project.ProjectStatus= projectDTO.ProjectStatus;
+        project.Description = projectDTO.Description;
+
+        await _projectService.CreateProject(projectDTO.DeadLine, project);
     }
 
     [HttpGet("{id}")]
