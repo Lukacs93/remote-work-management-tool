@@ -12,7 +12,15 @@ public class RemotivateContext : DbContext
     public DbSet<Date> Dates { get; set; }
     
     public DbSet<User> Users { get; set; }
-    
+
+    public DbSet<UsersOnTasks> UsersOnTasks { get; set; }
+
+    public DbSet<UsersOnProject> UsersOnProject { get; set; }
+
+    public DbSet<TaskItemNotes> TaskItemNotes { get; set; }
+
+
+
     public RemotivateContext(DbContextOptions<RemotivateContext> options) : base(options)
     {
     }
