@@ -145,8 +145,8 @@ const TaskList = (props) =>
                         <th><span className="header-title">Name</span></th>
                         <th><span className="header-title">Description</span></th>
                         <th><span className="header-title">Status</span></th>
-                        <th><span className="header-title">Expiration Date</span></th>
                         <th><span className="header-title">Started</span></th>
+                        <th><span className="header-title">Expires On</span></th>
                         <th><span className="header-title">Actions</span></th>
                     </tr>
                     </thead>

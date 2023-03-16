@@ -1,9 +1,10 @@
-import React,{ useState } from 'react'
+import React,{ useState,useEffect } from 'react'
 import './Task.css'
 import PopUpAssign from "./PopUpAssign";
 import PopUpList from "./PopUpList";
 import UserList from "../projects/UsersList";
 import UpdateTask from "./UpdateTask";
+import Status from '../status/Status'
 
 
 const Task = ({taskItem, deleteTaskItem}) => {
@@ -11,13 +12,18 @@ const Task = ({taskItem, deleteTaskItem}) => {
     const [showList, setShowList] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
     const [updateTask, setUpdateTask] = useState(false);
+    const [date,setDate]=useState(
+        {
+            "createdDate":"",
+            "deadLine":""
+        }
+    );
 
     const handleShowAssign = () => {
         setShowDetails(true)
         setShowList(true);
         setShowAssign(false);
     }
-
     const handleShowUsers = () => {
         setShowDetails(true)
         setShowList(false);
@@ -28,27 +34,45 @@ const Task = ({taskItem, deleteTaskItem}) => {
         setShowAssign(false);
         setShowList(false);
     }
-    
+
+
+    useEffect(()=>{
+const setNewDate=(date)=>{
+setDate({
+    createdDate:date.createdDate,
+    deadLine:date.deadLine
+})
+}
+
+    const getDates=async()=>{
+        await fetch(`https://localhost:7029/dates/${taskItem.dateId}`)
+            .then((resp)=>resp.json())
+            .then((resp)=>{setNewDate(resp)
+                setTimeout(() => {
+                }, 3000);
+            })
+    }
+
+    getDates()
+    console.log(date)
+},[ ])
+
+
     return (
         <>
    
             <tr className="task-content" >
                 <td >
-                    <p>name</p>
+                    <p>{taskItem.name}</p>
                 </td>
                 <td>
                     <p>{taskItem.description}</p>
                 </td>
                 <td>
-                    <select className="task-status-dropdown">
-                        <option value='notStarted'>Not Started</option>
-                        <option value='inProgress'>In Progress</option>
-                        <option value='review'>Review</option>
-                        <option value='done'>Done</option>
-                    </select>
+                    <Status />
                 </td>
-                <td>2023-05-10</td>
-                <td>2023-01-10</td>
+                <td>{date.createdDate}</td>
+                <td>{date.deadLine}</td>
                 <td>                    
                     <div className="task-button-container">
                         <div className="task-show-more-button">
