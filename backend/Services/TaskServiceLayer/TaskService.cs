@@ -2,6 +2,7 @@
 using backend.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace backend.Services.TaskServiceLayer;
 
@@ -61,20 +62,34 @@ public class TaskService : ITaskService
         return user;
     }
 
+    public async Task<TaskItem> AddNoteToTask(long taskId, TaskItemNotes note)
+    {
+        var taskToUpdate = await _context.Tasks.FirstAsync(t => t.Id == taskId);
+        _context.Entry(taskToUpdate).Property(d => d.Notes).CurrentValue.Add(note);
+        await _context.SaveChangesAsync();
+        return taskToUpdate;
+
+    }
+
+
     public async Task<TaskItem> CreateTask(long projectId, TaskItem task)
     {
        var projectToAddTask = await _context.Projects.FirstOrDefaultAsync(p => p.Id == projectId);
-       
-       if (projectToAddTask != null)
+        
+        Console.WriteLine(task);
+
+        if (projectToAddTask != null)
        {
-
-           projectToAddTask.Tasks?.Add(task);
-       }
+           projectToAddTask.Tasks.Add(task);
+           await _context.SaveChangesAsync();
+        }
        
-       await _context.SaveChangesAsync();
-
        return task;
     }
+
+
+
+
 
     public async Task<TaskItem> UpdateTask(TaskItem task, long id)
     {
