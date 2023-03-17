@@ -15,6 +15,8 @@ public class RemotivateContext : DbContext
     public DbSet<User> Users { get; set; }
 
     public DbSet<RefreshToken> RefreshTokens { get; set; }
+
+    public DbSet<TaskItemNotes> TaskItemNotes { get; set; }
     
     public RemotivateContext(DbContextOptions<RemotivateContext> options) : base(options)
     {

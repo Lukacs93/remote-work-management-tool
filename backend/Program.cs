@@ -4,6 +4,7 @@ using backend.Data;
 using backend.Models;
 using backend.Services.Authenticators;
 using backend.Services.PasswordHashers;
+using backend.Services.DateServiceLayer;
 using backend.Services.ProjectServiceLayer;
 using backend.Services.RefreshTokenServiceLayer;
 using backend.Services.TaskServiceLayer;
@@ -23,6 +24,7 @@ builder.Services.AddDbContext<RemotivateContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -57,6 +59,7 @@ builder.Services.AddSingleton<IRefreshTokenService, InMemoryRefreshTokenService>
 builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IDateService, DateService>();
 
 // builder.Services.AddAuthentication(o =>
 // {

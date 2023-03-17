@@ -2,16 +2,20 @@ import React from 'react'
 import { useState , useEffect } from 'react'
 import './TaskList.css'
 import Task from "./Task";
+import { useParams } from 'react-router-dom';
 
-const TaskList = () =>
+const TaskList = (props) =>
 {
+    const params=useParams()
     const [taskItems, setTaskItems] = useState([])
+    const [reload,doReload]=useState(false);
     const [deletedItemId, setDeletedItemId] = useState(null);
     const [showForm, setShowForm] = useState(false);
     const [isSubmit, setIsSubmit] = useState(false)
     const [form, setForm] = useState({
-        dateId: 1,
-        projectId: 5,
+        name:"",
+        deadLine:"",
+        projectId: params.id,
         description: "",
         note: "Empty note",
         taskStatus: 1
@@ -19,8 +23,8 @@ const TaskList = () =>
 
     const onSubmit = async (e) => {
         e.preventDefault();
-       console.log(form)
-        await fetch('https://localhost:7029/projects/1/add-task', {
+console.log(form)
+        await fetch(`https://localhost:7029/projects/${params.id}/add-task`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -37,7 +41,7 @@ const TaskList = () =>
 
     useEffect(() => {
         const getTaskItems = async () => {
-            const response = await fetch(`https://localhost:7029/tasks`);
+            const response = await fetch(`https://localhost:7029/projects/tasks/${params.id}`);
 
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
@@ -50,7 +54,7 @@ const TaskList = () =>
         }
 
         getTaskItems();
-    }, [isSubmit]);
+    }, [isSubmit,reload]);
 
     const deleteTaskItem = async (id) => {
         setDeletedItemId(id);
@@ -109,6 +113,19 @@ const TaskList = () =>
                                     id="title"
                                     placeholder="title"
                                     className="add-task-input"
+                                    onChange={(e) => setForm({...form, name: e.target.value})}
+                                    // value={inputTitle}
+                                />
+                                <label htmlFor="title" className="description-label">
+                                    Dead Line: (DD/MM/YYYY)
+                                </label>
+                                 <input
+                                    type="text"
+                                    name="deadLine"
+                                    id="deadLine"
+                                    placeholder="DD/MM/YYYY"
+                                    className="add-task-input"
+                                    onChange={(e) => setForm({...form, deadLine: e.target.value})}
                                     // value={inputTitle}
                                 />
                                 <label className="description-label" htmlFor="description">
@@ -145,8 +162,8 @@ const TaskList = () =>
                         <th><span className="header-title">Name</span></th>
                         <th><span className="header-title">Description</span></th>
                         <th><span className="header-title">Status</span></th>
-                        <th><span className="header-title">Expiration Date</span></th>
                         <th><span className="header-title">Started</span></th>
+                        <th><span className="header-title">Expires On</span></th>
                         <th><span className="header-title">Actions</span></th>
                     </tr>
                     </thead>
@@ -158,7 +175,7 @@ const TaskList = () =>
                                 // {deletedItemId === taskItem.id  ? 
                                 //     <p className="delete-message">Task Successfully Deleted</p>
                                 //      :
-                                <Task taskItem={taskItem} deleteTaskItem={deleteTaskItem} key={taskItem.id}/>
+                                <Task taskItem={taskItem} deleteTaskItem={deleteTaskItem} doReload={doReload} key={taskItem.id}/>
                                 // }
                                 // </div>
                             )

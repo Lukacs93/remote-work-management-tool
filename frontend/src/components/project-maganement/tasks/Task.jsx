@@ -1,23 +1,29 @@
-import React,{ useState } from 'react'
+import React,{ useState,useEffect } from 'react'
 import './Task.css'
 import PopUpAssign from "./PopUpAssign";
 import PopUpList from "./PopUpList";
 import UserList from "../projects/UsersList";
 import UpdateTask from "./UpdateTask";
+import Status from '../status/Status'
 
 
-const Task = ({taskItem, deleteTaskItem}) => {
+const Task = ({taskItem, deleteTaskItem, doReload}) => {
     const [showAssign, setShowAssign] = useState(false);
     const [showList, setShowList] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
     const [updateTask, setUpdateTask] = useState(false);
+    const [date,setDate]=useState(
+        {
+            "createdDate":"",
+            "deadLine":""
+        }
+    );
 
     const handleShowAssign = () => {
         setShowDetails(true)
         setShowList(true);
         setShowAssign(false);
     }
-
     const handleShowUsers = () => {
         setShowDetails(true)
         setShowList(false);
@@ -28,32 +34,47 @@ const Task = ({taskItem, deleteTaskItem}) => {
         setShowAssign(false);
         setShowList(false);
     }
-    
+
+
+    useEffect(()=>{
+const setNewDate=(date)=>{
+setDate({
+    createdDate:date.createdDate,
+    deadLine:date.deadLine
+})
+}
+
+    const getDates=async()=>{
+        await fetch(`https://localhost:7029/dates/${taskItem.dateId}`)
+            .then((resp)=>resp.json())
+            .then((resp)=>{setNewDate(resp)
+                setTimeout(() => {
+                }, 3000);
+            })
+    }
+
+    getDates()
+    console.log(date)
+},[ ])
+
+
     return (
         <>
    
             <tr className="task-content" >
                 <td >
-                    <p>name</p>
+                    <p>{taskItem.name}</p>
                 </td>
                 <td>
                     <p>{taskItem.description}</p>
                 </td>
                 <td>
-                    <select className="task-status-dropdown">
-                        <option value='notStarted'>Not Started</option>
-                        <option value='inProgress'>In Progress</option>
-                        <option value='review'>Review</option>
-                        <option value='done'>Done</option>
-                    </select>
+                    <Status />
                 </td>
-                <td>2023-05-10</td>
-                <td>2023-01-10</td>
+                <td>{date.createdDate}</td>
+                <td>{date.deadLine}</td>
                 <td>                    
                     <div className="task-button-container">
-                        <div className="task-show-more-button">
-                            <div className="task-action-button">Edit</div>
-                        </div>
                         <div className="task-show-more-button">
                             <div className="task-action-button" onClick={handleShowUsers}>Assign</div>
                         </div>
@@ -81,7 +102,6 @@ const Task = ({taskItem, deleteTaskItem}) => {
 
                             <div className="task-details-btn-container">
                                 <div>
-                                    <button className='single-task-button'>Task</button>
                                     <button className='single-task-button' onClick={() => setUpdateTask(!updateTask)}>Edit</button>
                                     <button className='single-task-button' onClick={() => setShowAssign(!showAssign)}>Assign</button>
                                     <button className='single-task-button' onClick={() => setShowList(!showList)}>Users</button>
@@ -97,7 +117,7 @@ const Task = ({taskItem, deleteTaskItem}) => {
                             </div>
                             <div className="task-details-container">
                                 {updateTask &&
-                                    <UpdateTask taskItem={taskItem}/>
+                                    <UpdateTask doReload={doReload} taskItem={taskItem}/>
                                 }
                                 {showList ? (
 
@@ -110,25 +130,19 @@ const Task = ({taskItem, deleteTaskItem}) => {
                                             :
                                             <div>
                                                 <div className="task-description">
-                                                    <h2>Project Details</h2>
-                                                    <span>Purpose of the project is to improve organizational efficiency, increase
-                                                        profitability, reduce costs, or create new business opportunities. It may
-                                                        involve the development of new products or services, the implementation of
-                                                        new technology or processes, or the expansion of existing operations into
-                                                        new markets or geographies.
+                                                    <h2>Task Details</h2>
+                                                    <span>{taskItem.description}
                                                     </span>
                                                 </div>
                                                     <div className="task-details">
-                                                        <div className="task-id">Task ID: {taskItem.id}</div>
+                                                        <div className="task-id">Task name: {taskItem.name}</div>
                                                         <div className="">Project: </div>
-                                                        <div className="task-id">Name: Lorem Ipsum</div>
-                                                        <div>Description: {taskItem.description}</div>
-                                                        <div className="">Team members: {taskItem.usersOnTask.map(user => `${user.firstName} ${user.lastName}`).join(', ')}</div>
-                                                        <div className="task-status">Project Status: {
+                                                        <div className="">Task members: {taskItem.usersOnTask.map(user => `${user.firstName} ${user.lastName}`).join(', ')}</div>
+                                                        <div className="task-status">Task Status: {
                                                             taskItem.taskStatus === 1 ? "In Progress"
-                                                                : taskItem.taskStatus === 1 ? "Review"
-                                                                    : taskItem.taskStatus === 1 ? "Done" 
-                                                                        :"Not Started"
+                                                                : taskItem.taskStatus === 2 ? "Review"
+                                                                    : taskItem.taskStatus === 3 ? "Done" 
+                                                                        : "Not Started"
                                                         }
                                                         </div>
                                                     </div>

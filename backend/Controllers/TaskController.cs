@@ -33,15 +33,30 @@ public class TaskController : ControllerBase
     {
         return await _taskService.GetUsersByTaskId(id);
     }
+
+
+
+
     [HttpPost("/projects/{projectId:long}/add-task")]
     public async Task<TaskItem> CreateTask(long projectId, [FromBody] TaskItem task)
     {
+        
         return await _taskService.CreateTask(projectId, task);
     }
-    [HttpPut("{id:long}")]
-    public async Task<List<User>> AddUserToTask(long id, [FromBody] User user)
+
+
+    [HttpPost("/{taskId:long}/add-note")]
+    public async Task<TaskItem> AddNoteToTask(long taskId, [FromBody] TaskItemNotes task)
     {
-        return await _taskService.AddUserToTask(id, user);
+        return await _taskService.AddNoteToTask(taskId, task);
+    }
+
+
+    [HttpPut("{id:long}")]
+    public async Task AddUserToTask(long id, [FromBody] User user)
+    {
+        await _taskService.AddUserToTask(id, user);
+        Console.WriteLine("Successfully added User to Task");
     }
     [HttpPut("/task/{id}")]
     public async Task<TaskItem> UpdateTask([FromBody] TaskItem task, long id)

@@ -1,22 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
+import Status from '../status/Status'
 
-const UpdateTask = ({ taskItem }) =>
+const UpdateTask = ({ taskItem,doReload }) =>
 {
     const [showSuccessText, setShowSuccessText] = useState(false)
     
     const [form,setForm] = useState (
         {
             "id": taskItem.id,
-            "dateId": 0,
-            "projectId": 20,
-            "description": "",
-            "note": "Empty Note",
-            "taskStatus": 0
+            "name":"",
+            "description":"",
+            "taskStatus":-1,
+            "dateId":taskItem.dateId,
+            "projectId":taskItem.projectId
         })
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+        console.log(form)
         await fetch(`https://localhost:7029/task/${taskItem.id}`,{
             method: 'PUT',
             headers: {
@@ -33,7 +34,20 @@ const UpdateTask = ({ taskItem }) =>
         }, 2000);
         
     }
-    
+    useEffect(()=>{
+
+doReload(true)
+setTimeout(() => {
+
+    doReload(false)
+}, 2000);
+    },[showSuccessText])
+
+
+const setStatus=(status)=>{
+    setForm({...form, taskStatus: parseInt(status)})
+}
+
     return (
         <div className="update-project-container">
             <div className="update-project-form-container">
@@ -42,22 +56,16 @@ const UpdateTask = ({ taskItem }) =>
                     :
                     <form className="update-project-form" onSubmit={handleSubmit}>
                         <h2>Edit Project</h2>
-                        <input className="update-project-input" id="DateID"
-                               placeholder='DateID'
-                               onChange={(e) => setForm({...form, dateId: parseInt(e.target.value)})}
-                        />
-                        <input className="update-project-input" id="ManagerID"
-                               placeholder='ManagerID'
-                               // onChange={(e) => setForm({...form, ManagerID: parseInt(e.target.value)})}
+                        <input className="update-project-input" id="description"
+                               placeholder='Name'
+                               onChange={(e) => setForm({...form, name: e.target.value})}
                         />
                         <input className="update-project-input" id="description"
                                placeholder='Description'
                                onChange={(e) => setForm({...form, description: e.target.value})}
                         />
-                        <input className="update-project-input" id="taskStatus"
-                               placeholder='Task Status'
-                               onChange={(e) => setForm({...form, taskStatus: parseInt(e.target.value)})}
-                        />
+                        <Status setStatus={setStatus}/>
+
                         <button className="update-project-submit-button" type="submit">Save</button>
                     </form>
                 }

@@ -1,5 +1,6 @@
 ﻿using backend.Data;
 using backend.Models.Entities;
+using backend.Services.DateServiceLayer;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.Services.ProjectServiceLayer;
@@ -7,58 +8,58 @@ namespace backend.Services.ProjectServiceLayer;
 public class ProjectService : IProjectService
 {
     private readonly RemotivateContext _context;
-
+    private readonly DateService _dateService;
     public ProjectService(RemotivateContext context)
     {
         _context = context;
+        _dateService = new DateService(_context);
     }
 
     public async Task<List<Project>> GetAllProjects()
     {
         return await _context.Projects
-            .Include(p => p.Tasks)
-            .Include(p => p.UsersInTheProject)
+            .Include(p => p.UsersOnProject)
             .ToListAsync();
     }
 
     public async Task<Project> GetProjectById(long id)
     {
-        Project hali = await _context.Projects
+        return await _context.Projects
             .Where(p => p.Id == id)
-            .Include(p => p.Tasks)
             .FirstAsync();
-
-        return hali;
     }
 
-
-    public async Task<Project> CreateProject(Project project)
+   public async Task<List<TaskItem>> GetTasksByProjectID(long id)
     {
+        Project projectList= await _context.Projects
+            .Include(p => p.Tasks)
+            .FirstAsync(p => p.Id == id);
+        List<TaskItem> tasks = new List<TaskItem>();
+        if(projectList.Tasks != null)
+        foreach (var task in projectList.Tasks)
+        {
+            tasks.Add(task);
+        }
+        return tasks;
+    }
+    public async Task<Project> CreateProject(string DeadLine, Project project)
+    {
+        project.DateId = await _dateService.CreateDate(project.Id, DeadLine, true);
+      
         _context.Projects.Add(project);
-        
         await _context.SaveChangesAsync();
 
         return await _context.Projects
             .Where(p => p.Id == project.Id)
-            .Include(p => p.Tasks)
             .FirstOrDefaultAsync() ?? throw new InvalidOperationException();
     }
 
     public async Task UpdateProject(Project project, long id)
     {
-        var updatedProject = await GetProjectById(id);
-        
-        // if (updatedProject != null)
-        // {
-        //     updatedProject.UsersInTheProject = project.UsersInTheProject;
-        //     updatedProject.ProjectStatus = project.ProjectStatus;
-        //     updatedProject.Tasks = project.Tasks;
-        //     updatedProject.DateId = project.DateId;
-        //     updatedProject.ManagerId = project.ManagerId;
-        //
-        // }
+        var updatedProject = await _context.Projects
+            .Where(p => p.Id == id)
+            .FirstAsync();
 
-        //project.Id = id;
         _context.Entry(updatedProject).CurrentValues.SetValues(project);
         await _context.SaveChangesAsync();
     }
@@ -68,5 +69,19 @@ public class ProjectService : IProjectService
         Project removedProject = await GetProjectById(id);
         _context.Projects.Remove(removedProject);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task AddUserToProject(long id, User user)
+    {
+        var projectToAddUser = await _context.Projects.FirstOrDefaultAsync(t => t.Id == id);
+
+        if (_context.Users.Any(i => i.Id == user.Id))
+        {
+            if (projectToAddUser != null)
+            {
+                projectToAddUser.UsersOnProject.Add(user);
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

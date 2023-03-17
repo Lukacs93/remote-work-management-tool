@@ -2,6 +2,7 @@
 using backend.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace backend.Services.TaskServiceLayer;
 
@@ -23,39 +24,34 @@ public class TaskService : ITaskService
     {
         return await _context.Tasks.FirstOrDefaultAsync(t => t.Id == id);
     }
-    public async Task<List<User>> GetUsersByTaskId(long id)
+    public async Task<List<User>?> GetUsersByTaskId(long id)
     {
         var task = await _context.Tasks.Include(t => t.UsersOnTask).FirstOrDefaultAsync(t => t.Id == id);
 
-        return task.UsersOnTask;
+        return task.UsersOnTask.ToList();
     }
-    public async Task<List<User>> AddUserToTask(long id, User user)
+
+
+    public async Task AddUserToTask(long id, User user)
     {
-        var taskToAddUser=await _context.Tasks.FirstOrDefaultAsync(p=> p.Id == id);
         
-        if(_context.Users.Any(i=>i.Id == user.Id))
+        var taskToAddUser = await _context.Tasks.FirstOrDefaultAsync(t => t.Id == id);
+
+        if (_context.Users.Any(i=>i.Id == user.Id))
         {
-            user =  _context.Users.First(i=>i.Id==user.Id);
-            
             if(taskToAddUser!=null)
             {
-                taskToAddUser.UsersOnTask?.Add(user);
+                taskToAddUser.UsersOnTask.Add(user);
                 await _context.SaveChangesAsync();
             }
-
         }
-        return await _context.Users.Where(u => u.Id == user.Id).Include(u => u.Tasks).ToListAsync();
     }
 
     public async Task<User> RemoveUserFromTask(long id, User user)
     {
         var taskToAddUser = await _context.Tasks.Include(t=>t.UsersOnTask).FirstOrDefaultAsync(p=> p.Id == id);
         var userToRemove =  await _context.Users.FirstOrDefaultAsync(p=> p.Id == user.Id);
-        
-        // if(_context.Users.Any(i=>i.Id == user.Id))
-        // {
-        //     user =  _context.Users.First(i=>i.Id==user.Id);
-        // }
+
         
         if(taskToAddUser != null && userToRemove != null)
         {
@@ -66,20 +62,34 @@ public class TaskService : ITaskService
         return user;
     }
 
+    public async Task<TaskItem> AddNoteToTask(long taskId, TaskItemNotes note)
+    {
+        var taskToUpdate = await _context.Tasks.FirstAsync(t => t.Id == taskId);
+        _context.Entry(taskToUpdate).Property(d => d.Notes).CurrentValue.Add(note);
+        await _context.SaveChangesAsync();
+        return taskToUpdate;
+
+    }
+
+
     public async Task<TaskItem> CreateTask(long projectId, TaskItem task)
     {
        var projectToAddTask = await _context.Projects.FirstOrDefaultAsync(p => p.Id == projectId);
-       
-       if (projectToAddTask != null)
-       {
-          // _context.Tasks.Add(task);
-           projectToAddTask.Tasks?.Add(task);
-       }
-       
-       await _context.SaveChangesAsync();
+        
+        Console.WriteLine(task);
 
+        if (projectToAddTask != null)
+       {
+           projectToAddTask.Tasks.Add(task);
+           await _context.SaveChangesAsync();
+        }
+       
        return task;
     }
+
+
+
+
 
     public async Task<TaskItem> UpdateTask(TaskItem task, long id)
     {

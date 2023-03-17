@@ -23,9 +23,15 @@ public class ProjectController : ControllerBase
 
     [Authorize(Roles = "Admin, ProjectManager")]
     [HttpPost]
-    public async Task CreateProject([FromBody] Project project)
+    public async Task CreateProject([FromBody] CreateProjectDTO projectDTO)
     {
-        await _projectService.CreateProject(project);
+        Project project = new Project();
+        project.Name = projectDTO.ProjectName;
+        project.ManagerId = projectDTO.ManagerId;
+        project.ProjectStatus= projectDTO.ProjectStatus;
+        project.Description = projectDTO.Description;
+
+        await _projectService.CreateProject(projectDTO.DeadLine, project);
     }
 
     [HttpGet("{id}")]
@@ -33,8 +39,13 @@ public class ProjectController : ControllerBase
     {
         return await _projectService.GetProjectById(id);
     }
+    [HttpGet("tasks/{id}")]
+    public async Task<List<TaskItem>> GetTasksByProjectID(long id)
+    {
+        return await _projectService.GetTasksByProjectID(id);
+    }
 
-    
+
     [HttpPut("{id}")]
     public async Task UpdateProject([FromBody] Project project, long id)
     {

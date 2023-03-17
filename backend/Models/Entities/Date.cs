@@ -7,12 +7,18 @@ namespace backend.Models.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
         
-        public DateTime CreatedDate { get; set; }
+        public string CreatedDate { get; set; }
 
-        public DateTime DeadLine { get; set; }
+        public string DeadLine { get; set; }
 
-        public DateTime? LatestModification { get; set; }
+        public string? LatestModification { get; set; }
 
-        public DateTime CompletedOn { get; set; }
+        public string? CompletedOn { get; set; }
+
+        public long? TaskId { get; set; }
+
+        public long? ProjectId { get; set; }
+
+
     }
 }
