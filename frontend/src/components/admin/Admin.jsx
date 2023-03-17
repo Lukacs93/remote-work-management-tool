@@ -43,9 +43,10 @@ const Admin = ({  }) => {
         });
         // setShowSuccessText(true)
 
+        if(response.ok) alert("User Successfully Registered")
         setTimeout(() => {
             // setShowSuccessText(false)
-            alert("User Successfully Registered")
+            
         }, 1000);
     }
     

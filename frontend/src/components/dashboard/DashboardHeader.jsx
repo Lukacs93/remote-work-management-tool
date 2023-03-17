@@ -2,7 +2,7 @@
 import './Dashboard.css'
 import {useLocation} from "react-router-dom";
 
-function Header({ sidebarOpen, toggleSidebar, handleLogout }) {
+function Header({ sidebarOpen, toggleSidebar, handleLogout, user }) {
     const location = useLocation();
     const { pathname } = location;
     const splitLocation = pathname.charAt(1).toUpperCase() + pathname.slice(2).split("/");
@@ -52,10 +52,12 @@ function Header({ sidebarOpen, toggleSidebar, handleLogout }) {
                 <div className="action dashboard-notification">
                     <div className="profile" onClick={menuToggle}>
                         {/*<img src="./assets/avatar.jpg"/>*/}
-                        L A
+                        {user && user['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'].toString().charAt(0).toUpperCase()}
                     </div>
                     <div className="menu">
-                        <h3>Lukacs Laszlo<br/><span>Developer</span></h3>
+                        <h3>{user && user['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'].toString()}<br/>
+                            <span> {user && user['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']}</span>
+                        </h3>
                         <ul>
                             <li>
                                 <img src={require('../../assets/dashboard.png')} className="dashboard-icon" alt="dashboard" /><a href="#">My profile</a>

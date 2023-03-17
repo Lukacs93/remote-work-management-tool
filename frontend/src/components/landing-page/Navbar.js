@@ -10,7 +10,7 @@ const Navbar = () => {
                 <ul className="nav-links">
                     <input type="checkbox" id="checkbox_toggle" />
                     <label htmlFor="checkbox_toggle" className="hamburger">&#9776;</label>
-                    <div className="menu">
+                    <div className="landing-page-menu">
                         <li><a href="/">Home</a></li>
                         <li><a href="/">About</a></li>
                         <li className="services">

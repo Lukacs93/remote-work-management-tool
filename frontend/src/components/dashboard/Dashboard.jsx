@@ -21,7 +21,7 @@ const Dashboard = ({ user, handleLogout }) => {
 
     return (
         <>
-            <Header sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} handleLogout={handleLogout}/>
+            <Header sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} handleLogout={handleLogout} user={user}/>
             <div className={`dashboard-container ${sidebarOpen ? '' : 'sidebar-closed'}`}>
                 <div className="minimize-menu">
                     <button className="minimize-menu-button" onClick={toggleSidebar} type="button">
@@ -55,10 +55,6 @@ const Dashboard = ({ user, handleLogout }) => {
                                     </div>
                              
                             </Link>
-
-                          
-
-              
                         }
                         <Link to="/dashboard" className={`dashboard-button-container ${activeButton === 'dashboard' ? 'active' : ''}`} onClick={() => setActiveButton('dashboard')} role="button">
                             <div className="dashboard-icon-container">

@@ -37,7 +37,9 @@ const CreateProject = (props) =>
         <div className="add-task-form-container">
             <div>
                 {showSuccessText ?
-                    props.user['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === 'Admin' ?
+                    props.user['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === 'Admin'
+                        || props.user['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === 'ProjectManager'
+                        ?
                         <p className="success-message">Project Successfully Created</p> 
                         :   
                         <p className="success-message error-message">You dont have permission to create a project</p>

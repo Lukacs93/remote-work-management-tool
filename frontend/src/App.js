@@ -26,7 +26,7 @@ function App() {
             setToken(token)
         }
     }, []);
-    
+
     const handleLogin = (responseToken) => {
 
         if (responseToken) {
@@ -57,7 +57,10 @@ function App() {
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/login" element={<Login handleLogin={handleLogin}/>} />
                 <Route element={<ProtectedRoutes isProtected={user} />}>
-                    <Route path="/admin" element={[<Dashboard user={user} handleLogout={handleLogout}/>, <Admin />]} />
+                    {user && user[userRole] === "Admin" &&
+                        <Route path="/admin"
+                               element={[<Dashboard user={user} handleLogout={handleLogout}/>, <Admin/>]}/>
+                    }
                     <Route path="/dashboard" element={<Dashboard user={user} handleLogout={handleLogout}/>} />
                     <Route path="/projects" element={[<Dashboard user={user} handleLogout={handleLogout}/>,
                         <ProjectDashboard user={user} token={token}/>]} />

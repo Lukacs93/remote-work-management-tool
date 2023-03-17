@@ -1,6 +1,7 @@
 ﻿using backend.Models.Entities;
 using backend.Services.TaskServiceLayer;
 using backend.Services.UserServiceLayer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers
@@ -27,6 +28,7 @@ namespace backend.Controllers
             return await _userService.GetUserById(id);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost("add-user")]
         public async Task<User> CreateUser([FromBody] User user)
         {

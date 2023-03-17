@@ -41,13 +41,13 @@ li {
     font-size: 32px;
 }
 
-.menu {
+.landing-page-menu {
     display: flex;
     gap: 1em;
     font-size: 18px;
 }
 
-.menu li:hover {
+.landing-page-menu li:hover {
     /* background-color: #51A9E1;
     border-radius: 5px; */
     transition: 1s ease;
@@ -58,7 +58,7 @@ li {
     /* transition: color .12s linear,background-color .12s linear,border-color .12s linear; */
 }
 
-.menu li {
+.landing-page-menu li {
     padding: 5px 14px;
 }
 
@@ -105,7 +105,7 @@ display: none;
 }
 
 @media (max-width: 768px) {
-    .menu { 
+    .landing-page-menu { 
         display:none;
         position: absolute;
         background-color:#51A9E1;
@@ -117,16 +117,16 @@ display: none;
         color: #92C9EC;
     }
 
-    .menu li:hover {
+    .landing-page-menu li:hover {
         display: inline-block;
         transition: 0.3s ease;
     }
 
-    .menu li + li {
+    .landing-page-menu li + li {
         margin-top: 12px;
     }
 
-    input[type=checkbox]:checked ~ .menu{
+    input[type=checkbox]:checked ~ .landing-page-menu{
         display: block;
     }
 

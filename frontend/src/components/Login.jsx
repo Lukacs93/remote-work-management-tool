@@ -23,7 +23,6 @@ function Login({ handleLogin }) {
         }
 
         const data = await response.json();
-        console.log(data)
         
         handleLogin(data.accessToken)
     }
