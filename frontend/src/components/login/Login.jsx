@@ -1,4 +1,5 @@
 ﻿import React, {useEffect, useState} from "react";
+import "./Login.css"
 
 function Login({ handleLogin }) {
     const [userName, setUserName] = useState("");
@@ -29,26 +30,30 @@ function Login({ handleLogin }) {
     
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                UserName:
+        <form onSubmit={handleSubmit} className="login-form-container">
+            <h2>Login to your account</h2>
+
+            <div className="login-input-parent">
+                <label htmlFor="username">Username</label>
                 <input
                     type="userName"
                     value={userName}
                     onChange={(event) => setUserName(event.target.value)}
+                    required
                 />
-            </label>
-            <br />
-            <label>
-                Password:
+            </div>
+
+            <div className="login-input-parent">
+                <label htmlFor="password">Password</label>
                 <input
                     type="password"
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
+                    required
                 />
-            </label>
-            <br />
-            <button type="submit">Login</button>
+            </div>
+
+            <button className="login-button" type="submit">Login</button>
         </form>
     );
 }

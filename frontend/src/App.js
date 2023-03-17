@@ -6,7 +6,7 @@ import TaskList from "./components/project-maganement/tasks/TaskList";
 import Dashboard from "./components/dashboard/Dashboard";
 import LandingPage from "./components/landing-page/LandingPage";
 import ProjectDashboard from "./components/project-maganement/ProjectDashboard";
-import Login from "./components/Login";
+import Login from "./components/login/Login";
 import Profile from "./components/Profile";
 import ProtectedRoutes from "./components/auth/ProtectedRoutes";
 import Admin from "./components/admin/Admin";
