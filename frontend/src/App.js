@@ -28,7 +28,7 @@ function App() {
     }, []);
 
     const handleLogin = (responseToken) => {
-
+user && console.log(user.userID)
         if (responseToken) {
             localStorage.setItem("token", responseToken);
             const decodedToken = jwt_decode(responseToken);
@@ -64,6 +64,7 @@ function App() {
                     <Route path="/dashboard" element={<Dashboard user={user} handleLogout={handleLogout}/>} />
                     <Route path="/projects" element={[<Dashboard user={user} handleLogout={handleLogout}/>,
                         <ProjectDashboard user={user} token={token}/>]} />
+                    <Route path="/tasks/:id" element={[<Dashboard user={user} handleLogout={handleLogout}/>, <TaskList />]} />
                     <Route path="/tasks" element={[<Dashboard user={user} handleLogout={handleLogout}/>, <TaskList />]} />
                 </Route>
             </Routes>

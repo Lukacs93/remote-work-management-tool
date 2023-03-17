@@ -25,7 +25,7 @@ const Project = (props) => {
             props.setIsSubmit(!props.IsSubmit)
             setShowSuccessText(false)
         }, 2000);
-    }
+    
     }
 
     const [dates,setDates]=useState()

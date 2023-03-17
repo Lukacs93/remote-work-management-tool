@@ -12,8 +12,8 @@ using backend.Data;
 namespace backend.Data.Migrations
 {
     [DbContext(typeof(RemotivateContext))]
-    [Migration("20230315221322_AddMoreUserDerails")]
-    partial class AddMoreUserDerails
+    [Migration("20230317025928_UpdateEntities")]
+    partial class UpdateEntities
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,12 +30,12 @@ namespace backend.Data.Migrations
                     b.Property<long>("CurrentProjectsId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("UsersInTheProjectId")
+                    b.Property<long>("UsersOnProjectId")
                         .HasColumnType("bigint");
 
-                    b.HasKey("CurrentProjectsId", "UsersInTheProjectId");
+                    b.HasKey("CurrentProjectsId", "UsersOnProjectId");
 
-                    b.HasIndex("UsersInTheProjectId");
+                    b.HasIndex("UsersOnProjectId");
 
                     b.ToTable("ProjectUser");
                 });
@@ -63,17 +63,25 @@ namespace backend.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<DateTime>("CompletedOn")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("CompletedOn")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("CreatedDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DeadLine")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("DeadLine")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("LatestModification")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("LatestModification")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("ProjectId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("TaskId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -88,11 +96,19 @@ namespace backend.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("DateId")
+                    b.Property<long?>("DateId")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("ManagerId")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ProjectStatus")
                         .HasColumnType("int");
@@ -117,7 +133,7 @@ namespace backend.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Note")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -132,6 +148,31 @@ namespace backend.Data.Migrations
                     b.HasIndex("ProjectId");
 
                     b.ToTable("Tasks");
+                });
+
+            modelBuilder.Entity("backend.Models.Entities.TaskItemNotes", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Note")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("TaskItemId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UserWhoCreated")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TaskItemId");
+
+                    b.ToTable("TaskItemNotes");
                 });
 
             modelBuilder.Entity("backend.Models.Entities.User", b =>
@@ -155,6 +196,10 @@ namespace backend.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -195,7 +240,7 @@ namespace backend.Data.Migrations
 
                     b.HasOne("backend.Models.Entities.User", null)
                         .WithMany()
-                        .HasForeignKey("UsersInTheProjectId")
+                        .HasForeignKey("UsersOnProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -224,9 +269,21 @@ namespace backend.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("backend.Models.Entities.TaskItemNotes", b =>
+                {
+                    b.HasOne("backend.Models.Entities.TaskItem", null)
+                        .WithMany("Notes")
+                        .HasForeignKey("TaskItemId");
+                });
+
             modelBuilder.Entity("backend.Models.Entities.Project", b =>
                 {
                     b.Navigation("Tasks");
+                });
+
+            modelBuilder.Entity("backend.Models.Entities.TaskItem", b =>
+                {
+                    b.Navigation("Notes");
                 });
 #pragma warning restore 612, 618
         }

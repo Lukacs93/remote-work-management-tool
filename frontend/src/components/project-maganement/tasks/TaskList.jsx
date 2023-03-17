@@ -41,8 +41,12 @@ console.log(form)
 
     useEffect(() => {
         const getTaskItems = async () => {
-            const response = await fetch(`https://localhost:7029/projects/tasks/${params.id}`);
-
+            const response = await fetch(`https://localhost:7029/projects/tasks/${params.id}`,{
+                method: 'GET',
+                    headers: {
+                    'Authorization' : `Bearer ${localStorage.getItem("token")}`,
+                }})
+                
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
                 window.alert(message);
@@ -66,8 +70,11 @@ console.log(form)
         }, 2000);
 
         await fetch(`https://localhost:7029/tasks/${id}`, {
-            method: "DELETE"
-        });        
+            method: "DELETE",
+            headers: {
+            'Authorization' : `Bearer ${localStorage.getItem("token")}`
+            
+        }});        
     }
 
     const handleCreateNewTask = () => {

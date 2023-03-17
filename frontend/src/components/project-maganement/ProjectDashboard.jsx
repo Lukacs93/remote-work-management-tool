@@ -2,18 +2,21 @@ import React, {  useState } from 'react'
 import CreateProject from './projects/CreateProject.jsx'
 import ProjectList from './projects/ProjectList.jsx'
 import './ProjectDashboard.css'
+import jwt_decode from "jwt-decode";
 
-const ProjectDashboard = ({ user, token, props }) =>
+const ProjectDashboard = ({ user, token }) =>
 {
     const [Option, changeOption]=useState("none")
     const [isSubmit, setIsSubmit] = useState(false)
     const [showForm, setShowForm] = useState(false)
+    const jwtToken = localStorage.getItem("token");
+    const userID = jwt_decode(jwtToken).id;
     
     const handleCreateNewTask = () => {
         setShowForm(!showForm)
         setIsSubmit(!isSubmit)
     }
-    
+    console.log(userID)
     return (
         <div className="project-list-wrapper">
             <div className="project-list-action-button-container">
@@ -42,13 +45,13 @@ const ProjectDashboard = ({ user, token, props }) =>
                         showForm={showForm}
                         isSubmit={isSubmit}
                         setIsSubmit={setIsSubmit}
-                        user={props.userid}
+                        user={user.id}
                         className='add-task-form-container'
                     />
                 </div> 
             )}
             <div>
-                <ProjectList userid={props.userid} token={token} isSubmit={isSubmit} setIsSubmit={setIsSubmit} />
+                <ProjectList userid={user.id} token={token} isSubmit={isSubmit} setIsSubmit={setIsSubmit} />
             </div>
     </div>
     )

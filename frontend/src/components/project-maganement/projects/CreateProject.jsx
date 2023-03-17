@@ -65,13 +65,13 @@ return day > 0 && day <= monthLength[month - 1];
             alert('Invalid date format!')
         }
     }
-    
+    console.log(props.loggedInUser['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'])
     return (
         <div className="add-task-form-container">
             <div>
                 {showSuccessText ?
-                    props.user['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === 'Admin'
-                        || props.user['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === 'ProjectManager'
+                   props.loggedInUser && props.loggedInUser['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === 'Admin'
+                        || props.loggedInUser['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === 'ProjectManager'
                         ?
                         <p className="success-message">Project Successfully Created</p> 
                         :   

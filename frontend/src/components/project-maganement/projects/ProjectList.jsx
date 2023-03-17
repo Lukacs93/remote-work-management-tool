@@ -41,8 +41,6 @@ const ProjectList = (prop) =>
 
     useEffect(()=>
     {
-
-
         const getUser=async()=>{
             await fetch(`https://localhost:7029/users/${prop.userid}`)
                 .then((resp)=>resp.json())
@@ -51,15 +49,35 @@ const ProjectList = (prop) =>
                     }, 3000);
                 })
         }
-        const getProjects = async() => { 
-            await fetch(`https://localhost:7029/projects`)
-                .then((resp)=>resp.json())
-                .then((resp)=>{setProjects(resp)
+        // const getProjects = async() => { 
+        //     await fetch(`https://localhost:7029/projects`)
+        //         .then((resp)=>resp.json())
+        //         .then((resp)=>{setProjects(resp)
+        //             setTimeout(() => {
+        //             setIsLoading("done")
+        //             }, 1000);
+        //         })
+        // }
+        async function getProjects() {
+                    const response = await fetch(`https://localhost:7029/projects`, {
+                        method: "GET",
+                        headers: {
+                            "Authorization": `Bearer ${localStorage.getItem("token")}`
+                        }
+                    });
+
+                    if (!response.ok) {
+                        const message = `An error occurred: ${response.statusText}`;
+                        alert(message);
+                        return;
+                    }
+
+                    const result = await response.json();
+                    setProjects(result)
                     setTimeout(() => {
-                    setIsLoading("done")
+                        setIsLoading("done")
                     }, 1000);
-                })
-        }
+                }
 
         getUser()
         getProjects()

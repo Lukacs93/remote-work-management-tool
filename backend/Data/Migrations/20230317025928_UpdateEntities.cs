@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace backend.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class AddMoreUserDerails : Migration
+    public partial class UpdateEntities : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,10 +17,12 @@ namespace backend.Data.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DeadLine = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LatestModification = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CompletedOn = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    CreatedDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DeadLine = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LatestModification = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CompletedOn = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TaskId = table.Column<long>(type: "bigint", nullable: true),
+                    ProjectId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -33,9 +35,11 @@ namespace backend.Data.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DateId = table.Column<long>(type: "bigint", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ManagerId = table.Column<long>(type: "bigint", nullable: false),
-                    ProjectStatus = table.Column<int>(type: "int", nullable: true)
+                    DateId = table.Column<long>(type: "bigint", nullable: true),
+                    ProjectStatus = table.Column<int>(type: "int", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -65,7 +69,8 @@ namespace backend.Data.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -78,10 +83,10 @@ namespace backend.Data.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DateId = table.Column<long>(type: "bigint", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProjectId = table.Column<long>(type: "bigint", nullable: false),
+                    DateId = table.Column<long>(type: "bigint", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Note = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TaskStatus = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -100,11 +105,11 @@ namespace backend.Data.Migrations
                 columns: table => new
                 {
                     CurrentProjectsId = table.Column<long>(type: "bigint", nullable: false),
-                    UsersInTheProjectId = table.Column<long>(type: "bigint", nullable: false)
+                    UsersOnProjectId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProjectUser", x => new { x.CurrentProjectsId, x.UsersInTheProjectId });
+                    table.PrimaryKey("PK_ProjectUser", x => new { x.CurrentProjectsId, x.UsersOnProjectId });
                     table.ForeignKey(
                         name: "FK_ProjectUser_Projects_CurrentProjectsId",
                         column: x => x.CurrentProjectsId,
@@ -112,11 +117,31 @@ namespace backend.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProjectUser_Users_UsersInTheProjectId",
-                        column: x => x.UsersInTheProjectId,
+                        name: "FK_ProjectUser_Users_UsersOnProjectId",
+                        column: x => x.UsersOnProjectId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TaskItemNotes",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserWhoCreated = table.Column<long>(type: "bigint", nullable: false),
+                    Note = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TaskItemId = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TaskItemNotes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TaskItemNotes_Tasks_TaskItemId",
+                        column: x => x.TaskItemId,
+                        principalTable: "Tasks",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -144,9 +169,14 @@ namespace backend.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProjectUser_UsersInTheProjectId",
+                name: "IX_ProjectUser_UsersOnProjectId",
                 table: "ProjectUser",
-                column: "UsersInTheProjectId");
+                column: "UsersOnProjectId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TaskItemNotes_TaskItemId",
+                table: "TaskItemNotes",
+                column: "TaskItemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TaskItemUser_UsersOnTaskId",
@@ -170,6 +200,9 @@ namespace backend.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "RefreshTokens");
+
+            migrationBuilder.DropTable(
+                name: "TaskItemNotes");
 
             migrationBuilder.DropTable(
                 name: "TaskItemUser");
