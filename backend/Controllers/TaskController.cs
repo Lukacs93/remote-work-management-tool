@@ -33,10 +33,13 @@ public class TaskController : ControllerBase
     {
         return await _taskService.GetUsersByTaskId(id);
     }
-
-
-
-
+    
+    [HttpGet("/my-tasks")]
+    public async Task<List<TaskItem>> GetTasksByUserId([FromBody] long id)
+    {
+        return await _taskService.GetTasksByUserId(id);
+    }
+    
     [HttpPost("/projects/{projectId:long}/add-task")]
     public async Task<TaskItem> CreateTask(long projectId, [FromBody] TaskItem task)
     {

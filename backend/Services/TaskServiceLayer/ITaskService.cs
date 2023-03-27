@@ -8,6 +8,7 @@ public interface ITaskService
     Task<List<TaskItem>> GetAllTasks();
     Task<TaskItem?> GetTaskById(long id);
     Task<List<User>> GetUsersByTaskId(long id);
+    Task<List<TaskItem>> GetTasksByUserId(long userId);
     Task<List<User>> AddUserToTask(long id, long userId);
     Task<User> RemoveUserFromTask(long id, User user);
     Task<TaskItem> CreateTask(long projectId, TaskItem task);

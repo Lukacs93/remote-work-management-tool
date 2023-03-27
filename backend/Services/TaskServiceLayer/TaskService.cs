@@ -29,6 +29,12 @@ public class TaskService : ITaskService
 
         return task.UsersOnTask;
     }
+
+    public async Task<List<TaskItem>> GetTasksByUserId(long userId)
+    {
+        return await _context.Tasks.Where(t => t.UsersOnTask.Any(u => u.Id == userId)).ToListAsync();
+    }
+    
     public async Task<List<User>> AddUserToTask(long id, long userId)
     {
         // var taskToAddUser=await _context.Tasks.FirstOrDefaultAsync(p=> p.Id == id);
