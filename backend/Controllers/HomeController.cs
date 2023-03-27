@@ -16,6 +16,6 @@ public class HomeController : Controller
         string email = HttpContext.User.FindFirstValue(ClaimTypes.Email);
         string username = HttpContext.User.FindFirstValue(ClaimTypes.Name);
         
-        return Ok();
+        return Ok("Secured data");
     }
 }
