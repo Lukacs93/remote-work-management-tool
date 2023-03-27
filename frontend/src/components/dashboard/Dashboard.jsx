@@ -80,18 +80,18 @@ const Dashboard = ({ user, handleLogout }) => {
                                 <span>Projects</span>
                             </div>
                         </Link>
-                        {/*<Link to="/tasks" className={`dashboard-button-container ${activeButton === 'tasks' ? 'active' : ''}`} onClick={() => setActiveButton('tasks')} role="button">*/}
-                        {/*    <div className="dashboard-icon-container">*/}
-                        {/*        <svg className="dashboard-menu-icon">*/}
-                        {/*            <path*/}
-                        {/*                d="m11.99 18.54-7.37-5.73L3 14.07l9 7 9-7-1.63-1.27-7.38 5.74zM12 16l7.36-5.73L21 9l-9-7-9 7 1.63 1.27L12 16z">*/}
-                        {/*            </path>*/}
-                        {/*        </svg>*/}
-                        {/*    </div>*/}
-                        {/*    <div className="dashboard-menu-text">*/}
-                        {/*        <span>Tasks</span>*/}
-                        {/*    </div>*/}
-                        {/*</Link>*/}
+                        <Link to="/tasks/my-tasks" className={`dashboard-button-container ${activeButton === 'tasks' ? 'active' : ''}`} onClick={() => setActiveButton('tasks')} role="button">
+                            <div className="dashboard-icon-container">
+                                <svg className="dashboard-menu-icon">
+                                    <path
+                                        d="m11.99 18.54-7.37-5.73L3 14.07l9 7 9-7-1.63-1.27-7.38 5.74zM12 16l7.36-5.73L21 9l-9-7-9 7 1.63 1.27L12 16z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div className="dashboard-menu-text">
+                                <span>Tasks</span>
+                            </div>
+                        </Link>
                         <div className="dashboard-button-container" role="button">
                             <div className="dashboard-icon-container">
                                 <svg className="dashboard-menu-icon">

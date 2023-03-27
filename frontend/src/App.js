@@ -65,7 +65,7 @@ user && console.log(user.userID)
                     <Route path="/projects" element={[<Dashboard user={user} handleLogout={handleLogout}/>,
                         <ProjectDashboard user={user} token={token}/>]} />
                     <Route path="/tasks/:id" element={[<Dashboard user={user} handleLogout={handleLogout}/>, <TaskList />]} />
-                    <Route path="/tasks" element={[<Dashboard user={user} handleLogout={handleLogout}/>, <TaskList />]} />
+                    <Route path="/tasks/my-tasks" element={[<Dashboard user={user} handleLogout={handleLogout}/>, <TaskList />]} />
                 </Route>
             </Routes>
         </div>

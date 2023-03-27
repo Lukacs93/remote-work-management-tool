@@ -2,9 +2,10 @@ import React from 'react'
 import { useState , useEffect } from 'react'
 import './TaskList.css'
 import Task from "./Task";
-import { useParams } from 'react-router-dom';
+import {useLocation, useParams} from 'react-router-dom';
+import jwt_decode from "jwt-decode";
 
-const TaskList = (props) =>
+const TaskList = () =>
 {
     const params=useParams()
     const [taskItems, setTaskItems] = useState([])
@@ -21,9 +22,12 @@ const TaskList = (props) =>
         taskStatus: 1
     })
 
+    const token = localStorage.getItem("token");
+    const decodedToken = jwt_decode(token);
+    const location = useLocation();
+    
     const onSubmit = async (e) => {
         e.preventDefault();
-console.log(form)
         await fetch(`https://localhost:7029/projects/${params.id}/add-task`, {
             method: 'POST',
             headers: {
@@ -41,25 +45,33 @@ console.log(form)
 
     useEffect(() => {
         const getTaskItems = async () => {
-            const response = await fetch(`https://localhost:7029/projects/tasks/${params.id}`,{
-                method: 'GET',
-                    headers: {
-                    'Authorization' : `Bearer ${localStorage.getItem("token")}`,
-                }})
+            if (location.pathname.startsWith(`/tasks/${params.id}`)) {
+                const response = await fetch(
+                    `https://localhost:7029/projects/tasks/${params.id}`,{
+                        method: 'GET',
+                        headers: {
+                            'Authorization' : `Bearer ${localStorage.getItem("token")}`,
+                        }})
                 
-            if (!response.ok) {
-                const message = `An error occurred: ${response.statusText}`;
-                window.alert(message);
-                return;
+                const data = await response.json();
+                setTaskItems(data);
+                
+            } else if (location.pathname === "/tasks/my-tasks") {
+                const response = await fetch("https://localhost:7029/tasks/my-tasks", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        'Authorization' : `Bearer ${localStorage.getItem("token")}`
+                    },
+                    body: JSON.stringify(decodedToken.id),
+                });
+                const data = await response.json();
+                setTaskItems(data);
             }
-
-            const items = await response.json();
-            setTaskItems(items);
-        }
-
+        };
         getTaskItems();
-    }, [isSubmit,reload]);
-
+    }, [location.pathname, isSubmit, reload]);
+    
     const deleteTaskItem = async (id) => {
         setDeletedItemId(id);
         

@@ -34,7 +34,7 @@ public class TaskController : ControllerBase
         return await _taskService.GetUsersByTaskId(id);
     }
     
-    [HttpGet("/my-tasks")]
+    [HttpPost("user/{id:long}/my-tasks")]
     public async Task<List<TaskItem>> GetTasksByUserId([FromBody] long id)
     {
         return await _taskService.GetTasksByUserId(id);
