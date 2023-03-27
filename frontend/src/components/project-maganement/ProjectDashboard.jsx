@@ -45,13 +45,13 @@ const ProjectDashboard = ({ user, token }) =>
                         showForm={showForm}
                         isSubmit={isSubmit}
                         setIsSubmit={setIsSubmit}
-                        user={user.id}
+                        user={user && user.id}
                         className='add-task-form-container'
                     />
                 </div> 
             )}
             <div>
-                <ProjectList userid={user.id} token={token} isSubmit={isSubmit} setIsSubmit={setIsSubmit} />
+                <ProjectList userid={user && user.id} token={token} isSubmit={isSubmit} setIsSubmit={setIsSubmit} />
             </div>
     </div>
     )

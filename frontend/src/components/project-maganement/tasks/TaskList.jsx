@@ -63,7 +63,7 @@ const TaskList = () =>
                         "Content-Type": "application/json",
                         'Authorization' : `Bearer ${localStorage.getItem("token")}`
                     },
-                    body: JSON.stringify(decodedToken.id),
+                    body: JSON.stringify(decodedToken.id)
                 });
                 const data = await response.json();
                 setTaskItems(data);
