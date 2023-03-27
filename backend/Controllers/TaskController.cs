@@ -43,20 +43,10 @@ public class TaskController : ControllerBase
         
         return await _taskService.CreateTask(projectId, task);
     }
-
-
-    [HttpPost("/{taskId:long}/add-note")]
-    public async Task<TaskItem> AddNoteToTask(long taskId, [FromBody] TaskItemNotes task)
-    {
-        return await _taskService.AddNoteToTask(taskId, task);
-    }
-
-
     [HttpPut("{id:long}")]
-    public async Task AddUserToTask(long id, [FromBody] User user)
+    public async Task<List<User>> AddUserToTask(long id, [FromBody] long userId)
     {
-        await _taskService.AddUserToTask(id, user);
-        Console.WriteLine("Successfully added User to Task");
+        return await _taskService.AddUserToTask(id, userId);
     }
     [HttpPut("/task/{id}")]
     public async Task<TaskItem> UpdateTask([FromBody] TaskItem task, long id)

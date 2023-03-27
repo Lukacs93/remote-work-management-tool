@@ -4,7 +4,7 @@ const Status = ({setStatus}) =>
 {
 return(
 <div className='status-dropdown-container'>
-    <label>Status: 
+    <label>
 <select className="status-dropdown" 
 placeholder='Not Started'
 onChange={(e) => setStatus(e.target.value)}

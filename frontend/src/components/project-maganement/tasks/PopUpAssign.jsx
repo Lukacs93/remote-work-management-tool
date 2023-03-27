@@ -36,7 +36,7 @@ function PopUpAssign({ onClose, taskItem }) {
               "Content-Type": "application/json",
               'Authorization' : `Bearer ${localStorage.getItem("token")}`
           },
-          body: JSON.stringify(user)
+          body: JSON.stringify(user.id)
       })
     }
           

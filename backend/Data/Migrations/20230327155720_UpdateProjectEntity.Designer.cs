@@ -12,8 +12,8 @@ using backend.Data;
 namespace backend.Data.Migrations
 {
     [DbContext(typeof(RemotivateContext))]
-    [Migration("20230317025928_UpdateEntities")]
-    partial class UpdateEntities
+    [Migration("20230327155720_UpdateProjectEntity")]
+    partial class UpdateProjectEntity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

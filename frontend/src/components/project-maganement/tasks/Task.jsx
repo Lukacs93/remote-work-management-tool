@@ -60,7 +60,6 @@ setDate({
 
     return (
         <>
-   
             <tr className="task-content" >
                 <td >
                     <p>{taskItem.name}</p>
