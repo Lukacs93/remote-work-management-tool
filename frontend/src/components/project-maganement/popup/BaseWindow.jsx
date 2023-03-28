@@ -5,14 +5,10 @@ import PopUpAssign  from '../tasks/PopUpAssign';
 import PopUpList from '../tasks/PopUpList';
 
 
-const PopUpWindow = ({taskItem, deleteTaskItem}) =>{
-    const [activeWindow, setActiveWindow] = useState('Task')
+const PopUpWindow = ({taskItem,onClose, targerWindow,deleteTaskItem}) =>{
+    const [activeWindow, setActiveWindow] = useState(false)
     const [showPopUp, setShowPopUp] = useState(true);
 
-
-    const handleClose=()=>{
-        setShowPopUp(false);
-    }
     
     
     const handleActiveSelection = (selectedWindow) =>{
@@ -29,7 +25,7 @@ const PopUpWindow = ({taskItem, deleteTaskItem}) =>{
     }
 return (
     <>
-        <div className={`App ${showPopUp ? "task-details-open" : "hide"}`}>
+        <div className={"App task-details-open"}>
             <div className='task-details-popup-wrapper'>
                 <div className="task-details-content task-animate">           
                     <div className="task-details-btn-container">
@@ -41,7 +37,7 @@ return (
                             <button className='single-task-button'>Delete</button>
                         </div>
                         <div>
-                            <span onClick={() => setShowPopUp(false)}
+                            <span onClick={() => onClose()}
                             className="task-details-close">
                             &times;
                             </span>

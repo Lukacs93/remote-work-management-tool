@@ -1,37 +1,16 @@
 import React,{ useState } from 'react'
 import './Task.css'
-import PopUpAssign from "./PopUpAssign";
-import PopUpList from "./PopUpList";
-import UserList from "../projects/UsersList";
-import UpdateTask from "./UpdateTask";
 import PopUpWindow from "../popup/BaseWindow";
 
 
 const Task = ({taskItem, deleteTaskItem}) => {
-    const [showAssign, setShowAssign] = useState(false);
-    const [showList, setShowList] = useState(false);
-    const [showDetails, setShowDetails] = useState(false);
-    const [updateTask, setUpdateTask] = useState(false);
     const [testWindow, setTestWindow] =useState(false);
-
-    const handleShowAssign = () => {
-        setShowDetails(true)
-        setShowList(true);
-        setShowAssign(false);
-    }
-
-    const handleShowUsers = () => {
-        setShowDetails(true)
-        setShowList(false);
-        setShowAssign(true);
-    }
     
     const handleClose=()=>{
-        setShowAssign(false);
-        setShowList(false);
+        setTestWindow(false);
     }
     const handleTest=()=>{
-        handleClose();
+        console.log("teszt")
         setTestWindow(true);
     }
     return (
@@ -60,13 +39,13 @@ const Task = ({taskItem, deleteTaskItem}) => {
                             <div className="task-action-button" onClick={handleTest}>Edit</div>
                         </div>
                         <div className="task-show-more-button">
-                            <div className="task-action-button" onClick={handleShowUsers}>Assign</div>
+                            <div className="task-action-button" onClick={handleTest}>Assign</div>
                         </div>
                         <div className="task-show-more-button">
-                            <div className="task-action-button" onClick={handleShowAssign}>Users</div>
+                            <div className="task-action-button" onClick={handleTest}>Users</div>
                         </div>
                         <div className="task-show-more-button">
-                            <span className="task-action-icon" onClick={() => setShowDetails(true)}>
+                            <span className="task-action-icon" onClick={() => handleTest}>
                                 &#xFE19;
                             </span>
                         </div>
@@ -78,76 +57,7 @@ const Task = ({taskItem, deleteTaskItem}) => {
                     </div>
                 </td>
             </tr>        
-            <tr>{testWindow ? <PopUpWindow taskItem={taskItem}></PopUpWindow> : ""}</tr>
-            {showDetails ?
-                <tr className={`App ${showDetails ? "task-details-open" : ""}`}>
-                    <div className="task-details-popup-wrapper">
-                        <div className="task-details-content task-animate">
-
-                            <div className="task-details-btn-container">
-                                <div>
-                                    <button className='single-task-button'>Task</button>
-                                    <button className='single-task-button' onClick={() => setUpdateTask(!updateTask)}>Edit</button>
-                                    <button className='single-task-button' onClick={() => setShowAssign(!showAssign)}>Assign</button>
-                                    <button className='single-task-button' onClick={() => setShowList(!showList)}>Users</button>
-                                    <button className='single-task-button'>Project</button>
-                                    <button className='single-task-button' onClick={() => {deleteTaskItem(taskItem.id)}}>Delete</button>
-                                </div>
-                                <div>
-                                    <span onClick={() => setShowDetails(false)}
-                                          className="task-details-close">
-                                    &times;
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="task-details-container">
-                                {updateTask &&
-                                    <UpdateTask taskItem={taskItem}/>
-                                }
-                                {showList ? (
-
-                                    <PopUpList onClose={handleClose} taskItem={taskItem} />
-                                ) 
-                                    : 
-                                    <div>
-                                        {showAssign ?
-                                            <PopUpAssign onClose={handleClose} taskItem={taskItem}/> 
-                                            :
-                                            <div>
-                                                <div className="task-description">
-                                                    <h2>Project Details</h2>
-                                                    <span>Purpose of the project is to improve organizational efficiency, increase
-                                                        profitability, reduce costs, or create new business opportunities. It may
-                                                        involve the development of new products or services, the implementation of
-                                                        new technology or processes, or the expansion of existing operations into
-                                                        new markets or geographies.
-                                                    </span>
-                                                </div>
-                                                    <div className="task-details">
-                                                        <div className="task-id">Task ID: {taskItem.id}</div>
-                                                        <div className="">Project: </div>
-                                                        <div className="task-id">Name: Lorem Ipsum</div>
-                                                        <div>Description: {taskItem.description}</div>
-                                                        <div className="">Team members: {taskItem.usersOnTask.map(user => `${user.firstName} ${user.lastName}`).join(', ')}</div>
-                                                        <div className="task-status">Project Status: {
-                                                            taskItem.taskStatus === 1 ? "In Progress"
-                                                                : taskItem.taskStatus === 1 ? "Review"
-                                                                    : taskItem.taskStatus === 1 ? "Done" 
-                                                                        :"Not Started"
-                                                        }
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                        }
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </tr>
-                :
-                ""
-            }
+            {testWindow ?  <PopUpWindow taskItem={taskItem} onClose={handleClose}></PopUpWindow> : "" }          
         </>
     )
 }
