@@ -9,14 +9,12 @@ const ProjectDashboard = ({ user, token }) =>
     const [Option, changeOption]=useState("none")
     const [isSubmit, setIsSubmit] = useState(false)
     const [showForm, setShowForm] = useState(false)
-    const jwtToken = localStorage.getItem("token");
-    const userID = jwt_decode(jwtToken).id;
     
     const handleCreateNewTask = () => {
         setShowForm(!showForm)
         setIsSubmit(!isSubmit)
     }
-    console.log(userID)
+
     return (
         <div className="project-list-wrapper">
             <div className="project-list-action-button-container">
@@ -39,7 +37,7 @@ const ProjectDashboard = ({ user, token }) =>
             {showForm && (
                 <div>
                     <CreateProject
-                        loggedInUser={user}
+                        loggedInUser={user && user}
                         changeOption={changeOption}
                         setShowForm={setShowForm}
                         showForm={showForm}
@@ -51,7 +49,7 @@ const ProjectDashboard = ({ user, token }) =>
                 </div> 
             )}
             <div>
-                <ProjectList userid={user && user.id} token={token} isSubmit={isSubmit} setIsSubmit={setIsSubmit} />
+                <ProjectList userId={user && user.id} token={token} isSubmit={isSubmit} setIsSubmit={setIsSubmit} />
             </div>
     </div>
     )

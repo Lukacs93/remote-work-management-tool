@@ -1,8 +1,9 @@
 import {React,  useEffect, useState } from 'react'
 import Project  from './Project.jsx'
 import './ProjectList.css'
+import jwt_decode from "jwt-decode";
 
-const ProjectList = (prop) =>
+const ProjectList = (props) =>
 {
     const[isLoading, setIsLoading] = useState("loading")
     const[projects, setProjects] = useState([])
@@ -37,12 +38,16 @@ const ProjectList = (prop) =>
     //
     //     getProjects();
     //
-    // },[prop.isSubmit, isModified])
+    // },[props.isSubmit, isModified])
 
+    const jwtToken = localStorage.getItem("token");
+    const userID = jwt_decode(jwtToken).id;
+    
     useEffect(()=>
     {
+        console.log(userID)
         const getUser=async()=>{
-            await fetch(`https://localhost:7029/users/${prop.userid}`)
+            await fetch(`https://localhost:7029/users/${userID}`)
                 .then((resp)=>resp.json())
                 .then((resp)=>{setManager(resp)
                     setTimeout(() => {
@@ -59,29 +64,29 @@ const ProjectList = (prop) =>
         //         })
         // }
         async function getProjects() {
-                    const response = await fetch(`https://localhost:7029/projects`, {
-                        method: "GET",
-                        headers: {
-                            "Authorization": `Bearer ${localStorage.getItem("token")}`
-                        }
-                    });
-
-                    if (!response.ok) {
-                        const message = `An error occurred: ${response.statusText}`;
-                        alert(message);
-                        return;
-                    }
-
-                    const result = await response.json();
-                    setProjects(result)
-                    setTimeout(() => {
-                        setIsLoading("done")
-                    }, 1000);
+            const response = await fetch(`https://localhost:7029/projects`, {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
                 }
+            });
+
+            if (!response.ok) {
+                const message = `An error occurred: ${response.statusText}`;
+                alert(message);
+                return;
+            }
+
+            const result = await response.json();
+            setProjects(result)
+            setTimeout(() => {
+                setIsLoading("done")
+            }, 1000);
+        }
 
         getUser()
         getProjects()
-},[prop.isSubmit, isModified])
+    },[props.isSubmit, isModified])
 
     return (
         <div className="project-list-container">
@@ -91,19 +96,20 @@ const ProjectList = (prop) =>
                     </div>
                 )
                 :
-
                 <div >
                     {isLoading === "done" && (
                         <div className='projects-container'>
-                            {projects && projects.map(project => (
+                            {projects && 
+                                projects.map(project => (
                                        <Project key={project.id}
                                                 isModified={isModified}
                                                 setIsModified={setIsModified}
                                                 setIsLoading={setIsLoading}
                                                 manager={manager}
                                                 project={project}
-                                                setIsSubmit={prop.setIsSubmit}
-                                                IsSubmit={prop.isSubmit}/>
+                                                setIsSubmit={props.setIsSubmit}
+                                                IsSubmit={props.isSubmit}
+                                       />
                             ))}
                         </div>
                     )}

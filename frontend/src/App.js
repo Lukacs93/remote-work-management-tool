@@ -28,7 +28,6 @@ function App() {
     }, []);
 
     const handleLogin = (responseToken) => {
-user && console.log(user.userID)
         if (responseToken) {
             localStorage.setItem("token", responseToken);
             const decodedToken = jwt_decode(responseToken);

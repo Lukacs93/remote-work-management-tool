@@ -5,7 +5,7 @@ import {useLocation} from "react-router-dom";
 function Header({ sidebarOpen, toggleSidebar, handleLogout, user }) {
     const location = useLocation();
     const { pathname } = location;
-    const splitLocation = pathname.charAt(1).toUpperCase() + pathname.slice(2).split("/");
+    const splitLocation = pathname.charAt(1).toUpperCase() + pathname.slice(2).split("/").join(" / ");
     function menuToggle() {
         const toggleMenu = document.querySelector(".menu");
         toggleMenu.classList.toggle("active");
