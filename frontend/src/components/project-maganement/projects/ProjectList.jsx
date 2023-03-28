@@ -45,7 +45,6 @@ const ProjectList = (props) =>
     
     useEffect(()=>
     {
-        console.log(userID)
         const getUser=async()=>{
             await fetch(`https://localhost:7029/users/${userID}`)
                 .then((resp)=>resp.json())
