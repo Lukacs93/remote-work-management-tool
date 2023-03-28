@@ -6,7 +6,6 @@ const CreateProject = (props) =>
     const [showSuccessText, setShowSuccessText] = useState(false)
     const [Form,setForm]=useState(
         {
-        "DeadLine":"",
         "ManagerId":parseInt(props.user),
         "ProjectName":"",
         "Description": "",
@@ -42,7 +41,7 @@ return day > 0 && day <= monthLength[month - 1];
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(Form)
-        if(isValidDate(Form.DeadLine)) {
+       
             await fetch('https://localhost:7029/projects', {
                 method: 'POST',
                 headers: {
@@ -60,10 +59,7 @@ return day > 0 && day <= monthLength[month - 1];
 
             props.setIsSubmit(!props.isSubmit)
             props.changeOption("none")
-        }
-        else{
-            alert('Invalid date format!')
-        }
+        
     }
     console.log(props.loggedInUser['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'])
     return (
@@ -88,11 +84,6 @@ return day > 0 && day <= monthLength[month - 1];
                                placeholder='Description'
                                className="add-task-input"
                                onChange={(e) => setForm({...Form, Description: e.target.value})}
-                        ></input>
-                        <input id="Date"
-                               placeholder='DD/MM/YYYY'
-                               className="add-task-input"
-                               onChange={(e) => setForm({...Form, DeadLine: e.target.value})}
                         ></input>
                         <button className="task-submit-button">Create Project</button>
                     </form>
