@@ -11,9 +11,6 @@
     /*background-color: white;*/
     /*cursor: pointer;*/
 }
-.hide{
-    visibility: hidden;
-}
 .task-content p {
     font-family: 'Proxima Nova';
     font-size: 18px;
