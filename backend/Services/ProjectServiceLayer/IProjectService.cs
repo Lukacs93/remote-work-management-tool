@@ -8,7 +8,7 @@ public interface IProjectService
 
     Task<List<TaskItem>> GetTasksByProjectID(long id);
     Task<Project> GetProjectById(long id);
-    Task<Project> CreateProject(string DeadLine, Project project);
+    Task<Project> CreateProject(Project project);
     Task UpdateProject(Project project, long id);
     Task DeleteProject(long id);
 }

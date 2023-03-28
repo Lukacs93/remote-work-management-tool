@@ -42,9 +42,9 @@ public class ProjectService : IProjectService
         }
         return tasks;
     }
-    public async Task<Project> CreateProject(string DeadLine, Project project)
+    public async Task<Project> CreateProject(Project project)
     {
-        project.DateId = await _dateService.CreateDate(project.Id, DeadLine, true);
+        //project.DateId = await _dateService.CreateDate(project.Id, DeadLine, true);
       
         _context.Projects.Add(project);
         await _context.SaveChangesAsync();
