@@ -58,7 +58,7 @@ const Task = ({taskItem, deleteTaskItem}) => {
                     </div>
                 </td>
             </tr>        
-            {showPupUp ?  <PopUpWindow taskItem={taskItem} targetWindow={targetWindow} onClose={handleClose}></PopUpWindow> : "" }          
+            {showPupUp ?  <PopUpWindow typeOfPopUp="Task" taskItem={taskItem} targetWindow={targetWindow} onClose={handleClose}></PopUpWindow> : "" }          
         </>
     )
 }
