@@ -10,6 +10,7 @@ const Project = (props) => {
     const [showDetails, setShowDetails] = useState(false);
     const [showSuccessText, setShowSuccessText] = useState(false)
     const taskLink=`/tasks/${props.project.id}`
+    
     const handleClick=async ()=>{
         await fetch(await fetch(`https://localhost:7029/projects/${props.project.id}`,{
             method: 'DELETE',
@@ -25,7 +26,6 @@ const Project = (props) => {
             props.setIsSubmit(!props.IsSubmit)
             setShowSuccessText(false)
         }, 2000);
-    
     }
 
     const [dates,setDates]=useState()
@@ -41,7 +41,7 @@ const Project = (props) => {
                 })
         }
         getDates()
-        console.log(props.project)
+
     },[modal])
 
     return(
@@ -105,7 +105,7 @@ const Project = (props) => {
                                     <div className="project-details">
                                         <div className="project-id">Title: {props.project.name}</div>
                                         <div className="manager"> Manager: {props.manager.firstName} {props.manager.lastName}</div>
-                                        <Date date={dates}/>
+                        {dates!==undefined && <Date date={dates}/>}
                                         {props.project.usersOnProject !== null && (
                                             <div className="users">
                                                 <div className="users-title">Users in the project: {props.project.usersOnProject.map(user => {
@@ -114,7 +114,15 @@ const Project = (props) => {
 
                                             </div>
                                         )}
-                                        <div className="project-status">Project Status: {props.project.projectStatus}</div>
+                                        <div className="project-status">Project Status:
+                                        {
+                                            props.project.projectStatus === 1 ? " In Progress"
+                                                : props.project.projectStatus === 2 ? " Review"
+                                                    : props.project.projectStatus === 3 ? " Done" 
+                                                        : " Not Started"
+                                        }
+                                        
+                                        </div>
                                     </div>
                                 </div>
 
