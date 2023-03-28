@@ -5,7 +5,7 @@ import PopUpList from "./PopUpList";
 import UserList from "../projects/UsersList";
 import UpdateTask from "./UpdateTask";
 import Status from '../status/Status'
-
+import Date from '../date/Date'
 
 const Task = ({taskItem, deleteTaskItem, doReload}) => {
     const [showAssign, setShowAssign] = useState(false);
@@ -54,7 +54,7 @@ setDate({
     }
 
     getDates()
-    console.log(date)
+   
 },[ ])
 
 
@@ -68,7 +68,12 @@ setDate({
                     <p>{taskItem.description}</p>
                 </td>
                 <td>
-                    <Status />
+                {
+                                                            taskItem.taskStatus === 1 ? "In Progress"
+                                                                : taskItem.taskStatus === 2 ? "Review"
+                                                                    : taskItem.taskStatus === 3 ? "Done" 
+                                                                        : "Not Started"
+                                                        }
                 </td>
                 <td>{date.createdDate}</td>
                 <td>{date.deadLine}</td>
@@ -137,6 +142,8 @@ setDate({
                                                         <div className="task-id">Task name: {taskItem.name}</div>
                                                         <div className="">Project: </div>
                                                         <div className="">Task members: {taskItem.usersOnTask.map(user => `${user.firstName} ${user.lastName}`).join(', ')}</div>
+                                                        <Date date={date}/>
+                                                        
                                                         <div className="task-status">Task Status: {
                                                             taskItem.taskStatus === 1 ? "In Progress"
                                                                 : taskItem.taskStatus === 2 ? "Review"
