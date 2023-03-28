@@ -26,4 +26,4 @@ WORKDIR /app
 COPY --from=build /app/out ./
 
 # Set the command to start the app
-CMD ["dotnet", "Remotivate.dll"]
+CMD ["dotnet", "backend.dll"]
