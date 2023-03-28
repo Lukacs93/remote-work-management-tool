@@ -1,0 +1,15 @@
+﻿# Ignore node_modules directory
+node_modules
+npm-debug.log
+
+# Ignore build output directory
+build
+
+# ignore .git and .cache folders
+.git
+.cache
+.idea
+.vscode
+
+# ignore all markdown files
+*.md
