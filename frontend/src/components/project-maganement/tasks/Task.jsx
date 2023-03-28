@@ -4,6 +4,7 @@ import PopUpAssign from "./PopUpAssign";
 import PopUpList from "./PopUpList";
 import UserList from "../projects/UsersList";
 import UpdateTask from "./UpdateTask";
+import PopUpWindow from "../popup/BaseWindow";
 
 
 const Task = ({taskItem, deleteTaskItem}) => {
@@ -72,8 +73,7 @@ const Task = ({taskItem, deleteTaskItem}) => {
                         </div>
                     </div>
                 </td>
-            </tr>
-
+            </tr>            
             {showDetails ?
                 <tr className={`App ${showDetails ? "task-details-open" : ""}`}>
                     <div className="task-details-popup-wrapper">
