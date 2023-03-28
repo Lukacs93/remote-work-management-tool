@@ -15,11 +15,11 @@ const TaskList = () =>
     const [isSubmit, setIsSubmit] = useState(false)
     const [form, setForm] = useState({
         name:"",
-        deadLine:"",
         projectId: params.id,
         description: "",
         note: "Empty note",
-        taskStatus: 1
+        taskStatus: 1,
+        dateId:null
     })
 
     const token = localStorage.getItem("token");
@@ -28,6 +28,7 @@ const TaskList = () =>
     
     const onSubmit = async (e) => {
         e.preventDefault();
+        
         await fetch(`https://localhost:7029/projects/${params.id}/add-task`, {
             method: 'POST',
             headers: {
@@ -90,7 +91,6 @@ const TaskList = () =>
     }
 
     const handleCreateNewTask = () => {
-        console.log(taskItems)
         setShowForm(!showForm)
         setIsSubmit(false)
     }
@@ -133,18 +133,6 @@ const TaskList = () =>
                                     placeholder="title"
                                     className="add-task-input"
                                     onChange={(e) => setForm({...form, name: e.target.value})}
-                                    // value={inputTitle}
-                                />
-                                <label htmlFor="title" className="description-label">
-                                    Dead Line: (DD/MM/YYYY)
-                                </label>
-                                 <input
-                                    type="text"
-                                    name="deadLine"
-                                    id="deadLine"
-                                    placeholder="DD/MM/YYYY"
-                                    className="add-task-input"
-                                    onChange={(e) => setForm({...form, deadLine: e.target.value})}
                                     // value={inputTitle}
                                 />
                                 <label className="description-label" htmlFor="description">
