@@ -2,12 +2,16 @@ import React, { useState } from 'react'
 import ModifyProject from './ModifyProject.jsx'
 import UserList from './UsersList'
 import './Project.css'
+import PopUpWindow from '../popup/BaseWindow.jsx'
 
 const Project = (props) => {
     const [modal,setModal]=useState(false);
     const [showDetails, setShowDetails] = useState(false);
     const [showSuccessText, setShowSuccessText] = useState(false)
     
+    const [showPupUp, setShowPupUp] =useState(false);
+    const [targetWindow, setTargetWindow] = useState("");
+
     const handleClick=async ()=>{
         await fetch(await fetch(`https://localhost:7029/projects/${props.id}`,{
             method: 'DELETE'
@@ -16,16 +20,24 @@ const Project = (props) => {
         setShowSuccessText(true)
         
         setTimeout(() => {
-            setShowDetails(false)
+            setShowPupUp(false)
             props.setIsSubmit(!props.IsSubmit)
             setShowSuccessText(false)
         }, 2000);
 
     }
 
+    const handleClose=()=>{
+        setShowPupUp(false);
+    }
+    const handlePopUp=(incTarget)=>{
+        setTargetWindow(incTarget)
+        setShowPupUp(true);
+    }
+
     return(
         <div className="single-project-container">
-            <div className="single-project" onClick={() => setShowDetails(!showDetails)}>
+            <div className="single-project" onClick={()=>handlePopUp('Project')}>
                 <div className="single-project-close-button-container">
                     
                 <button className="single-project-close-button">&times;</button>
@@ -45,7 +57,7 @@ const Project = (props) => {
                 <div className="project-status">Project Status: {props.project.projectStatus}</div>
                 <button className="see-more-button">See More</button>
             </div>
-
+            {showPupUp ?  <PopUpWindow typeOfPopUp="Project" targetWindow={targetWindow} onClose={handleClose} deleteFunc={handleClick} props={props}></PopUpWindow> : "" }                     
                 {showDetails ?
                 <div className={`App ${showDetails ? "project-details-open" : ""}`}>
                     <div className="project-details-popup-wrapper">
@@ -56,26 +68,6 @@ const Project = (props) => {
                             :
                             <div className="project-details-content animate">
              
-                                <div className="project-details-btn-container">
-                                    <div>
-                                        <button className='single-project-button' onClick={() => {
-                                            setModal(!modal)
-                                        }}>Edit
-                                        </button>
-                                        <button className='single-project-button'>Assign</button>
-                                        <button className='single-project-button'>Tasks</button>
-                                        <button className='single-project-button'
-                                                onClick={handleClick}>Delete
-                                        </button>
-                                        
-                                    </div>
-                                    <div>
-                                        <span onClick={() => setShowDetails(!showDetails)}
-                                              className="project-details-close">
-                                            &times;
-                                        </span>
-                                    </div>
-                                </div>
                                 
                                 <div className="project-details-container">
                                     <div className="project-description">
