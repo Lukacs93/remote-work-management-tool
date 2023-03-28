@@ -1,7 +1,6 @@
 import React from 'react'
 
 const Date = (props) => {
-    
 return (
     <div>
         <div className='date'>Created on: {props.date.createdDate}</div>
