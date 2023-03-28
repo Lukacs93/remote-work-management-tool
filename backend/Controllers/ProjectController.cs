@@ -32,7 +32,7 @@ public class ProjectController : ControllerBase
         project.ProjectStatus= projectDTO.ProjectStatus;
         project.Description = projectDTO.Description;
 
-        await _projectService.CreateProject(projectDTO.DeadLine, project);
+        await _projectService.CreateProject(project);
     }
 
     [HttpGet("{id}")]
