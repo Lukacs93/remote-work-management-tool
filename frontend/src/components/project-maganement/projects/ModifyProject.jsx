@@ -29,7 +29,7 @@ const UpdateProject = (props) =>
         setShowSuccessText(true)
         
         setTimeout(() => {
-            props.setModal(!props.modal)
+            props.toDefault('Project');
             setShowSuccessText(false)
         }, 2000);
         
