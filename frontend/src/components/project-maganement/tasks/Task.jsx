@@ -4,14 +4,15 @@ import PopUpWindow from "../popup/BaseWindow";
 
 
 const Task = ({taskItem, deleteTaskItem}) => {
-    const [testWindow, setTestWindow] =useState(false);
-    
+    const [showPupUp, setShowPupUp] =useState(false);
+    const [targetWindow, setTargetWindow] = useState("");
+
     const handleClose=()=>{
-        setTestWindow(false);
+        setShowPupUp(false);
     }
-    const handleTest=()=>{
-        console.log("teszt")
-        setTestWindow(true);
+    const handleTest=(incTarget)=>{
+        setTargetWindow(incTarget)
+        setShowPupUp(true);
     }
     return (
         <>
@@ -36,16 +37,16 @@ const Task = ({taskItem, deleteTaskItem}) => {
                 <td>                    
                     <div className="task-button-container">
                         <div className="task-show-more-button">
-                            <div className="task-action-button" onClick={handleTest}>Edit</div>
+                            <div className="task-action-button" onClick={()=>handleTest('Edit')}>Edit</div>
                         </div>
                         <div className="task-show-more-button">
-                            <div className="task-action-button" onClick={handleTest}>Assign</div>
+                            <div className="task-action-button" onClick={()=>handleTest('Assign')}>Assign</div>
                         </div>
                         <div className="task-show-more-button">
-                            <div className="task-action-button" onClick={handleTest}>Users</div>
+                            <div className="task-action-button" onClick={()=>handleTest('Users')}>Users</div>
                         </div>
                         <div className="task-show-more-button">
-                            <span className="task-action-icon" onClick={() => handleTest}>
+                            <span className="task-action-icon" onClick={()=>handleTest('Task')}>
                                 &#xFE19;
                             </span>
                         </div>
@@ -57,7 +58,7 @@ const Task = ({taskItem, deleteTaskItem}) => {
                     </div>
                 </td>
             </tr>        
-            {testWindow ?  <PopUpWindow taskItem={taskItem} onClose={handleClose}></PopUpWindow> : "" }          
+            {showPupUp ?  <PopUpWindow taskItem={taskItem} targetWindow={targetWindow} onClose={handleClose}></PopUpWindow> : "" }          
         </>
     )
 }

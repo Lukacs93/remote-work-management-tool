@@ -5,12 +5,9 @@ import PopUpAssign  from '../tasks/PopUpAssign';
 import PopUpList from '../tasks/PopUpList';
 
 
-const PopUpWindow = ({taskItem,onClose, targerWindow,deleteTaskItem}) =>{
-    const [activeWindow, setActiveWindow] = useState(false)
-    const [showPopUp, setShowPopUp] = useState(true);
-
-    
-    
+const PopUpWindow = ({taskItem,onClose, targetWindow,deleteTaskItem}) =>{
+    const [activeWindow, setActiveWindow] = useState(targetWindow)
+    console.log(targetWindow)
     const handleActiveSelection = (selectedWindow) =>{
         setActiveWindow(selectedWindow);       
         
