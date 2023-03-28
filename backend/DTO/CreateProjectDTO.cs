@@ -5,7 +5,6 @@ namespace backend.DTO
 {
     public class CreateProjectDTO
     {
-        public string DeadLine { get; set; }
         public long ManagerId { get; set; }
         public string ProjectName { get; set; }
         public string Description { get; set; }
