@@ -10,7 +10,7 @@ const Task = ({taskItem, deleteTaskItem}) => {
     const handleClose=()=>{
         setShowPupUp(false);
     }
-    const handleTest=(incTarget)=>{
+    const handlePopUp=(incTarget)=>{
         setTargetWindow(incTarget)
         setShowPupUp(true);
     }
@@ -37,16 +37,16 @@ const Task = ({taskItem, deleteTaskItem}) => {
                 <td>                    
                     <div className="task-button-container">
                         <div className="task-show-more-button">
-                            <div className="task-action-button" onClick={()=>handleTest('Edit')}>Edit</div>
+                            <div className="task-action-button" onClick={()=>handlePopUp('Edit')}>Edit</div>
                         </div>
                         <div className="task-show-more-button">
-                            <div className="task-action-button" onClick={()=>handleTest('Assign')}>Assign</div>
+                            <div className="task-action-button" onClick={()=>handlePopUp('Assign')}>Assign</div>
                         </div>
                         <div className="task-show-more-button">
-                            <div className="task-action-button" onClick={()=>handleTest('Users')}>Users</div>
+                            <div className="task-action-button" onClick={()=>handlePopUp('Users')}>Users</div>
                         </div>
                         <div className="task-show-more-button">
-                            <span className="task-action-icon" onClick={()=>handleTest('Task')}>
+                            <span className="task-action-icon" onClick={()=>handlePopUp('Task')}>
                                 &#xFE19;
                             </span>
                         </div>
@@ -58,7 +58,7 @@ const Task = ({taskItem, deleteTaskItem}) => {
                     </div>
                 </td>
             </tr>        
-            {showPupUp ?  <PopUpWindow typeOfPopUp="Task" taskItem={taskItem} targetWindow={targetWindow} onClose={handleClose}></PopUpWindow> : "" }          
+            {showPupUp ?  <PopUpWindow typeOfPopUp="Task" taskItem={taskItem} targetWindow={targetWindow} onClose={handleClose} deleteFunc={deleteTaskItem}></PopUpWindow> : "" }          
         </>
     )
 }
