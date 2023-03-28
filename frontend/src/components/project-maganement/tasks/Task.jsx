@@ -12,6 +12,7 @@ const Task = ({taskItem, deleteTaskItem}) => {
     const [showList, setShowList] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
     const [updateTask, setUpdateTask] = useState(false);
+    const [testWindow, setTestWindow] =useState(false);
 
     const handleShowAssign = () => {
         setShowDetails(true)
@@ -29,7 +30,10 @@ const Task = ({taskItem, deleteTaskItem}) => {
         setShowAssign(false);
         setShowList(false);
     }
-    
+    const handleTest=()=>{
+        handleClose();
+        setTestWindow(true);
+    }
     return (
         <>
    
@@ -53,7 +57,7 @@ const Task = ({taskItem, deleteTaskItem}) => {
                 <td>                    
                     <div className="task-button-container">
                         <div className="task-show-more-button">
-                            <div className="task-action-button">Edit</div>
+                            <div className="task-action-button" onClick={handleTest}>Edit</div>
                         </div>
                         <div className="task-show-more-button">
                             <div className="task-action-button" onClick={handleShowUsers}>Assign</div>
@@ -73,7 +77,8 @@ const Task = ({taskItem, deleteTaskItem}) => {
                         </div>
                     </div>
                 </td>
-            </tr>            
+            </tr>        
+            <tr>{testWindow ? <PopUpWindow taskItem={taskItem}></PopUpWindow> : ""}</tr>
             {showDetails ?
                 <tr className={`App ${showDetails ? "task-details-open" : ""}`}>
                     <div className="task-details-popup-wrapper">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './PopUpAssign.css';
 
-function PopUpAssign({ onClose, taskItem }) {
+function PopUpAssign({ taskItem }) {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedUsers, setSelectedUsers] = useState([]);
@@ -39,7 +39,7 @@ function PopUpAssign({ onClose, taskItem }) {
       })
     }
           
-    onClose();
+    
   }
 
   const filteredUsers = users.filter((user) =>
@@ -50,9 +50,7 @@ function PopUpAssign({ onClose, taskItem }) {
       <div className="pop-up-assign">
           <div className="pop-up-assign-header">
               <input type="text" placeholder="Search Users" value={searchTerm} onChange={handleSearchTermChange} />
-              <button className="popup-close" onClick={onClose}>
-                  Close
-              </button>
+              
           </div>
           <div className="pop-up-assign-body">
               {filteredUsers.map((user) => (

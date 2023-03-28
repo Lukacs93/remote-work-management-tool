@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './PopUpList.css';
 
-function PopUpList({ onClose, taskItem }) {
+function PopUpList({ taskItem }) {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [deleted,isDeleted]=useState(false)
@@ -57,9 +57,7 @@ e.id = parseInt(e.id)
       <div className="pop-up-assign">
           <div className="pop-up-assign-header">
               <input type="text" placeholder="Search Users" value={searchTerm} onChange={handleSearchTermChange} />
-              <button className="popup-close" onClick={onClose}>
-                  Close
-              </button>
+              
           </div>
           <div className="pop-up-assigned-body">
               {filteredUsers.map((user) => (
