@@ -146,6 +146,7 @@ if(deadLine.deadline !== null)
                         <label>Name
                         <input className="update-project-input" id="Name" 
                              placeholder='Name'
+                             value={form.name}
                              onChange={(e) => setForm({...form, Name: e.target.value})}
                          />
                          </label>

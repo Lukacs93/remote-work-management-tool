@@ -8,13 +8,17 @@ import {Link} from "react-router-dom"
 
 const PopUpWindow = ({typeOfPopUp, taskItem,onClose, targetWindow, deleteFunc, props}) =>{
     const [activeWindow, setActiveWindow] = useState(targetWindow)
-    console.log(targetWindow)
     const handleActiveSelection = (selectedWindow) =>{
         setActiveWindow(selectedWindow);       
         
         //Possible options: Task, Edit, Assign, Users, Project, Delete
     }  
-    const taskLink=`/tasks/${props.project.id}`;
+    const taskLink="";
+    if(props===undefined)
+    {
+        taskLink=`/tasks/${props.project.id}`;
+    }
+    
     const TaskData ={
         Task: "Task details",
         Edit: <UpdateTask taskItem={taskItem}/>,
@@ -31,6 +35,7 @@ const PopUpWindow = ({typeOfPopUp, taskItem,onClose, targetWindow, deleteFunc, p
         Users: <PopUpList taskItem={taskItem} />,
         Project: "Project details",
     }
+
 if(typeOfPopUp ==="Task"){
     return (
         <>

@@ -10,9 +10,27 @@ const Project = (props) => {
     const [showDetails, setShowDetails] = useState(false);
     const [showSuccessText, setShowSuccessText] = useState(false)
     const taskLink=`/tasks/${props.project.id}`
-    
     const [showPupUp, setShowPupUp] =useState(false);
     const [targetWindow, setTargetWindow] = useState("");
+    const [dates,setDates]=useState()
+
+    useEffect(()=>
+    {
+        const getDates=async()=>{
+            await fetch(`https://localhost:7029/dates/${props.project.dateId}`)
+                .then((resp)=>resp.json())
+                .then((resp)=>{setDates(resp)
+                    setTimeout(() => {
+                    }, 3000);
+                })
+        }
+        getDates()
+
+    },[modal])
+
+
+
+
 
     const handleClick=async ()=>{
         await fetch(await fetch(`https://localhost:7029/projects/${props.project.id}`,{
