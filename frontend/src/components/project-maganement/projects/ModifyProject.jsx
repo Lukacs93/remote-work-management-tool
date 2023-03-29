@@ -10,6 +10,7 @@ const UpdateProject = (props) =>
         {
         "id": props.project.id,
         "name":props.project.name,
+        "managerId":props.project.managerId,
         "ProjectStatus": props.project.projectStatus,
         "tasks": props.project.tasks,
         "dateId":props.project.dateId
@@ -115,13 +116,14 @@ if(deadLine.deadline !== null)
             setShowSuccessText(true)
             
             setTimeout(() => {
-                props.setModal(!props.modal)
                 setShowSuccessText(false)
             }, 2000);
         }
         
         }
     }
+
+    console.log(form)
     await fetch(`https://localhost:7029/projects/${form.id}`,{
         method: 'PUT',
         headers: {
