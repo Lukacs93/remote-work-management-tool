@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import Status from '../status/Status'
 
-const UpdateTask = ({ taskItem,doReload }) =>
+const UpdateTask = ({ taskItem }) =>
 {
     const [showSuccessText, setShowSuccessText] = useState(false)
     
@@ -68,12 +68,6 @@ const UpdateTask = ({ taskItem,doReload }) =>
     }
     
     useEffect(()=>{
-
-doReload(true)
-setTimeout(() => {
-
-    doReload(false)
-}, 2000);
     },[showSuccessText])
 
 
