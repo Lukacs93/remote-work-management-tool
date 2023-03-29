@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
-import ModifyProject from './ModifyProject.jsx'
 import UserList from './UsersList'
 import './Project.css'
 import PopUpWindow from '../popup/BaseWindow.jsx'
 
 const Project = (props) => {
-    const [modal,setModal]=useState(false);
-    const [showDetails, setShowDetails] = useState(false);
     const [showSuccessText, setShowSuccessText] = useState(false)
     
     const [showPupUp, setShowPupUp] =useState(false);
