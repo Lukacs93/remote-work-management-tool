@@ -6,8 +6,6 @@ import PopUpWindow from '../popup/BaseWindow.jsx'
 import Date from '../date/Date'
 
 const Project = (props) => {
-    const [modal,setModal]=useState(false);
-    const [showDetails, setShowDetails] = useState(false);
     const [showSuccessText, setShowSuccessText] = useState(false)
     const taskLink=`/tasks/${props.project.id}`
     const [showPupUp, setShowPupUp] =useState(false);
@@ -39,7 +37,7 @@ const Project = (props) => {
                 'Authorization' : `Bearer ${localStorage.getItem("token")}`,
             },
         }))
-        
+        setShowPupUp(false)
         setShowSuccessText(true)
         
         setTimeout(() => {
@@ -76,10 +74,7 @@ const Project = (props) => {
                 <button className="see-more-button">See More</button>
             </div>
             {showPupUp ?  <PopUpWindow typeOfPopUp="Project" targetWindow={targetWindow} onClose={handleClose} deleteFunc={handleClick} props={props}></PopUpWindow> : "" }                     
-                {showDetails ?
-                <div className={`App ${showDetails ? "project-details-open" : ""}`}>
-                    <div className="project-details-popup-wrapper">
-                        {showSuccessText ? 
+            {showSuccessText ? 
                             <div className="project-details-content animate">
                                 <p className="project-delete-message">Project Successfully Deleted</p>
                             </div>
@@ -128,11 +123,6 @@ const Project = (props) => {
                                 }
                             </div>
                         }
-                    </div>
-            </div> 
-                    :
-                    ""
-                }
         </div>
     )
 }

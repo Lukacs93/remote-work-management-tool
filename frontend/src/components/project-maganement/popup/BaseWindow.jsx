@@ -4,39 +4,26 @@ import UpdateTask from '../tasks/UpdateTask';
 import PopUpAssign  from '../tasks/PopUpAssign';
 import PopUpList from '../tasks/PopUpList';
 import ModifyProject from '../projects/ModifyProject'
+import ProjectDetails from '../projects/ProjectDetails';
 import {Link} from "react-router-dom"
+import TaskDetails from '../tasks/TaskDetails';
 
 const PopUpWindow = ({typeOfPopUp, taskItem,onClose, targetWindow, deleteFunc, props}) =>{
     const [activeWindow, setActiveWindow] = useState(targetWindow)
+    
     const handleActiveSelection = (selectedWindow) =>{
-        setActiveWindow(selectedWindow);       
-        
+        setActiveWindow(selectedWindow);             
         //Possible options: Task, Edit, Assign, Users, Project, Delete
     }  
-    const taskLink="";
-    if(props===undefined)
-    {
-        taskLink=`/tasks/${props.project.id}`;
-    }
     
+
+if(typeOfPopUp ==="Task"){
     const TaskData ={
-        Task: "Task details",
+        Task: <TaskDetails taskItem={taskItem}/>,
         Edit: <UpdateTask taskItem={taskItem}/>,
         Assign: <PopUpAssign taskItem={taskItem} />,
         Users: <PopUpList taskItem={taskItem} />,       
     }
-    const ProjectData ={       
-        Edit: <ModifyProject
-        setIsLoading={props.setIsLoading} isModified={props.isModified}
-        setIsModified={props.setIsModified} project={props.project}
-        setIsSubmit={props.setIsSubmit} isSubmit={props.isSubmit} toDefault={handleActiveSelection}
-         class='modify-project'/>,
-        Assign: <PopUpAssign taskItem={taskItem} />,
-        Users: <PopUpList taskItem={taskItem} />,
-        Project: "Project details",
-    }
-
-if(typeOfPopUp ==="Task"){
     return (
         <>
             <div className={"App task-details-open"}>
@@ -69,6 +56,20 @@ if(typeOfPopUp ==="Task"){
     )
 }
 else if(typeOfPopUp ==="Project"){
+    const taskLink=`/tasks/${props.project.id}`;
+
+    
+    const ProjectData ={       
+        Edit: <ModifyProject
+        setIsLoading={props.setIsLoading} isModified={props.isModified}
+        setIsModified={props.setIsModified} project={props.project}
+        setIsSubmit={props.setIsSubmit} isSubmit={props.isSubmit} toDefault={handleActiveSelection}
+         class='modify-project'/>,
+        Assign: <PopUpAssign taskItem={taskItem} />,
+        Users: <PopUpList taskItem={taskItem} />,
+        Project: <ProjectDetails project={props.project}/>,
+    }
+    
     return (
         <>
             <div className={"App task-details-open"}>
