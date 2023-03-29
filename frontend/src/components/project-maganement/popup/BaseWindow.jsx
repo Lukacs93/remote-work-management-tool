@@ -6,7 +6,7 @@ import PopUpList from '../tasks/PopUpList';
 import ModifyProject from '../projects/ModifyProject'
 import ProjectDetails from '../projects/ProjectDetails';
 import {Link} from "react-router-dom"
-import TaskDetails from '../tasks/TaskDetails';
+import Task from '../tasks/Task';
 
 const PopUpWindow = ({typeOfPopUp, taskItem,onClose, targetWindow, deleteFunc, props}) =>{
     const [activeWindow, setActiveWindow] = useState(targetWindow)
@@ -19,7 +19,6 @@ const PopUpWindow = ({typeOfPopUp, taskItem,onClose, targetWindow, deleteFunc, p
 
 if(typeOfPopUp ==="Task"){
     const TaskData ={
-        Task: <TaskDetails taskItem={taskItem}/>,
         Edit: <UpdateTask taskItem={taskItem}/>,
         Assign: <PopUpAssign taskItem={taskItem} />,
         Users: <PopUpList taskItem={taskItem} />,       
@@ -31,7 +30,6 @@ if(typeOfPopUp ==="Task"){
                     <div className="task-details-content task-animate">           
                         <div className="task-details-btn-container">
                             <div>              
-                                <button className='single-task-button' onClick={()=>handleActiveSelection('Task')}>Task</button>
                                 <button className='single-task-button' onClick={()=>handleActiveSelection('Edit')}>Edit</button>
                                 <button className='single-task-button' onClick={()=>handleActiveSelection('Assign')}>Assign</button>
                                 <button className='single-task-button' onClick={()=>handleActiveSelection('Users')}>Users</button>
