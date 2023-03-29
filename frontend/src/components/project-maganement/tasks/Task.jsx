@@ -6,8 +6,18 @@ import UserList from "../projects/UsersList";
 import UpdateTask from "./UpdateTask";
 import Status from '../status/Status'
 import Date from '../date/Date'
+import PopUpWindow from "../popup/BaseWindow";
+const Task = ({taskItem, deleteTaskItem}) => {
+    const [showPupUp, setShowPupUp] =useState(false);
+    const [targetWindow, setTargetWindow] = useState("");
 
-const Task = ({taskItem, deleteTaskItem, doReload}) => {
+    const handleClose=()=>{
+        setShowPupUp(false);
+    }
+    const handlePopUp=(incTarget)=>{
+        setTargetWindow(incTarget)
+        setShowPupUp(true);
+    }
     const [showAssign, setShowAssign] = useState(false);
     const [showList, setShowList] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
@@ -30,10 +40,6 @@ const Task = ({taskItem, deleteTaskItem, doReload}) => {
         setShowAssign(true);
     }
     
-    const handleClose=()=>{
-        setShowAssign(false);
-        setShowList(false);
-    }
 
 
     useEffect(()=>{
@@ -80,13 +86,16 @@ setDate({
                 <td>                    
                     <div className="task-button-container">
                         <div className="task-show-more-button">
-                            <div className="task-action-button" onClick={handleShowUsers}>Assign</div>
+                            <div className="task-action-button" onClick={()=>handlePopUp('Edit')}>Edit</div>
                         </div>
                         <div className="task-show-more-button">
-                            <div className="task-action-button" onClick={handleShowAssign}>Users</div>
+                            <div className="task-action-button" onClick={()=>handlePopUp('Assign')}>Assign</div>
                         </div>
                         <div className="task-show-more-button">
-                            <span className="task-action-icon" onClick={() => setShowDetails(true)}>
+                            <div className="task-action-button" onClick={()=>handlePopUp('Users')}>Users</div>
+                        </div>
+                        <div className="task-show-more-button">
+                            <span className="task-action-icon" onClick={()=>handlePopUp('Task')}>
                                 &#xFE19;
                             </span>
                         </div>
@@ -97,72 +106,8 @@ setDate({
                         </div>
                     </div>
                 </td>
-            </tr>
-
-            {showDetails ?
-                <tr className={`App ${showDetails ? "task-details-open" : ""}`}>
-                    <div className="task-details-popup-wrapper">
-                        <div className="task-details-content task-animate">
-
-                            <div className="task-details-btn-container">
-                                <div>
-                                    <button className='single-task-button' onClick={() => setUpdateTask(!updateTask)}>Edit</button>
-                                    <button className='single-task-button' onClick={() => setShowAssign(!showAssign)}>Assign</button>
-                                    <button className='single-task-button' onClick={() => setShowList(!showList)}>Users</button>
-                                    <button className='single-task-button'>Project</button>
-                                    <button className='single-task-button' onClick={() => {deleteTaskItem(taskItem.id)}}>Delete</button>
-                                </div>
-                                <div>
-                                    <span onClick={() => setShowDetails(false)}
-                                          className="task-details-close">
-                                    &times;
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="task-details-container">
-                                {updateTask &&
-                                    <UpdateTask doReload={doReload} taskItem={taskItem}/>
-                                }
-                                {showList ? (
-
-                                    <PopUpList onClose={handleClose} taskItem={taskItem} />
-                                ) 
-                                    : 
-                                    <div>
-                                        {showAssign ?
-                                            <PopUpAssign onClose={handleClose} taskItem={taskItem}/> 
-                                            :
-                                            <div>
-                                                <div className="task-description">
-                                                    <h2>Task Details</h2>
-                                                    <span>{taskItem.description}
-                                                    </span>
-                                                </div>
-                                                    <div className="task-details">
-                                                        <div className="task-id">Task name: {taskItem.name}</div>
-                                                        <div className="">Project: </div>
-                                                        <div className="">Task members: {taskItem.usersOnTask.map(user => `${user.firstName} ${user.lastName}`).join(', ')}</div>
-                                                        <Date date={date}/>
-                                                        
-                                                        <div className="task-status">Task Status: {
-                                                            taskItem.taskStatus === 1 ? "In Progress"
-                                                                : taskItem.taskStatus === 2 ? "Review"
-                                                                    : taskItem.taskStatus === 3 ? "Done" 
-                                                                        : "Not Started"
-                                                        }
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                        }
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </tr>
-                :
-                ""
-            }
+            </tr>        
+            {showPupUp ?  <PopUpWindow typeOfPopUp="Task" taskItem={taskItem} targetWindow={targetWindow} onClose={handleClose} deleteFunc={deleteTaskItem}></PopUpWindow> : "" }          
         </>
     )
 }

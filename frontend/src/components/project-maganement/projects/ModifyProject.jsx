@@ -61,11 +61,24 @@ if(deadLine.deadline !== null)
     if(isValidDate(deadLine)){
     if(form.name==="" || form.name===undefined)
     {
-        console.log(form)
-        console.log("====================")
-        setForm({...form, name: props.project.name})
-        console.log("====================")
-        console.log(props.project.name)
+
+        await fetch(`https://localhost:7029/projects/${props.project.id}`,{
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(form)
+        })
+        
+        setShowSuccessText(true)
+        
+        setTimeout(() => {
+            props.toDefault('Project');
+            setShowSuccessText(false)
+        }, 2000);
+        
+        props.setIsModified(!props.isModified)
+        props.setIsSubmit(!props.isSubmit)
     }
             if(props.project.dateId!== null){
                 console.log(deadLine.deadline)
