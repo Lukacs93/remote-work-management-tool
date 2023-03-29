@@ -47,7 +47,7 @@ const ProjectList = (props) =>
     {
         console.log(userID)
         const getUser=async()=>{
-            await fetch(`https://localhost:7029/users/${userID}`)
+            await fetch(`http://localhost:7029/users/${userID}`)
                 .then((resp)=>resp.json())
                 .then((resp)=>{setManager(resp)
                     setTimeout(() => {
@@ -64,7 +64,7 @@ const ProjectList = (props) =>
         //         })
         // }
         async function getProjects() {
-            const response = await fetch(`https://localhost:7029/projects`, {
+            const response = await fetch(`http://localhost:7029/projects`, {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`

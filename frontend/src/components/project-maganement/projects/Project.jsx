@@ -11,7 +11,7 @@ const Project = (props) => {
     const [showSuccessText, setShowSuccessText] = useState(false)
     const taskLink=`/tasks/${props.project.id}`
     const handleClick=async ()=>{
-        await fetch(await fetch(`https://localhost:7029/projects/${props.project.id}`,{
+        await fetch(await fetch(`http://localhost:7029/projects/${props.project.id}`,{
             method: 'DELETE',
             headers: {
                 'Authorization' : `Bearer ${localStorage.getItem("token")}`,
@@ -33,7 +33,7 @@ const Project = (props) => {
     useEffect(()=>
     {
         const getDates=async()=>{
-            await fetch(`https://localhost:7029/dates/${props.project.dateId}`)
+            await fetch(`http://localhost:7029/dates/${props.project.dateId}`)
                 .then((resp)=>resp.json())
                 .then((resp)=>{setDates(resp)
                     setTimeout(() => {

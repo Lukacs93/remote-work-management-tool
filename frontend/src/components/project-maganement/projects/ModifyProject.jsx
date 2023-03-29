@@ -53,7 +53,7 @@ if(form.name==="" || form.name===undefined)
     console.log(props.project.name)
 
 }
-        await fetch(`https://localhost:7029/projects/${form.id}`,{
+        await fetch(`http://localhost:7029/projects/${form.id}`,{
             method: 'PUT',
             headers: {
                 'Authorization' : `Bearer ${localStorage.getItem("token")}`,

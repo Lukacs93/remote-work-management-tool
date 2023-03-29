@@ -18,7 +18,7 @@ const UpdateTask = ({ taskItem,doReload }) =>
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(form)
-        await fetch(`https://localhost:7029/task/${taskItem.id}`,{
+        await fetch(`http://localhost:7029/task/${taskItem.id}`,{
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

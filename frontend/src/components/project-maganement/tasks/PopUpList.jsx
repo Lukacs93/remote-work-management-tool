@@ -8,7 +8,7 @@ function PopUpList({ onClose, taskItem }) {
 
     useEffect(() => {
         const getTaskItems = async () => {
-            const response = await fetch(`https://localhost:7029/tasks/${taskItem.id}/users`);
+            const response = await fetch(`http://localhost:7029/tasks/${taskItem.id}/users`);
 
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
@@ -36,7 +36,7 @@ const usertodelete={
 }
 e.id = parseInt(e.id)
 
-    await fetch(`https://localhost:7029/tasks/user/${taskItem.id}`,{
+    await fetch(`http://localhost:7029/tasks/user/${taskItem.id}`,{
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'

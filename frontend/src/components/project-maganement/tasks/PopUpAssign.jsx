@@ -7,7 +7,7 @@ function PopUpAssign({ onClose, taskItem }) {
   const [selectedUsers, setSelectedUsers] = useState([]);
 
   useEffect(() => {
-    fetch('https://localhost:7029/users')
+    fetch('http://localhost:7029/users')
       .then((response) => response.json())
       .then((data) => setUsers(data))
       .catch((error) => console.log(error));
@@ -30,7 +30,7 @@ function PopUpAssign({ onClose, taskItem }) {
   const addUsers = async (e) =>{
     for (let user of selectedUsers){
         console.log(taskItem.id)
-      await fetch(`https://localhost:7029/tasks/${taskItem.id}`, {
+      await fetch(`http://localhost:7029/tasks/${taskItem.id}`, {
           method: 'PUT',
           headers: {
               "Content-Type": "application/json",

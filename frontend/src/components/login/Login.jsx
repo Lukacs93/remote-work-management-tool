@@ -8,12 +8,11 @@ function Login({ handleLogin }) {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const response = await fetch("https://localhost:7029/login", {
+        const response = await fetch("http://localhost:7029/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            credentials: 'include',
             body: JSON.stringify({ userName, password })
         });
 

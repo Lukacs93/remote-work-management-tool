@@ -45,7 +45,7 @@ setDate({
 }
 
     const getDates=async()=>{
-        await fetch(`https://localhost:7029/dates/${taskItem.dateId}`)
+        await fetch(`http://localhost:7029/dates/${taskItem.dateId}`)
             .then((resp)=>resp.json())
             .then((resp)=>{setNewDate(resp)
                 setTimeout(() => {

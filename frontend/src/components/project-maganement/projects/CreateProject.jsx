@@ -43,7 +43,7 @@ return day > 0 && day <= monthLength[month - 1];
         e.preventDefault()
         console.log(Form)
         if(isValidDate(Form.DeadLine)) {
-            await fetch('https://localhost:7029/projects', {
+            await fetch('http://localhost:7029/projects', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("token")}`,
