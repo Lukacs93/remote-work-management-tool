@@ -29,11 +29,6 @@ function PopUpList({ taskItem }) {
   };
 
   const deleteUser = async (e) =>{
-const usertodelete={
-  "Id": parseInt(e.id),
-    "FirstName": e.firstName,
-    "LastName": e.lastName
-}
 e.id = parseInt(e.id)
 
     await fetch(`https://localhost:7029/tasks/user/${taskItem.id}`,{
@@ -41,7 +36,7 @@ e.id = parseInt(e.id)
     headers: {
       'Content-Type': 'application/json'
   },
-  body: JSON.stringify(usertodelete)
+  body: JSON.stringify(e.id)
   })
 
   setTimeout(() => {}, 2000);
