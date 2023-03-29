@@ -56,7 +56,6 @@ const TaskList = () =>
                 
                 const data = await response.json();
                 setTaskItems(data);
-                
             } else if (location.pathname === "/tasks/my-tasks") {
                 const response = await fetch("https://localhost:7029/tasks/my-tasks", {
                     method: "POST",
@@ -130,7 +129,7 @@ const TaskList = () =>
                                     type="text"
                                     name="title"
                                     id="title"
-                                    placeholder="title"
+                                    placeholder="Title"
                                     className="add-task-input"
                                     onChange={(e) => setForm({...form, name: e.target.value})}
                                     // value={inputTitle}
