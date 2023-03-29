@@ -1,6 +1,7 @@
 ﻿using backend.Data;
 using backend.Models.Entities;
 using backend.Services.DateServiceLayer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.Services.ProjectServiceLayer;
@@ -83,5 +84,37 @@ public class ProjectService : IProjectService
                 await _context.SaveChangesAsync();
             }
         }
+    }
+
+    public async Task<List<User>> GetUsersByProjectID(long id)
+    {
+        var project = await _context.Projects.Include(t => t.UsersOnProject).FirstOrDefaultAsync(t => t.Id == id);
+
+        return project.UsersOnProject;
+    }
+
+    public async Task<List<User>> AddUserToProject(long id, long userid)
+    {
+        var projectToAddUser = await _context.Projects.FirstOrDefaultAsync(p => p.Id == id);
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userid);
+        projectToAddUser.UsersOnProject?.Add(user);
+
+        await _context.SaveChangesAsync();
+
+        return await _context.Users.Where(u => u.Id == userid).Include(u => u.Tasks).ToListAsync();
+    }
+
+    public async Task<User> DeleteUserFromProject(long id, long userid)
+    {
+        var projectToAddUser = await _context.Projects.Include(t => t.UsersOnProject).FirstOrDefaultAsync(p => p.Id == id);
+        var userToRemove = await _context.Users.FirstOrDefaultAsync(p => p.Id == userid);
+
+        if (projectToAddUser != null && userToRemove != null)
+        {
+            projectToAddUser.UsersOnProject?.Remove(userToRemove);
+            await _context.SaveChangesAsync();
+        }
+
+        return userToRemove;
     }
 }
