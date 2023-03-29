@@ -5,6 +5,7 @@ using backend.Models;
 using backend.Services.Authenticators;
 using backend.Services.PasswordHashers;
 using backend.Services.DateServiceLayer;
+using backend.Services.MigrationServices;
 using backend.Services.ProjectServiceLayer;
 using backend.Services.RefreshTokenServiceLayer;
 using backend.Services.TaskServiceLayer;
@@ -18,12 +19,14 @@ using Microsoft.IdentityModel.Tokens;
 
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 // Add services to the container.
 builder.Services.AddDbContext<RemotivateContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddControllersWithViews();
+
+builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -39,7 +42,6 @@ builder.Services.AddCors(options =>
     });
 });
 
-var configuration = builder.Configuration;
 
 //deserializing appsettings values to c# objects
 var authenticationConfiguration = new AuthenticationConfiguration();
@@ -119,17 +121,16 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 // });
 
 var app = builder.Build();
-
+DatabaseManagementService.MigrationInitialisation(app);
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.UseCors();
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
@@ -137,11 +138,11 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-
-});
+// app.UseEndpoints(endpoints =>
+// {
+//     endpoints.MapControllers();
+//
+// });
 
 app.MapControllers();
 
