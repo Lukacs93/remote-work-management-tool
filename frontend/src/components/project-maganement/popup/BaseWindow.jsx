@@ -3,6 +3,8 @@ import "../tasks/Task.css";
 import UpdateTask from '../tasks/UpdateTask';
 import PopUpAssign  from '../tasks/PopUpAssign';
 import PopUpList from '../tasks/PopUpList';
+import ProjectPopUpAssign from '../projects/ProjectPopUpAssign';
+import ProjectPopUpList from '../projects/ProjectPopUpList';
 import ModifyProject from '../projects/ModifyProject'
 import ProjectDetails from '../projects/ProjectDetails';
 import {Link} from "react-router-dom"
@@ -63,8 +65,8 @@ else if(typeOfPopUp ==="Project"){
         setIsModified={props.setIsModified} project={props.project}
         setIsSubmit={props.setIsSubmit} isSubmit={props.isSubmit} toDefault={handleActiveSelection}
          class='modify-project'/>,
-        Assign: <PopUpAssign taskItem={taskItem} />,
-        Users: <PopUpList taskItem={taskItem} />,
+        Assign: <ProjectPopUpAssign project={props.project} />,
+        Users: <ProjectPopUpList project={props.project} />,
         Project: <ProjectDetails project={props.project}/>,
     }
     
