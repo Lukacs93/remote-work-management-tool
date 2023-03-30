@@ -9,3 +9,4 @@ backend/Data/Migrations/RemotivateContextModelSnapshot.cs
 
 BackendUnitTests/bin/ 
 BackendUnitTests/obj/
+packages/
