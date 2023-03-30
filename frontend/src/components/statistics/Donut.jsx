@@ -51,14 +51,13 @@ import {
         <ChartSeries>
           <ChartSeriesItem
             type="donut"
-            
+            data={projectStatusThisMonth}
+            categoryField="status"
+            field="value"
           >
             <ChartSeriesLabels
               color="#fff"
               background="none"
-              data={projectStatusThisMonth}
-            categoryField="status"
-            field="value"
               content={labelContent}
             />
           </ChartSeriesItem>
