@@ -41,7 +41,18 @@ import {
         </ChartValueAxis>
         <ChartCategoryAxis>
           <ChartCategoryAxisItem categories={categories} />
-        </ChartCategoryAxis>        
+        </ChartCategoryAxis>  
+        <ChartSeries>
+        {series.map((item, idx) => (
+          <ChartSeriesItem
+            key={idx}
+            type="line"
+            tooltip={{ visible: true }}
+            data={item.data}
+            name={item.name}
+          />
+        ))}
+      </ChartSeries>      
       </Chart>
     );
   };
