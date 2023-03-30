@@ -87,4 +87,48 @@ public class TaskServiceTests
             Assert.IsEmpty(result.UsersOnTask);
         }
     }
+    
+    [Test]
+    public async Task GetUsersByTaskId_ReturnsUsers()
+    {
+        // Arrange
+        var taskId = 1;
+        var task = new TaskItem
+        {
+            Id = taskId,
+            Name = "TaskName",
+            Description = "Task 1",
+            UsersOnTask = new List<User>
+            {
+                new User { Id = 1, Email = "test@test.com", Role = "User", Username = "User 1", FirstName = "TestFirstName", LastName = "TestLAstName", PasswordHash = "hashedPass"},
+                new User { Id = 2, Email = "test@test.com", Role = "User", Username = "User 2", FirstName = "TestFirstName", LastName = "TestLAstName", PasswordHash = "hashedPass"}
+            }
+        };
+
+        var options = new DbContextOptionsBuilder<RemotivateContext>()
+            .UseInMemoryDatabase(databaseName: "GetUsersByTaskId_ReturnsUsers")
+            .Options;
+
+        using (var context = new RemotivateContext(options))
+        {
+            context.Tasks.Add(task);
+            context.SaveChanges();
+        }
+
+        using (var context = new RemotivateContext(options))
+        {
+            var taskService = new TaskService(context);
+
+            // Act
+            var result = await taskService.GetUsersByTaskId(taskId);
+
+            // Assert
+            Assert.AreEqual(task.UsersOnTask.Count, result.Count);
+            for (int i = 0; i < task.UsersOnTask.Count; i++)
+            {
+                Assert.AreEqual(task.UsersOnTask[i].Id, result[i].Id);
+                Assert.AreEqual(task.UsersOnTask[i].Username, result[i].Username);
+            }
+        }
+    }
 }
