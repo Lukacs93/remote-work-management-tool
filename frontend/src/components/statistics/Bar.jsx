@@ -50,7 +50,7 @@ const seriesLabels = {
 const Bar = props => {
     return (
       <Chart zoomable pannable>
-        <ChartTitle text="Applications status - last 3 months" />
+        <ChartTitle text="Bar chart test" />
         <ChartLegend visible={true} />
         <ChartCategoryAxis>
           <ChartCategoryAxisItem categories={categories}>

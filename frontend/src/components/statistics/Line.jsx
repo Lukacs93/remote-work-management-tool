@@ -34,7 +34,7 @@ import {
   const Line = props => {
     return (
       <Chart pannable zoomable style={{ height: 350 }}>
-        <ChartTitle text="Application status - last 3 months" />
+        <ChartTitle text="Line chart test" />
         <ChartLegend position="top" orientation="horizontal" />
         <ChartValueAxis>
           <ChartValueAxisItem title={{ text: "Job Positions" }} min={0} max={30} />
