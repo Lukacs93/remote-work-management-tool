@@ -20,7 +20,12 @@ import {
 
   const SparklineContainer = () => (
     <div>
-      
+      <p>Tasks this month</p>
+    <Sparkline data={bulletData} type="bullet">
+      <ChartValueAxis>
+        <ChartValueAxisItem {...bulletValueAxis} />
+      </ChartValueAxis>
+    </Sparkline>
     </div>
   );
   
