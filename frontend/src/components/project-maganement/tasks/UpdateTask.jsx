@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import Status from '../status/Status'
 
-const UpdateTask = ({ taskItem }) =>
+const UpdateTask = ({ taskItem,isValidDate }) =>
 {
     const [showSuccessText, setShowSuccessText] = useState(false)
     
@@ -27,15 +27,20 @@ const UpdateTask = ({ taskItem }) =>
 
         if(taskItem.dateId!==null && deadLine.deadline!=="")
         {
-            
-        await fetch(`https://localhost:7029/dates/${taskItem.dateId}`,{
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(deadLine.deadline)
-        })
-    }
+            if(isValidDate(deadLine.deadline))
+            {
+                    await fetch(`https://localhost:7029/dates/${taskItem.dateId}`,{
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(deadLine.deadline)
+                    })
+            }
+            else{
+                alert("Incorrect Date")
+            }
+        }
     else if(taskItem.dateId===null && deadLine.deadline!==""){
        
         const resp = await fetch(`https://localhost:7029/dates/tasks/${taskItem.id}`,{
