@@ -37,9 +37,9 @@ import {
     return (
       <Chart style={{ height: 350 }}>
         <ChartTitle text="Line chart test" />
-        <ChartLegend position="top" orientation="horizontal" />
+        <ChartLegend position="top" orientation="vertical" />
         <ChartValueAxis>
-          <ChartValueAxisItem title={{ text: "Job Positions" }} min={0} max={30} />
+          <ChartValueAxisItem title={{ text: "Tasks" }} min={0} max={30} />
         </ChartValueAxis>
         <ChartCategoryAxis>
           <ChartCategoryAxisItem categories={categories} />

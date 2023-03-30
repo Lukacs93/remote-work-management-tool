@@ -45,7 +45,7 @@ import {
   const Charts = props => {
     return (
       <Chart>
-        <ChartTitle text="Donut chart test" />
+        <ChartTitle text="Projects" />
         <ChartLegend visible={false} />
         <ChartTooltip render={renderTooltip} />
         <ChartSeries>
