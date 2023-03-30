@@ -52,8 +52,25 @@ const Bar = props => {
       <Chart>
         <ChartTitle text="Applications status - last 3 months" />
         <ChartLegend visible={true} />
-        
-        
+        <ChartCategoryAxis>
+          <ChartCategoryAxisItem categories={categories}>
+            <ChartCategoryAxisTitle text="Months" />
+          </ChartCategoryAxisItem>
+        </ChartCategoryAxis>
+        <ChartSeries>
+          {series.map((item, idx) => (
+            <ChartSeriesItem
+              key={idx}
+              type="bar"
+              gap={2}
+              spacing={0.25}
+              labels={seriesLabels}
+              data={item.data}
+              name={item.status}
+              color={item.color}
+            />
+          ))}
+        </ChartSeries>
       </Chart>
     );
   };
