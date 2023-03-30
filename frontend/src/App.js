@@ -66,7 +66,7 @@ function App() {
                         <ProjectDashboard user={user} token={token}/>]} />
                     <Route path="/tasks/:id" element={[<Dashboard user={user} handleLogout={handleLogout}/>, <TaskList />]} />
                     <Route path="/tasks/my-tasks" element={[<Dashboard user={user} handleLogout={handleLogout}/>, <TaskList />]} />
-                    <Route path="/reports" element={<Reports/>} />
+                    <Route path="/reports" element={[<Dashboard user={user} handleLogout={handleLogout}/>, <Reports/>]} />
                 </Route>
             </Routes>
         </div>
