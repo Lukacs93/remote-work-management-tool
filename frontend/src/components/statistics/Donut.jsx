@@ -50,7 +50,7 @@ import {
         <ChartTooltip render={renderTooltip} />
         <ChartSeries>
           <ChartSeriesItem
-            type="donut"
+            type="funnel"
             data={projectStatusThisMonth}
             categoryField="status"
             field="value"

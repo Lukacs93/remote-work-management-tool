@@ -44,3 +44,29 @@ import {
   ];
 
   const labelContent = e => e.category;
+
+  const Charts = props => {
+    return (
+      <Chart>
+        <ChartTitle text="Projects" />
+        <ChartLegend visible={false} />
+        <ChartTooltip render={renderTooltip} />
+        <ChartSeries>
+          <ChartSeriesItem
+            type="bubble"
+            data={projectStatusThisMonth}
+            categoryField="status"
+            field="value"
+          >
+            <ChartSeriesLabels
+              color="#fff"
+              background="none"
+              content={labelContent}
+            />
+          </ChartSeriesItem>
+        </ChartSeries>
+      </Chart>
+    );
+  };
+  
+  export default Charts;
