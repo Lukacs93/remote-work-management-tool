@@ -5,6 +5,7 @@ import "./ReportsPage.css";
 import Donut from "./Donut";
 import Bar from "./Bar";
 import Line from "./Line";
+import Spark from "./Sparkline";
 
 const Reports = () =>{
 
@@ -23,6 +24,9 @@ const Reports = () =>{
             </div>
             <div className="section line">
                 <Line/>    
+            </div>
+            <div className="section spark">
+                <Spark/>    
             </div>
         </div>
         
