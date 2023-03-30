@@ -35,7 +35,7 @@ import {
   
   const Line = props => {
     return (
-      <Chart pannable zoomable style={{ height: 350 }}>
+      <Chart style={{ height: 350 }}>
         <ChartTitle text="Line chart test" />
         <ChartLegend position="top" orientation="horizontal" />
         <ChartValueAxis>

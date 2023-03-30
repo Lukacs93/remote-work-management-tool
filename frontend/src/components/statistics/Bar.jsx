@@ -49,7 +49,7 @@ const seriesLabels = {
 
 const Bar = props => {
     return (
-      <Chart zoomable pannable>
+      <Chart >
         <ChartTitle text="Bar chart test" />
         <ChartLegend visible={true} />
         <ChartCategoryAxis>
@@ -69,18 +69,7 @@ const Bar = props => {
               name={item.status}
               color={item.color}
             />
-          ))}
-          <ChartSeries>
-        {series.map((item, idx) => (
-          <ChartSeriesItem
-            key={idx}
-            type="line"
-            tooltip={{ visible: true }}
-            data={item.data}
-            name={item.name}
-          />
-        ))}
-      </ChartSeries>  
+          ))}      
         </ChartSeries>
       </Chart>
     );
