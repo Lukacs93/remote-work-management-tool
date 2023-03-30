@@ -33,3 +33,27 @@ import {
 
   const labelContent = e => e.category;
   
+  const Charts = props => {
+    return (
+      <Chart>
+        <ChartTitle text="Applications status - this month" />
+        <ChartLegend visible={false} />
+        <ChartSeries>
+          <ChartSeriesItem
+            type="donut"
+            data={applicationsStatusThisMonth}
+            categoryField="status"
+            field="value"
+          >
+            <ChartSeriesLabels
+              color="#fff"
+              background="none"
+              content={labelContent}
+            />
+          </ChartSeriesItem>
+        </ChartSeries>
+      </Chart>
+    );
+  };
+  
+  export default Charts;
