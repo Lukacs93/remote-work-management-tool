@@ -17,17 +17,17 @@ import {
     {
       name: "Total",
       data: [19, 9, 20],
-      color: COLORS.total,
+      color: COLORS.Total,
     },
     {
       name: "In Progress",
       data: [12, 6, 15],
-      color: COLORS.pending,
+      color: COLORS.InProgress,
     },
     {
       name: "Done",
       data: [7, 3, 5],
-      color: COLORS.accepted,
+      color: COLORS.Done,
     },
   ];
 

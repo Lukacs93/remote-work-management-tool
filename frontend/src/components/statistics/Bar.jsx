@@ -14,12 +14,12 @@ import {
     {
       status: "Total",
       data: [43, 30, 59],
-      color: COLORS.total,
+      color: COLORS.Total,
     },
     {
       status: "In Progress",
       data: [25, 15, 30],
-      color: COLORS.pending,
+      color: COLORS.InProgress,
     },
     {
       status: "Review",
@@ -29,12 +29,12 @@ import {
     {
       status: "Not started",
       data: [14, 10, 25],
-      color: COLORS.rejected,
+      color: COLORS.NotStarted,
     },
     {
       status: "Done",
       data: [1, 3, 2],
-      color: COLORS.accepted,
+      color: COLORS.Done,
     },
   ];
 

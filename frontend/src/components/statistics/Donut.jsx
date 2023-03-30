@@ -17,26 +17,26 @@ import {
       </div>
     );
   };
-  const applicationsStatusThisMonth = [
+  const projectStatusThisMonth = [
     {
       status: "Done",
       value: 14,
-      color: COLORS.accepted,
+      color: COLORS.Done,
     },
     {
       status: "In Progress",
       value: 14,
-      color: COLORS.interviewing,
+      color: COLORS.Review,
     },
     {
       status: "Not started",
       value: 40,
-      color: COLORS.rejected,
+      color: COLORS.NotStarted,
     },
     {
       status: "Review",
       value: 32,
-      color: COLORS.pending,
+      color: COLORS.InProgress,
     },
   ];
 
@@ -51,7 +51,7 @@ import {
         <ChartSeries>
           <ChartSeriesItem
             type="donut"
-            data={applicationsStatusThisMonth}
+            data={projectStatusThisMonth}
             categoryField="status"
             field="value"
           >
