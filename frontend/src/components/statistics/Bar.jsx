@@ -37,3 +37,25 @@ import {
       color: COLORS.accepted,
     },
   ];
+
+  const categories = ["Jan", "Feb", "Mar"];
+
+const seriesLabels = {
+  visible: true,
+  padding: 3,
+  font: "normal 16px Arial, sans-serif",
+  position: "center",
+};
+
+const Bar = props => {
+    return (
+      <Chart>
+        <ChartTitle text="Applications status - last 3 months" />
+        <ChartLegend visible={true} />
+        
+        
+      </Chart>
+    );
+  };
+  
+  export default Bar;
