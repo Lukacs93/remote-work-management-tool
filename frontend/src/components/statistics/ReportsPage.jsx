@@ -15,6 +15,7 @@ const Reports = () =>{
       <div className="container">
         <h1>Build React Graphs The Easy Way</h1>
         <div className="section">
+            <Donut/>
         <Bar />
         </div>
       </div>
