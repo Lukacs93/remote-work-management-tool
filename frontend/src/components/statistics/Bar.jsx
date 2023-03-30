@@ -62,8 +62,8 @@ const Bar = props => {
             <ChartSeriesItem
               key={idx}
               type="bar"
-              gap={2}
-              spacing={0.25}
+              gap={4}
+              spacing={5}
               labels={seriesLabels}
               data={item.data}
               name={item.status}
