@@ -64,6 +64,17 @@ import {
               content={labelContent}
             />
           </ChartSeriesItem>
+          <ChartSeries>
+        {series.map((item, idx) => (
+          <ChartSeriesItem
+            key={idx}
+            type="line"
+            tooltip={{ visible: true }}
+            data={item.data}
+            name={item.name}
+          />
+        ))}
+      </ChartSeries>     
         </ChartSeries>
       </Chart>
     );
