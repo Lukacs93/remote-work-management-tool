@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - feature/dockerize-application
-      
+
   workflow_run:
     workflows: ["Tests", "ESLint"]
-    branches: [ "feature/dockerize-application" ]
+    branches: [ feature/dockerize-application ]
     types:
       - completed
 
