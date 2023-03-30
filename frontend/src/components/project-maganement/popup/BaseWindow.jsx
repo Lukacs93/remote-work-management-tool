@@ -14,8 +14,7 @@ const PopUpWindow = ({typeOfPopUp, taskItem,onClose, targetWindow, deleteFunc, p
     const [activeWindow, setActiveWindow] = useState(targetWindow)
     
     const handleActiveSelection = (selectedWindow) =>{
-        setActiveWindow(selectedWindow);             
-        //Possible options: Task, Edit, Assign, Users, Project, Delete
+        setActiveWindow(selectedWindow);                    
     }  
     
 
