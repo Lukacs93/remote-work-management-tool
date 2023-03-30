@@ -1,0 +1,30 @@
+name: ESLint
+
+on:
+  push:
+    branches: [ "feature/dockerize-application" ]
+  pull_request:
+    branches: [ "feature/dockerize-application" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install Node.js
+      uses: actions/setup-node@v2.4.0
+      with:
+        node-version: "16.x"
+        cache: "npm"
+
+    - name: Install npm dependencies
+      run: npm install
+
+    - name: Run ESLint
+      run: npm run lint
+
+    - name: Finish
+      run: echo "ESLint has completed successfully!"
