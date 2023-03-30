@@ -3,7 +3,8 @@ name: Deployment
 on:
   workflow_run:
     workflows: ["Tests"]
-    branches: [ development ]
+    workflows: ["ESLint"]
+    branches: [ feature/dockerize-application ]
     types:
       - completed
 
