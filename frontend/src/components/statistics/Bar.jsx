@@ -70,6 +70,17 @@ const Bar = props => {
               color={item.color}
             />
           ))}
+          <ChartSeries>
+        {series.map((item, idx) => (
+          <ChartSeriesItem
+            key={idx}
+            type="line"
+            tooltip={{ visible: true }}
+            data={item.data}
+            name={item.name}
+          />
+        ))}
+      </ChartSeries>  
         </ChartSeries>
       </Chart>
     );

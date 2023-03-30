@@ -11,6 +11,8 @@ import {
   } from "@progress/kendo-react-charts";
   import { COLORS } from "./constants";
   
+  const categories = ["January", "February", "March"];
+
   export const series = [
     {
       name: "Total",
@@ -29,7 +31,7 @@ import {
     },
   ];
 
-  const categories = ["January", "February", "March"];
+  
   
   const Line = props => {
     return (
@@ -52,8 +54,20 @@ import {
             name={item.name}
           />
         ))}
-      </ChartSeries>      
+      </ChartSeries>     
+      <ChartSeries>
+        {series.map((item, idx) => (
+          <ChartSeriesItem
+            key={idx}
+            type="line"
+            tooltip={{ visible: true }}
+            data={item.data}
+            name={item.name}
+          />
+        ))}
+      </ChartSeries>   
       </Chart>
+
     );
   };
   
