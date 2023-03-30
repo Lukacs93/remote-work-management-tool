@@ -9,7 +9,7 @@ import {
     ChartTitle,
     ChartLegend,
   } from "@progress/kendo-react-charts";
-  import { COLORS } from "../../constants";
+  import { COLORS } from "./constants";
   
   export const series = [
     {
@@ -28,4 +28,22 @@ import {
       color: COLORS.accepted,
     },
   ];
+
+  const categories = ["January", "February", "March"];
   
+  const Line = props => {
+    return (
+      <Chart pannable zoomable style={{ height: 350 }}>
+        <ChartTitle text="Application status - last 3 months" />
+        <ChartLegend position="top" orientation="horizontal" />
+        <ChartValueAxis>
+          <ChartValueAxisItem title={{ text: "Job Positions" }} min={0} max={30} />
+        </ChartValueAxis>
+        <ChartCategoryAxis>
+          <ChartCategoryAxisItem categories={categories} />
+        </ChartCategoryAxis>        
+      </Chart>
+    );
+  };
+  
+  export default Line;

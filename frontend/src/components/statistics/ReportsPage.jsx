@@ -4,6 +4,7 @@ import "hammerjs";
 import "./ReportsPage.css";
 import Donut from "./Donut";
 import Bar from "./Bar";
+import Line from "./Line";
 
 const Reports = () =>{
 
@@ -13,10 +14,11 @@ const Reports = () =>{
     return(
         <div className="App">
       <div className="container">
-        <h1>Build React Graphs The Easy Way</h1>
+        <h1>Reports</h1>
         <div className="section">
-            <Donut/>
-        <Bar />
+            {/* <Donut/>
+            <Bar /> */}
+        <Line/>
         </div>
       </div>
     </div>
