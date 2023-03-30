@@ -1,0 +1,33 @@
+{
+    "env": {
+      "browser": true,
+      "es6": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
+    ],
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "sourceType": "module"
+    },
+    "plugins": [
+      "react"
+    ],
+    "rules": {
+      "react/prop-types": "off",
+      "react/react-in-jsx-scope": "off",
+      "no-unused-vars": "warn",
+      "no-console": "warn",
+      "semi": ["error", "warn"],
+      "quotes": ["error", "single"]
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    }
+  }
