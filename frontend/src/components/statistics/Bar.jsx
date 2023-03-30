@@ -8,7 +8,7 @@ import {
     ChartCategoryAxisTitle,
     ChartCategoryAxisItem,
   } from "@progress/kendo-react-charts";
-  import { COLORS } from "../../constants";
+  import { COLORS } from "./constants";
   
   const series = [
     {

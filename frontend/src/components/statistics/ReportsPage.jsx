@@ -3,6 +3,7 @@ import "@progress/kendo-theme-material/dist/all.css";
 import "hammerjs";
 import "./ReportsPage.css";
 import Donut from "./Donut";
+import Bar from "./Bar";
 
 const Reports = () =>{
 
@@ -14,7 +15,7 @@ const Reports = () =>{
       <div className="container">
         <h1>Build React Graphs The Easy Way</h1>
         <div className="section">
-          <Donut />
+        <Bar />
         </div>
       </div>
     </div>
