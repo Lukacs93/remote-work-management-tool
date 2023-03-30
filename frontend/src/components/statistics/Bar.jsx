@@ -17,22 +17,22 @@ import {
       color: COLORS.total,
     },
     {
-      status: "Pending",
+      status: "In Progress",
       data: [25, 15, 30],
       color: COLORS.pending,
     },
     {
-      status: "Interviewed",
+      status: "Review",
       data: [3, 5, 1],
       color: COLORS.interviewed,
     },
     {
-      status: "Rejected",
+      status: "Not started",
       data: [14, 10, 25],
       color: COLORS.rejected,
     },
     {
-      status: "Accepted",
+      status: "Done",
       data: [1, 3, 2],
       color: COLORS.accepted,
     },

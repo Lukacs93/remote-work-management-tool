@@ -19,22 +19,22 @@ import {
   };
   const applicationsStatusThisMonth = [
     {
-      status: "Accepted",
+      status: "Done",
       value: 14,
       color: COLORS.accepted,
     },
     {
-      status: "Interviewing",
+      status: "In Progress",
       value: 14,
       color: COLORS.interviewing,
     },
     {
-      status: "Rejected",
+      status: "Not started",
       value: 40,
       color: COLORS.rejected,
     },
     {
-      status: "Pending",
+      status: "Review",
       value: 32,
       color: COLORS.pending,
     },

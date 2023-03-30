@@ -18,12 +18,12 @@ import {
       color: COLORS.total,
     },
     {
-      name: "Pending",
+      name: "In Progress",
       data: [12, 6, 15],
       color: COLORS.pending,
     },
     {
-      name: "Fulfilled",
+      name: "Done",
       data: [7, 3, 5],
       color: COLORS.accepted,
     },

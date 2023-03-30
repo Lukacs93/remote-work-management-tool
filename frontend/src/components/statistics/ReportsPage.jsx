@@ -16,9 +16,9 @@ const Reports = () =>{
       <div className="container">
         <h1>Reports</h1>
         <div className="section">
-            {/* <Donut/>
-            <Bar /> */}
-        <Line/>
+            <Donut/>
+            <Bar /> 
+            <Line/>
         </div>
       </div>
     </div>
