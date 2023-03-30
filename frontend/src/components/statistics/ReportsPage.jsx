@@ -15,13 +15,13 @@ const Reports = () =>{
       <div className="container">
         <h1>Reports</h1>
         <div class="flex-container"> 
-            <div className="section">
+            <div className="section donut">
                 <Donut/>     
             </div>
-            <div className="section">
+            <div className="section bar">
                 <Bar />     
             </div>
-            <div className="section">
+            <div className="section line">
                 <Line/>    
             </div>
         </div>
