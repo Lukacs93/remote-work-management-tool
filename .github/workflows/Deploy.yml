@@ -12,6 +12,11 @@ on:
       - completed
 
 jobs:
+  dummy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dummy step
+        run: echo "This is a dummy step"
   # This job pushes the Docker image to DockerHub
   push_to_DockerHub:
     name: Push Images to DockerHub
