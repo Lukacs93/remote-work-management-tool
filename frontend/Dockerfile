@@ -5,6 +5,8 @@ LABEL authors="Lukacs93"
 # Set the working directory to /app
 WORKDIR /app
 
+COPY frontend/public/ /app/public/
+
 # Copy package.json and package-lock.json to the container
 COPY frontend/package*.json ./
 
@@ -12,7 +14,7 @@ COPY frontend/package*.json ./
 RUN npm install
 
 # Copy the rest of the code to the container
-COPY . .
+COPY frontend/ ./
 
 # Build the app
 RUN npm run build
