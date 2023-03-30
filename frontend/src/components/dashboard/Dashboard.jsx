@@ -91,8 +91,8 @@ const Dashboard = ({ user, handleLogout }) => {
                             <div className="dashboard-menu-text">
                                 <span>Tasks</span>
                             </div>
-                        </Link>
-                        <div className="dashboard-button-container" role="button">
+                        </Link> 
+                        <Link to="/reports" className={`dashboard-button-container ${activeButton === 'reports' ? 'active' : ''}`} onClick={() => setActiveButton('reports')} role="button">
                             <div className="dashboard-icon-container">
                                 <svg className="dashboard-menu-icon">
                                     <path d="M4 9h4v11H4zm12 4h4v7h-4zm-6-9h4v16h-4z">
@@ -102,7 +102,7 @@ const Dashboard = ({ user, handleLogout }) => {
                             <div className="dashboard-menu-text">
                                 <span>Reports</span>
                             </div>
-                        </div>
+                        </Link>
                         <div className="dashboard-button-container" role="button">
                             <div className="dashboard-icon-container">
                                 <svg className="dashboard-menu-icon">

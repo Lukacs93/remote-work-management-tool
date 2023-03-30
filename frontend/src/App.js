@@ -10,6 +10,7 @@ import Login from "./components/login/Login";
 import Profile from "./components/Profile";
 import ProtectedRoutes from "./components/auth/ProtectedRoutes";
 import Admin from "./components/admin/Admin";
+import Reports from "./components/statistics/ReportsPage";
 
 function App() {
     const navigate = useNavigate();
@@ -65,6 +66,7 @@ function App() {
                         <ProjectDashboard user={user} token={token}/>]} />
                     <Route path="/tasks/:id" element={[<Dashboard user={user} handleLogout={handleLogout}/>, <TaskList />]} />
                     <Route path="/tasks/my-tasks" element={[<Dashboard user={user} handleLogout={handleLogout}/>, <TaskList />]} />
+                    <Route path="/reports" element={[<Dashboard user={user} handleLogout={handleLogout}/>, <Reports/>]} />
                 </Route>
             </Routes>
         </div>

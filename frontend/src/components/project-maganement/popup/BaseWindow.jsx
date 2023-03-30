@@ -14,8 +14,7 @@ const PopUpWindow = ({typeOfPopUp, taskItem,onClose, targetWindow, deleteFunc, p
     const [activeWindow, setActiveWindow] = useState(targetWindow)
     
     const handleActiveSelection = (selectedWindow) =>{
-        setActiveWindow(selectedWindow);             
-        //Possible options: Task, Edit, Assign, Users, Project, Delete
+        setActiveWindow(selectedWindow);                    
     }  
     
 
@@ -50,12 +49,10 @@ if(typeOfPopUp ==="Task"){
                     </div>
                 </div>
             </div>
-    
-    
         </>
     )
 }
-else if(typeOfPopUp ==="Project"){
+else if(typeOfPopUp === "Project"){
     const taskLink=`/tasks/${props.project.id}`;
 
     
