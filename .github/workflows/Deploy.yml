@@ -8,7 +8,7 @@ on:
       - completed
 
 jobs:
- dummy:
+  dummy:
     runs-on: ubuntu-latest
     steps:
       - name: Dummy step
