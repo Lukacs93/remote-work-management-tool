@@ -41,7 +41,7 @@ e.id = parseInt(e.id)
 
   setTimeout(() => {}, 2000);
   isDeleted(!deleted)
-    //DELETE request
+    
   }
 
   const filteredUsers = users.filter((user) =>

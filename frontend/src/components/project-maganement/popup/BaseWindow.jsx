@@ -49,12 +49,10 @@ if(typeOfPopUp ==="Task"){
                     </div>
                 </div>
             </div>
-    
-    
         </>
     )
 }
-else if(typeOfPopUp ==="Project"){
+else if(typeOfPopUp === "Project"){
     const taskLink=`/tasks/${props.project.id}`;
 
     
