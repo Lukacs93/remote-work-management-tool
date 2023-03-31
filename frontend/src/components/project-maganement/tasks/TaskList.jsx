@@ -15,11 +15,11 @@ const TaskList = () =>
     const [isSubmit, setIsSubmit] = useState(false)
     const [form, setForm] = useState({
         name:"",
-        deadLine:"",
         projectId: params.id,
         description: "",
         note: "Empty note",
-        taskStatus: 1
+        taskStatus: 1,
+        dateId:null
     })
 
     const token = localStorage.getItem("token");
@@ -28,6 +28,7 @@ const TaskList = () =>
     
     const onSubmit = async (e) => {
         e.preventDefault();
+        
         await fetch(`http://localhost:7029/projects/${params.id}/add-task`, {
             method: 'POST',
             headers: {
@@ -55,7 +56,6 @@ const TaskList = () =>
                 
                 const data = await response.json();
                 setTaskItems(data);
-                
             } else if (location.pathname === "/tasks/my-tasks") {
                 const response = await fetch("http://localhost:7029/tasks/my-tasks", {
                     method: "POST",
@@ -90,7 +90,6 @@ const TaskList = () =>
     }
 
     const handleCreateNewTask = () => {
-        console.log(taskItems)
         setShowForm(!showForm)
         setIsSubmit(false)
     }
@@ -130,21 +129,9 @@ const TaskList = () =>
                                     type="text"
                                     name="title"
                                     id="title"
-                                    placeholder="title"
+                                    placeholder="Title"
                                     className="add-task-input"
                                     onChange={(e) => setForm({...form, name: e.target.value})}
-                                    // value={inputTitle}
-                                />
-                                <label htmlFor="title" className="description-label">
-                                    Dead Line: (DD/MM/YYYY)
-                                </label>
-                                 <input
-                                    type="text"
-                                    name="deadLine"
-                                    id="deadLine"
-                                    placeholder="DD/MM/YYYY"
-                                    className="add-task-input"
-                                    onChange={(e) => setForm({...form, deadLine: e.target.value})}
                                     // value={inputTitle}
                                 />
                                 <label className="description-label" htmlFor="description">

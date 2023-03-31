@@ -40,7 +40,8 @@ namespace backend.Services.DateServiceLayer
                     DeadLine = DeadLine
                 };
                 _context.Dates.Add(date);
-                Date createdDate = await _context.Dates.FirstAsync(date => date.ProjectId == id);
+                await _context.SaveChangesAsync();
+                Date createdDate = await _context.Dates.FirstAsync(date => date.TaskId == id);
                 return createdDate.Id;
             }
         }
@@ -54,9 +55,15 @@ namespace backend.Services.DateServiceLayer
 
         public async Task<Date> GetDateById(long DateId)
         {
-            Date hali= await _context.Dates.FirstAsync(date => date.Id == DateId);
-
-            return hali;
+            return  await _context.Dates.FirstAsync(date => date.Id == DateId);
         }
+
+        public async Task ModifyDeadLine(long dateId, string DeadLine)
+        {
+            Date date = await _context.Dates.FirstAsync(d => d.Id == dateId);
+            _context.Entry(date).Property(d => d.DeadLine).CurrentValue = DeadLine;
+            await _context.SaveChangesAsync();
+        }
+
     }
 }

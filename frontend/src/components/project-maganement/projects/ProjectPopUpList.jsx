@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import './PopUpList.css';
+import './ProjectPopUpList.css';
 
-function PopUpList({ taskItem }) {
+function ProjectPopUpList({ project }) {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [deleted,isDeleted]=useState(false)
 
     useEffect(() => {
-        const getTaskItems = async () => {
-            const response = await fetch(`http://localhost:7029/tasks/${taskItem.id}/users`);
+        const getProjects = async () => {
+            const response = await fetch(`https://localhost:7029/projects/${project.id}/users`);
 
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
@@ -20,7 +20,7 @@ function PopUpList({ taskItem }) {
             setUsers(items);
         }
 
-        getTaskItems();
+        getProjects();
 
     }, [deleted]);
     
@@ -29,9 +29,8 @@ function PopUpList({ taskItem }) {
   };
 
   const deleteUser = async (e) =>{
-e.id = parseInt(e.id)
-
-    await fetch(`http://localhost:7029/tasks/user/${taskItem.id}`,{
+    e.id = parseInt(e.id)
+    await fetch(`https://localhost:7029/projects/user/${project.id}`,{
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
@@ -41,7 +40,7 @@ e.id = parseInt(e.id)
 
   setTimeout(() => {}, 2000);
   isDeleted(!deleted)
-    
+    //DELETE request
   }
 
   const filteredUsers = users.filter((user) =>
@@ -76,4 +75,4 @@ e.id = parseInt(e.id)
   );
 }
 
-export default PopUpList;
+export default ProjectPopUpList;

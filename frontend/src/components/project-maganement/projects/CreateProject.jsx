@@ -42,7 +42,7 @@ return day > 0 && day <= monthLength[month - 1];
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(Form)
-        if(isValidDate(Form.DeadLine)) {
+       
             await fetch('http://localhost:7029/projects', {
                 method: 'POST',
                 headers: {
@@ -60,10 +60,7 @@ return day > 0 && day <= monthLength[month - 1];
 
             props.setIsSubmit(!props.isSubmit)
             props.changeOption("none")
-        }
-        else{
-            alert('Invalid date format!')
-        }
+        
     }
     console.log(props.loggedInUser['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'])
     return (

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import './PopUpAssign.css';
+import './ProjectPopUpAssign.css';
 
-function PopUpAssign({ taskItem }) {
+function ProjectPopUpAssign({ project }) {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedUsers, setSelectedUsers] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:7029/users')
+    fetch('https://localhost:7029/users')
       .then((response) => response.json())
       .then((data) => setUsers(data))
       .catch((error) => console.log(error));
@@ -29,8 +29,8 @@ function PopUpAssign({ taskItem }) {
 
   const addUsers = async (e) =>{
     for (let user of selectedUsers){
-        console.log(taskItem.id)
-      await fetch(`http://localhost:7029/tasks/${taskItem.id}`, {
+        console.log(project.id)
+      await fetch(`https://localhost:7029/projects/${project.id}/users`, {
           method: 'PUT',
           headers: {
               "Content-Type": "application/json",
@@ -73,4 +73,4 @@ function PopUpAssign({ taskItem }) {
   );
 }
 
-export default PopUpAssign;
+export default ProjectPopUpAssign;

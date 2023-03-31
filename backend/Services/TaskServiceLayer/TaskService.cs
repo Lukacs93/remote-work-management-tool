@@ -37,20 +37,7 @@ public class TaskService : ITaskService
     
     public async Task<List<User>> AddUserToTask(long id, long userId)
     {
-        // var taskToAddUser=await _context.Tasks.FirstOrDefaultAsync(p=> p.Id == id);
-        //
-        // if(_context.Users.Any(i=>i.Id == user.Id))
-        // {
-        //     user =  _context.Users.First(i=>i.Id==user.Id);
-        //     
-        //     if(taskToAddUser!=null)
-        //     {
-        //         taskToAddUser.UsersOnTask?.Add(user);
-        //         await _context.SaveChangesAsync();
-        //     }
-        //
-        // }
-        // return await _context.Users.Where(u => u.Id == user.Id).Include(u => u.Tasks).ToListAsync();
+        
         var taskToAddUser=await _context.Tasks.FirstOrDefaultAsync(p=> p.Id == id);
         var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
         
@@ -61,15 +48,10 @@ public class TaskService : ITaskService
         return await _context.Users.Where(u => u.Id == userId).Include(u => u.Tasks).ToListAsync();
     }
 
-    public async Task<User> RemoveUserFromTask(long id, User user)
+    public async Task<User> RemoveUserFromTask(long id, long userid)
     {
         var taskToAddUser = await _context.Tasks.Include(t=>t.UsersOnTask).FirstOrDefaultAsync(p=> p.Id == id);
-        var userToRemove =  await _context.Users.FirstOrDefaultAsync(p=> p.Id == user.Id);
-        
-        // if(_context.Users.Any(i=>i.Id == user.Id))
-        // {
-        //     user =  _context.Users.First(i=>i.Id==user.Id);
-        // }
+        var userToRemove =  await _context.Users.FirstOrDefaultAsync(p=> p.Id == userid);
         
         if(taskToAddUser != null && userToRemove != null)
         {
@@ -77,7 +59,7 @@ public class TaskService : ITaskService
             await _context.SaveChangesAsync();
         }
 
-        return user;
+        return userToRemove;
     }
 
     public async Task<TaskItem> CreateTask(long projectId, TaskItem task)
@@ -86,7 +68,6 @@ public class TaskService : ITaskService
        
        if (projectToAddTask != null)
        {
-          // _context.Tasks.Add(task);
            projectToAddTask.Tasks?.Add(task);
        }
        

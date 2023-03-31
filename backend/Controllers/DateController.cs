@@ -20,5 +20,24 @@ namespace backend.Controllers
         {
             return await _dateService.GetDateById(id);
         }
+
+        [HttpPost("project/{id}")]
+        public async Task<long> CreateDateForProject(long id, [FromBody] string deadline)
+        {
+            return await _dateService.CreateDate(id, deadline, true);
+        }
+
+        [HttpPost("tasks/{id}")]
+        public async Task<long> CreateDateForTask(long id, [FromBody] string deadline)
+        {
+           return await _dateService.CreateDate(id, deadline, false);
+        }
+
+
+        [HttpPut("{dateId:long}")]
+        public async Task ModifyDeadLine(long dateId, [FromBody] string deadline)
+        {
+            await _dateService.ModifyDeadLine(dateId, deadline);
+        }
     }
 }

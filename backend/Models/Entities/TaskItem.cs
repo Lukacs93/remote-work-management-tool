@@ -16,7 +16,7 @@ public class TaskItem
 
     public long ProjectId { get; set; } // The Project its part of
 
-    public long DateId { get; set; }
+    public long? DateId { get; set; }
 
     public string Description { get; set; }
 

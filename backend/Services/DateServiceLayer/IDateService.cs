@@ -10,6 +10,7 @@ namespace backend.Services.DateServiceLayer
 
          Task<Date> GetDateById(long DateId);
 
+        Task ModifyDeadLine(long dateId, string DeadLine);
 
     }
 }
