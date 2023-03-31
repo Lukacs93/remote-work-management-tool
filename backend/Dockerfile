@@ -36,9 +36,9 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["backend/backend.csproj", "./"]
+COPY ["backend.csproj", "./"]
 RUN dotnet restore "./backend.csproj"
-COPY backend/ ./
+COPY . .
 RUN dotnet build "backend.csproj" -c Release -o /app
 
 FROM build AS publish

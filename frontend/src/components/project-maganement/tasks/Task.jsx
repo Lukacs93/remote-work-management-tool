@@ -35,6 +35,7 @@ const Task = ({taskItem, deleteTaskItem}) => {
 }
 
     const getDates=async()=>{
+        console.log(taskItem.dateId)
         await fetch(`http://localhost:8080/dates/${taskItem.dateId}`)
             .then((resp)=>resp.json())
             .then((resp)=>{setNewDate(resp)

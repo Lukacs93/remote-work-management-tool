@@ -12,7 +12,7 @@ using backend.Data;
 namespace backend.Data.Migrations
 {
     [DbContext(typeof(RemotivateContext))]
-    [Migration("20230329175158_Initial Migration")]
+    [Migration("20230331005059_Initial Migration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -126,7 +126,7 @@ namespace backend.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("DateId")
+                    b.Property<long?>("DateId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Description")
