@@ -29,7 +29,7 @@ const UpdateTask = ({ taskItem,isValidDate }) =>
         {
             if(isValidDate(deadLine.deadline))
             {
-                    await fetch(`http://localhost:7029/dates/${taskItem.dateId}`,{
+                    await fetch(`http://localhost:8080/dates/${taskItem.dateId}`,{
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json'
@@ -43,7 +43,7 @@ const UpdateTask = ({ taskItem,isValidDate }) =>
         }
     else if(taskItem.dateId===null && deadLine.deadline!==""){
        
-        const resp = await fetch(`http://localhost:7029/dates/tasks/${taskItem.id}`,{
+        const resp = await fetch(`http://localhost:8080/dates/tasks/${taskItem.id}`,{
                 method: 'POST',
                 headers: {
                     'Authorization' : `Bearer ${localStorage.getItem("token")}`,
@@ -56,7 +56,7 @@ const UpdateTask = ({ taskItem,isValidDate }) =>
             console.log(data)
     }
 
-    await fetch(`http://localhost:7029/task/${taskItem.id}`,{
+    await fetch(`http://localhost:8080/task/${taskItem.id}`,{
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

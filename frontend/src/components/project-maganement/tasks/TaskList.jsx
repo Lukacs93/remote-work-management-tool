@@ -29,7 +29,7 @@ const TaskList = () =>
     const onSubmit = async (e) => {
         e.preventDefault();
         
-        await fetch(`http://localhost:7029/projects/${params.id}/add-task`, {
+        await fetch(`http://localhost:8080/projects/${params.id}/add-task`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -48,7 +48,7 @@ const TaskList = () =>
         const getTaskItems = async () => {
             if (location.pathname.startsWith(`/tasks/${params.id}`)) {
                 const response = await fetch(
-                    `http://localhost:7029/projects/tasks/${params.id}`,{
+                    `http://localhost:8080/projects/tasks/${params.id}`,{
                         method: 'GET',
                         headers: {
                             'Authorization' : `Bearer ${localStorage.getItem("token")}`,
@@ -57,7 +57,7 @@ const TaskList = () =>
                 const data = await response.json();
                 setTaskItems(data);
             } else if (location.pathname === "/tasks/my-tasks") {
-                const response = await fetch("http://localhost:7029/tasks/my-tasks", {
+                const response = await fetch("http://localhost:8080/tasks/my-tasks", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -81,11 +81,10 @@ const TaskList = () =>
             
         }, 2000);
 
-        await fetch(`http://localhost:7029/tasks/${id}`, {
+        await fetch(`http://localhost:8080/tasks/${id}`, {
             method: "DELETE",
             headers: {
             'Authorization' : `Bearer ${localStorage.getItem("token")}`
-            
         }});        
     }
 

@@ -15,7 +15,7 @@ const Reports = () =>{
         <div className="App">
       <div className="container">
         <h1>Reports</h1>
-        <div class="flex-container"> 
+        <div className="flex-container"> 
             <div className="section donut">
                 <Donut/>     
             </div>

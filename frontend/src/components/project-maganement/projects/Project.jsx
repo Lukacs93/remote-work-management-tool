@@ -9,7 +9,7 @@ const Project = (props) => {
     const [targetWindow, setTargetWindow] = useState("");
     
     const handleClick=async ()=>{
-        await fetch(await fetch(`http://localhost:7029/projects/${props.project.id}`,{
+        await fetch(await fetch(`http://localhost:8080/projects/${props.project.id}`,{
             method: 'DELETE',
             headers: {
                 'Authorization' : `Bearer ${localStorage.getItem("token")}`,
@@ -58,11 +58,7 @@ const Project = (props) => {
                             </div>
                             :
                             <div className="project-details-content animate">
-             
-                                
-                                
-
-                                
+                                                                
                             </div>
                         }
         </div>

@@ -15,7 +15,7 @@ const Admin = ({  }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         
-        const response = await fetch('http://localhost:7029/register',{
+        const response = await fetch('http://localhost:8080/register',{
             method: 'POST',
             headers: {
                 'Authorization' : `Bearer ${localStorage.getItem("token")}`,

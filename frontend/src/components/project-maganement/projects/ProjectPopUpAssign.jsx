@@ -7,7 +7,7 @@ function ProjectPopUpAssign({ project }) {
   const [selectedUsers, setSelectedUsers] = useState([]);
 
   useEffect(() => {
-    fetch('https://localhost:7029/users')
+    fetch('http://localhost:8080/users')
       .then((response) => response.json())
       .then((data) => setUsers(data))
       .catch((error) => console.log(error));
@@ -29,8 +29,7 @@ function ProjectPopUpAssign({ project }) {
 
   const addUsers = async (e) =>{
     for (let user of selectedUsers){
-        console.log(project.id)
-      await fetch(`https://localhost:7029/projects/${project.id}/users`, {
+      await fetch(`http://localhost:8080/projects/${project.id}/users`, {
           method: 'PUT',
           headers: {
               "Content-Type": "application/json",
@@ -39,8 +38,6 @@ function ProjectPopUpAssign({ project }) {
           body: JSON.stringify(user.id)
       })
     }
-          
-    
   }
 
   const filteredUsers = users.filter((user) =>

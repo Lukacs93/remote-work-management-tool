@@ -8,7 +8,7 @@ function ProjectPopUpList({ project }) {
 
     useEffect(() => {
         const getProjects = async () => {
-            const response = await fetch(`https://localhost:7029/projects/${project.id}/users`);
+            const response = await fetch(`http://localhost:8080/projects/${project.id}/users`);
 
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
@@ -30,17 +30,16 @@ function ProjectPopUpList({ project }) {
 
   const deleteUser = async (e) =>{
     e.id = parseInt(e.id)
-    await fetch(`https://localhost:7029/projects/user/${project.id}`,{
+    await fetch(`http://localhost:8080/projects/user/${project.id}`,{
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(e.id)
+    },
+    body: JSON.stringify(e.id)
   })
 
   setTimeout(() => {}, 2000);
-  isDeleted(!deleted)
-    //DELETE request
+    isDeleted(!deleted)
   }
 
   const filteredUsers = users.filter((user) =>

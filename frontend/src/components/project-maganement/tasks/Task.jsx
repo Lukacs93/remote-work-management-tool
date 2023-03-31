@@ -7,6 +7,7 @@ import UpdateTask from "./UpdateTask";
 import Status from '../status/Status'
 import Date from '../date/Date'
 import PopUpWindow from "../popup/BaseWindow";
+
 const Task = ({taskItem, deleteTaskItem}) => {
     const [showPupUp, setShowPupUp] =useState(false);
     const [targetWindow, setTargetWindow] = useState("");
@@ -25,20 +26,16 @@ const Task = ({taskItem, deleteTaskItem}) => {
         }
     );
 
-
-    
-
-
     useEffect(()=>{
-const setNewDate=(date)=>{
-setDate({
-    createdDate:date.createdDate,
-    deadLine:date.deadLine
-})
+        const setNewDate=(date)=>{
+            setDate({
+                createdDate:date.createdDate,
+                deadLine:date.deadLine
+    })
 }
 
     const getDates=async()=>{
-        await fetch(`http://localhost:7029/dates/${taskItem.dateId}`)
+        await fetch(`http://localhost:8080/dates/${taskItem.dateId}`)
             .then((resp)=>resp.json())
             .then((resp)=>{setNewDate(resp)
                 setTimeout(() => {
@@ -48,7 +45,7 @@ setDate({
 
     getDates()
    
-},[ ])
+},[])
 
 
     return (

@@ -1,16 +1,18 @@
 import React, { useState,useEffect } from 'react'
 import UserList from './UsersList';
 import Date from '../date/Date'
+
 const ProjectDetails = (props) =>{
     const [dates,setDates]=useState()
     const [manager, setManager]=useState({
         "firstName":"",
         "lastName":""
     })
+
     useEffect(()=>
     {
         const getUser=async()=>{
-            await fetch(`https://localhost:7029/users/${props.project.managerId}`)
+            await fetch(`http://localhost:8080/users/${props.project.managerId}`)
                 .then((resp)=>resp.json())
                 .then((resp)=>{setManager(resp)
                     setTimeout(() => {
@@ -18,7 +20,7 @@ const ProjectDetails = (props) =>{
                 })
         }
         const getDates=async()=>{
-            await fetch(`https://localhost:7029/dates/${props.project.dateId}`)
+            await fetch(`http://localhost:8080/dates/${props.project.dateId}`)
                 .then((resp)=>resp.json())
                 .then((resp)=>{setDates(resp)
                     setTimeout(() => {
@@ -28,7 +30,8 @@ const ProjectDetails = (props) =>{
         getDates()
         getUser()
 
-    },[ ])
+    },[])
+
     return(
         <>
         <div className="project-details-container">
