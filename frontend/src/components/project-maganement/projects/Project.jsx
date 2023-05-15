@@ -7,7 +7,12 @@ const Project = (props) => {
     const taskLink=`/tasks/${props.project.id}`
     const [showPupUp, setShowPupUp] =useState(false);
     const [targetWindow, setTargetWindow] = useState("");
-    
+    const [projectStatus, setProjectStatus]=useState({
+    "0":"NotStarted",
+    "1":"InProgress",
+    "2":"Review",
+    "3":"Done"})
+
     const handleClick=async ()=>{
         await fetch(await fetch(`https://localhost:7029/projects/${props.project.id}`,{
             method: 'DELETE',
@@ -15,6 +20,7 @@ const Project = (props) => {
                 'Authorization' : `Bearer ${localStorage.getItem("token")}`,
             },
         }))
+        
         setShowPupUp(false)
         setShowSuccessText(true)
         
@@ -48,7 +54,7 @@ const Project = (props) => {
                         
                     </div>
                 )}
-                <div className="project-status">Project Status: {props.project.projectStatus}</div>
+                <div className="project-status">Project Status: {projectStatus[props.project.projectStatus]}</div>
                 <button className="see-more-button">See More</button>
             </div>
             {showPupUp ?  <PopUpWindow typeOfPopUp="Project" targetWindow={targetWindow} onClose={handleClose} deleteFunc={handleClick} props={props}></PopUpWindow> : "" }                     
